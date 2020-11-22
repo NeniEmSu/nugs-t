@@ -1,0 +1,384 @@
+/* eslint-disable vue/no-v-html */
+<template>
+  <article class="single">
+    <FeaturedImage
+      v-if="getFeaturedImage(data, 'large')"
+      :expanded="expanded"
+      :article="data"
+      :featured-image="getFeaturedImage(data, 'large')"
+    />
+    <transition name="slide-fade">
+      <div
+        class="narrow"
+        :class="{ expanded: expanded, 'no-featured-image': !getFeaturedImage(data, 'large') }"
+      >
+        <button
+          v-if="getFeaturedImage(data, 'large')"
+          class="expand-featured-image"
+          title="Show full image"
+          :class="{ expanded: expanded }"
+          @click.prevent="expanded = !expanded"
+        >
+          <svg
+            fill="#000000"
+            height="24"
+            viewBox="0 0 24 24"
+            width="24"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M16.59 8.59L12 13.17 7.41 8.59 6 10l6 6 6-6z" />
+            <path d="M0 0h24v24H0z" fill="none" />
+          </svg>
+        </button>
+        <div class="meta">
+          <h1 class="title" v-html="data.title.rendered"></h1>
+          <div class="details">
+            <span>{{ longTimestamp(data.date) }}</span>
+            <span class="separator">|</span>
+            <nuxt-link class="author fancy" :to="`/authors/${data._embedded.author[0].slug}`">
+              <span>{{ data._embedded.author[0].name }}</span>
+            </nuxt-link>
+          </div>
+        </div>
+        <div class="content" v-html="data.content.rendered"></div>
+        <Comments v-if="$store.state.enableComments && type === 'article'" :article="data" />
+      </div>
+    </transition>
+    <div v-if="colorAccentStyles" v-html="colorAccentStyles"></div>
+  </article>
+</template>
+
+<script>
+import * as Vibrant from 'node-vibrant'
+export default {
+  components: {},
+  mixins: {
+    getFeaturedImage: Function,
+    longTimestamp: Function,
+  },
+  props: {
+    data: Object,
+    type: String,
+  },
+  data() {
+    return {
+      expanded: false,
+      colorAccentStyles: null,
+    }
+  },
+  mounted() {
+    this.initGallery()
+    if (this.getFeaturedImage(this.data, 'thumbnail')) {
+      this.getColorAccentStyles(this.data).then((styles) => (this.colorAccentStyles = styles))
+    }
+  },
+  methods: {
+    initGallery() {
+      const galleries = document.querySelectorAll('.content > .gallery')
+      if (galleries.length) {
+        if (process.browser) {
+          require('lightgallery.js')
+          require('lg-zoom.js')
+          require('lg-thumbnail.js')
+        }
+        for (let i = 0; i < galleries.length; i++) {
+          // eslint-disable-next-line no-undef
+          lightGallery(galleries[i], {
+            download: false,
+            selector: 'a',
+          })
+        }
+      }
+    },
+    getColorAccentStyles(article) {
+      return new Promise(function (resolve, reject) {
+        const image =
+          article._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url
+        Vibrant.from(image).getPalette((err, palette) => {
+          if (!err && palette.DarkMuted) {
+            const { r, g, b } = palette.DarkMuted
+            resolve(`
+              <style>
+                html,
+                .featured-image .image-height {
+                  background: rgb(${r},${g},${b}) !important
+                }
+                main a {
+                  color: rgb(${r},${g},${b}) !important
+                }
+                main a:hover {
+                  color: rgb(${r},${g},${b}) !important
+                }
+                main a::after {
+                  background: rgb(${r},${g},${b}) !important
+                }
+              </style>
+            `)
+          } else {
+            reject(err)
+          }
+        })
+      })
+    },
+  },
+}
+</script>
+
+<style lang="scss" scoped>
+@import '~/assets/scss/variables.scss';
+article {
+  background-color: #efefef;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  height: 100%;
+  .narrow {
+    background-color: #efefef;
+    margin: 0 auto;
+    max-width: 842px;
+    min-height: calc(100vh - 80px - 96px - 200px);
+    padding: 0 96px 96px 96px;
+    position: relative;
+    transition: min-height 1s, transform 1s;
+    transform: translateY(0);
+    width: 100%;
+    &.expanded {
+      min-height: 0;
+    }
+    @media (max-width: 900px) {
+      margin-top: 0 !important;
+      max-width: 100%;
+      min-height: initial;
+    }
+    @media (max-width: 700px) {
+      max-width: none;
+      padding: 0 16px 16px 16px;
+    }
+    .expand-featured-image {
+      background-color: transparent;
+      border: 0;
+      cursor: pointer;
+      outline: 0;
+      position: absolute;
+      right: 32px;
+      top: 32px;
+      transition: 1s;
+      z-index: 1;
+      @media (max-width: 900px) {
+        display: none;
+      }
+      svg {
+        fill: $primary;
+        height: 24px;
+        opacity: 0.7;
+        transition: 0.1s;
+        width: 24px;
+      }
+      &.expanded {
+        transform: rotate(180deg);
+      }
+      &:hover {
+        svg {
+          opacity: 1;
+        }
+      }
+    }
+    &.no-featured-image {
+      margin: 0 auto;
+    }
+  }
+  &.page-enter-active .narrow {
+    transition: transform 1s cubic-bezier(0.11, 0.89, 0.31, 0.99), opacity 0.75s ease-out;
+  }
+  &.page-enter .narrow,
+  .page-leave-to .narrow {
+    transform: translateY(16px);
+  }
+  .meta {
+    .title {
+      font-size: 40px;
+      line-height: 1;
+      margin-bottom: 16px;
+      margin-top: 0;
+      padding-top: 64px;
+      @media (max-width: 700px) {
+        padding-top: 48px;
+      }
+      @media (max-width: 500px) {
+        padding-top: 32px;
+      }
+    }
+    .details {
+      font-size: 0.8rem;
+      .separator {
+        padding: 0 0.5rem;
+      }
+    }
+  }
+}
+</style>
+
+<style lang="scss">
+@import '../node_modules/lightgallery.js/dist/css/lightgallery.css';
+@import '~/assets/scss/variables.scss';
+.lg-backdrop {
+  background-color: #111;
+}
+#lg-counter {
+  font-family: 'Roboto', sans-serif;
+}
+.lg-toolbar,
+.lg-actions .lg-next,
+.lg-actions .lg-prev,
+.lg-outer .lg-thumb-outer,
+.lg-outer .lg-toggle-thumb {
+  background-color: #1a1a1a;
+}
+#lg-actual-size::after {
+  content: '\E311';
+}
+#lg-zoom-in,
+#lg-zoom-out {
+  display: none;
+}
+.lg-outer .lg-thumb-item {
+  border-radius: 2px;
+  border-color: #aaa;
+}
+.lg-outer .lg-thumb-item.active,
+.lg-outer .lg-thumb-item:hover {
+  border-color: #fff;
+}
+</style>
+
+<style lang="scss">
+@import '~/assets/scss/variables.scss';
+.single {
+  .content {
+    border-top: 1px dotted lighten($primary, 20%);
+    padding-top: 32px;
+    margin-top: 32px;
+    > *:first-child {
+      margin-top: 0;
+    }
+    p {
+      margin-bottom: 32px;
+      margin-top: 0;
+    }
+    .wp-caption {
+      p {
+        margin-bottom: 0;
+        & + p {
+          margin-top: 16px;
+        }
+      }
+    }
+    img {
+      height: auto;
+      max-width: 100%;
+    }
+    a {
+      color: $accent;
+      position: relative;
+      &:hover {
+        color: $accent;
+      }
+      &::after {
+        background: rgba($accent, 0.5);
+        content: '';
+        height: 1px;
+        left: 0;
+        opacity: 0;
+        position: absolute;
+        top: 100%;
+        transform: translateY(-4px);
+        transition: height 0.1s, opacity 0.1s, transform 0.1s;
+        width: 100%;
+      }
+      &:hover,
+      &:focus {
+        &::after {
+          height: 4px;
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+    }
+    .alignnone,
+    .size-full,
+    .wp-caption {
+      background-color: #fff;
+      padding: 16px;
+      display: block;
+      margin-bottom: 32px;
+      img {
+        display: block;
+        padding: 0;
+        margin-bottom: 16px;
+      }
+      &.alignnone {
+        max-width: 100%;
+      }
+      &.aligncenter {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      &.alignleft {
+        float: left;
+        margin-right: 32px;
+        width: initial;
+      }
+      &.alignright {
+        float: right;
+        margin-left: 32px;
+        width: initial;
+      }
+    }
+  }
+}
+
+.gallery {
+  margin: 0 auto 18px;
+}
+.gallery .gallery-item {
+  float: left;
+  margin-top: 0;
+  text-align: center;
+  width: 33%;
+}
+.gallery-columns-2 .gallery-item {
+  width: 50%;
+}
+.gallery-columns-4 .gallery-item {
+  width: 25%;
+}
+.gallery img {
+  box-shadow: 0px 0px 4px #999;
+  border: 1px solid white;
+  padding: 8px;
+  background: #f2f2f2;
+}
+.gallery img:hover {
+  // background: white;
+}
+.gallery-columns-2 .attachment-medium {
+  max-width: 92%;
+  height: auto;
+}
+.gallery-columns-4 .attachment-thumbnail {
+  max-width: 84%;
+  height: auto;
+}
+.gallery .gallery-caption {
+  color: #888;
+  font-size: 12px;
+  margin: 0 0 12px;
+}
+.gallery dl,
+.gallery dt {
+  margin: 0;
+}
+.gallery br + br {
+  display: none;
+}
+</style>
