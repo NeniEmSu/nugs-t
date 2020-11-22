@@ -1,16 +1,34 @@
 <template>
   <div class="home">
-    <TheHero />
-    <Benefits />
-    <Extension />
-    <div class="container">
-      <ArticleList :articles="[...articlesList]" />
+    <div class="articles">
+      <TheBlogHero :hero-article="articlesList[0]" />
+      <ArticleList :articles="[...articlesList].slice(1)" />
+      <client-only>
+        <InfiniteLoading ref="infiniteLoading" @infinite="moreArticles">
+          <span slot="spinner">
+            <Spinner1 />
+          </span>
+          <span slot="no-results">
+            <Smile />
+            <div>No more articles!</div>
+          </span>
+          <span slot="no-more">
+            <Smile />
+            <div>No more articles!</div>
+          </span>
+        </InfiniteLoading>
+      </client-only>
     </div>
+    <TheSidebar />
   </div>
 </template>
 
 <script>
+import InfiniteLoading from 'vue-infinite-loading'
 export default {
+  components: {
+    InfiniteLoading,
+  },
   async asyncData({ app, store, params }) {
     const { data } = await app.$axios.get(
       `${process.env.WORDPRESS_API_URL}/wp/v2/posts?orderby=date&per_page=10&_embed`
@@ -58,4 +76,29 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.home {
+  display: flex;
+  .hero {
+    margin: 0 -32px;
+  }
+  .articles {
+    background-color: #efefef;
+    padding: 0 32px;
+    max-width: 900px;
+    width: 100%;
+    @media (max-width: 1000px) {
+      max-width: none;
+    }
+    @media (max-width: 700px) {
+      padding: 0 16px;
+    }
+    .article-list {
+      margin: 32px 0;
+      @media (max-width: 700px) {
+        margin: 16px 0;
+      }
+    }
+  }
+}
+</style>
