@@ -180,13 +180,13 @@ export default {
   },
 
   axios: {
-    baseURL: process.env.BASE_URL,
+    baseURL: process.env.WORDPRESS_API_URL,
   },
 
   robots: () => {
     return {
       UserAgent: '*',
-      Disallow: ['/admin', '/admin/**', '/ru/admin', '/ru/admin/**'],
+      Disallow: ['/sign-in', '/sign-up', '/dashboard', '/dashboard/**'],
       Sitemap: '/sitemap.xml',
     }
   },
@@ -195,7 +195,7 @@ export default {
     hostname: process.env.BASE_URL,
     path: '/sitemap.xml',
     cacheTime: 1000 * 60 * 15,
-    exclude: ['/admin', '/admin/**', '/ru/admin', '/ru/admin/**'],
+    exclude: ['/sign-in', '/sign-up', '/dashboard', '/dashboard/**'],
     sitemaps: [
       {
         path: '/sitemap-articles.xml',
@@ -204,7 +204,7 @@ export default {
             params: { orderby: 'date', per_page: 100 },
           })
           return data.map((article) => ({
-            url: `/${article.slug}`,
+            url: `/news-blogs/${article.slug}`,
             lastmod: article.modified,
           }))
         },
