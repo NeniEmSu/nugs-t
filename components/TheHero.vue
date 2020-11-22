@@ -175,26 +175,22 @@ export default {
       }
       .btn_white {
         @extend %custom_btn_outline_white;
-        padding: 10px 40px;
+
         @media #{$small_mobile} {
           margin-top: 20px;
           margin-bottom: 70px;
-          padding: 8px 16px;
         }
         @media #{$large_mobile} {
           margin-top: 25px;
           margin-bottom: 70px;
-          padding: 10px 25px;
         }
         @media #{$tab_device} {
           margin-top: 25px;
           margin-bottom: 70px;
-          padding: 10px 25px;
         }
         @media #{$medium_device} {
           margin-top: 25px;
           margin-bottom: 70px;
-          padding: 10px 25px;
         }
         & + a {
           margin-left: 25px;
