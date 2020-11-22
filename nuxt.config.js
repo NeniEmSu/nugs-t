@@ -153,7 +153,7 @@ export default {
 
   auth: {
     redirect: {
-      login: '/login',
+      login: '/sign-in',
       logout: '/',
     },
     strategies: {
@@ -180,7 +180,7 @@ export default {
   },
 
   axios: {
-    baseURL: 'https://api-nugs-t.neniemsu.xyz/wp-json',
+    baseURL: process.env.BASE_URL,
   },
 
   robots: () => {
