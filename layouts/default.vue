@@ -71,6 +71,11 @@ h5 {
   color: #333;
   font-weight: 500;
 }
+.card {
+  background: #ffffff;
+  box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.25);
+  border-radius: 15px;
+}
 .spinner {
   position: relative;
   margin: auto;
