@@ -1,6 +1,6 @@
 <template>
   <div>
-    <BaseHero />
+    <BaseHero :hero-title="title" :sup-title="supTitle" :has-btn="false" :has-desc="false" />
     <div class="container">
       <div class="row">
         <div class="offset-lg-1"></div>
@@ -39,6 +39,20 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  name: 'SignIn',
+  data() {
+    return {
+      title: 'Contact Us',
+      supTitle: 'Get In Touch!',
+    }
+  },
+  computed: {},
+  methods: {},
+}
+</script>
 
 <style lang="scss" scoped>
 @import '~/assets/scss/variables.scss';
