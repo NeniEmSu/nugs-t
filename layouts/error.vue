@@ -47,7 +47,6 @@ export default {
 @import '~/assets/scss/_extends.scss';
 .__nuxt-error-page {
   padding: 1rem;
-  background: #f7f8fb;
   color: #47494e;
   text-align: center;
   display: flex;
