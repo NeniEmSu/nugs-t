@@ -3,28 +3,28 @@
     <section class="container">
       <section class="top">
         <div class="row">
-          <div class="col-md-3">
+          <div class="col-12 col-md-6 col-lg-3 text-center p-2">
             <h6>Navigation</h6>
             <nuxt-link to="/" exact>Home</nuxt-link>
             <nuxt-link to="/topics">Topics</nuxt-link>
             <nuxt-link to="/authors">Authors</nuxt-link>
             <nuxt-link to="/pages/sample-page">Sample Page</nuxt-link>
           </div>
-          <div class="col-md-3">
+          <div class="col-12 col-md-6 col-lg-3 text-center p-2">
             <h6>Resources</h6>
             <nuxt-link to="/" exact>Home</nuxt-link>
             <nuxt-link to="/topics">Topics</nuxt-link>
             <nuxt-link to="/authors">Authors</nuxt-link>
             <nuxt-link to="/pages/sample-page">Sample Page</nuxt-link>
           </div>
-          <div class="col-md-3">
+          <div class="col-12 col-md-6 col-lg-3 text-center p-2">
             <h6>Support</h6>
             <nuxt-link to="/" exact>Home</nuxt-link>
             <nuxt-link to="/topics">Topics</nuxt-link>
             <nuxt-link to="/authors">Authors</nuxt-link>
             <nuxt-link to="/pages/sample-page">Sample Page</nuxt-link>
           </div>
-          <div class="col-md-3">
+          <div class="col-12 col-md-6 col-lg-3 text-center p-2">
             <h6>Legal</h6>
             <nuxt-link to="/" exact>Home</nuxt-link>
             <nuxt-link to="/topics">Topics</nuxt-link>
@@ -155,7 +155,7 @@ footer {
     @media #{$tab_device} {
       padding: 50px 0;
     }
-    .row .col-md-3 {
+    .row .col-12.col-md-6.col-lg-3 {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;

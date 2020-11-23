@@ -133,6 +133,18 @@ header {
     }
     ul.navbar-nav.bd-navbar-nav {
       overflow: hidden;
+      &::-webkit-scrollbar {
+        width: 0px;
+        height: 0px;
+      }
+      &::-webkit-scrollbar-track {
+        box-shadow: none;
+        border-radius: 0;
+      }
+      &::-webkit-scrollbar-thumb {
+        background: #7625bc;
+        border-radius: 5px;
+      }
       @media (max-width: 991.98px) {
         overflow-x: auto;
         white-space: nowrap;

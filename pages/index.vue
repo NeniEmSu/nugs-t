@@ -3,7 +3,15 @@
     <TheHero />
     <Benefits />
     <Extension />
-    <div class="container">
+    <div class="articles container">
+      <div class="heading col-md-4 ml-4">
+        <h2>News & Updates</h2>
+        <p>
+          The National union of Ghana students does it’s best to keep you updated, apprised and in
+          the know about all relevant information.
+        </p>
+        <hr />
+      </div>
       <ArticleList :articles="[...articlesList]" />
     </div>
   </div>
@@ -11,15 +19,9 @@
 
 <script>
 export default {
-  async asyncData({ app, store, params }) {
-    const { data } = await app.$axios.get(
-      `${process.env.WORDPRESS_API_URL}/wp/v2/posts?orderby=date&per_page=10&_embed`
-    )
-    return { articles: data }
-  },
   data() {
     return {
-      infiniteLoadingPage: 1,
+      articles: [],
     }
   },
   head() {
@@ -35,27 +37,61 @@ export default {
       )
     },
   },
+  created() {
+    this.fetchArticles()
+  },
   methods: {
-    moreArticles($state) {
-      this.$axios
-        .get(`${process.env.WORDPRESS_API_URL}/wp/v2/posts`, {
-          params: {
-            orderby: 'date',
-            per_page: 10,
-            categories_exclude: process.env.FEATURED_CATEGORY_ID,
-            page: this.infiniteLoadingPage + 1,
-            _embed: true,
-          },
-        })
-        .then((response) => {
-          this.articles = [...this.articles, ...response.data]
-          this.infiniteLoadingPage++
-          $state.loaded()
-        })
-        .catch(() => $state.complete())
+    async fetchArticles() {
+      const { data } = await this.$axios.get(
+        `${process.env.WORDPRESS_API_URL}/wp/v2/posts?orderby=date&per_page=4&_embed`
+      )
+      this.articles = data
     },
   },
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+@import '~/assets/scss/variables.scss';
+@import '~/assets/scss/_extends.scss';
+.articles {
+  padding: 130px 0;
+
+  @media #{$small_mobile} {
+    padding: 25px 0;
+  }
+  @media #{$large_mobile} {
+    padding: 40px 0;
+  }
+  @media #{$tab_device} {
+    padding: 500px 0;
+  }
+  @media #{$medium_device} {
+    padding: 80px 0;
+  }
+  .heading {
+    h2 {
+      font-family: Montserrat;
+      font-style: normal;
+      font-weight: bold;
+      font-size: 30px;
+      line-height: 37px;
+
+      color: #292739;
+    }
+    p {
+      font-family: Roboto;
+      font-style: normal;
+      font-weight: normal;
+      font-size: 18px;
+      line-height: 21px;
+
+      color: #69798e;
+    }
+    hr {
+      border: 5px solid #f1f5f9;
+      margin-bottom: 50px;
+    }
+  }
+}
+</style>

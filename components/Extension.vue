@@ -7,8 +7,9 @@
           Given the financial situation of the world we live in today and the situation of thing
           back home i.e Ghana, it has become a necessity to opt for extensions on the payment of
           fees and NUGS-T has been able to provide valuable help in this area and intends to make it
-          as easy as possible to acquire help. The process of registering, submitting requests and
-          getting added to the list of fee extenders is easy and requires a few simple steps.
+          as easy as possible to acquire help. <br />
+          The process of registering, submitting requests and getting added to the list of fee
+          extenders is easy and requires a few simple steps.
         </p>
         <nuxt-link to="" class="btn_white">Apply for extension</nuxt-link>
       </div>
@@ -34,8 +35,6 @@ $min-width: 15rem;
 .layout {
   display: flex;
   flex-wrap: wrap;
-  // margin-top: -1em; // 1
-  // margin-left: -3.5em; // 1
   align-items: center;
 
   &:not(:first-of-type) {
@@ -47,8 +46,8 @@ $min-width: 15rem;
   }
 
   &__item {
-    padding-top: 1em; // 1
-    padding-left: 3.5em; // 1
+    // padding-top: 1em; // 1
+    // padding-left: 3.5em; // 1
 
     &--body {
       flex-grow: 9999; // 4
@@ -96,27 +95,22 @@ p {
 }
 .btn_white {
   @extend %custom_btn_outline_white;
-  padding: 10px 40px;
-  display: block;
+
   @media #{$small_mobile} {
     margin-top: 20px;
     margin-bottom: 70px;
-    padding: 8px 16px;
   }
   @media #{$large_mobile} {
     margin-top: 25px;
     margin-bottom: 70px;
-    padding: 10px 25px;
   }
   @media #{$tab_device} {
     margin-top: 25px;
     margin-bottom: 70px;
-    padding: 10px 25px;
   }
   @media #{$medium_device} {
     margin-top: 25px;
     margin-bottom: 70px;
-    padding: 10px 25px;
   }
   & + a {
     margin-left: 25px;
