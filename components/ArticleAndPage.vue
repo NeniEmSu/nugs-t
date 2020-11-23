@@ -334,51 +334,74 @@ article {
         width: initial;
       }
     }
-  }
-}
+    .gallery {
+      margin: 0 auto 18px;
 
-.gallery {
-  margin: 0 auto 18px;
-}
-.gallery .gallery-item {
-  float: left;
-  margin-top: 0;
-  text-align: center;
-  width: 33%;
-}
-.gallery-columns-2 .gallery-item {
-  width: 50%;
-}
-.gallery-columns-4 .gallery-item {
-  width: 25%;
-}
-.gallery img {
-  box-shadow: 0px 0px 4px #999;
-  border: 1px solid white;
-  padding: 8px;
-  background: #f2f2f2;
-}
-.gallery img:hover {
-  // background: white;
-}
-.gallery-columns-2 .attachment-medium {
-  max-width: 92%;
-  height: auto;
-}
-.gallery-columns-4 .attachment-thumbnail {
-  max-width: 84%;
-  height: auto;
-}
-.gallery .gallery-caption {
-  color: #888;
-  font-size: 12px;
-  margin: 0 0 12px;
-}
-.gallery dl,
-.gallery dt {
-  margin: 0;
-}
-.gallery br + br {
-  display: none;
+      .gallery-item {
+        float: left;
+        margin-top: 0;
+        text-align: center;
+        width: 33%;
+      }
+      &.gallery-columns-2 .gallery-item {
+        width: 50%;
+      }
+      &.gallery-columns-4 .gallery-item {
+        width: 25%;
+      }
+
+      a {
+        color: $accent;
+        position: relative;
+        &:hover {
+          color: $accent;
+        }
+        &::after {
+          background: none;
+          content: '';
+          height: 0px;
+          left: 0;
+          opacity: 0;
+          position: absolute;
+          top: 100%;
+        }
+        &:hover,
+        &:focus {
+          &::after {
+          }
+        }
+      }
+
+      img {
+        box-shadow: 0px 0px 4px #999;
+        border: 1px solid white;
+        padding: 8px;
+        background: #f2f2f2;
+      }
+      img:hover {
+        background: white;
+      }
+      &.gallery-columns-2 .attachment-medium {
+        max-width: 92%;
+        height: auto;
+      }
+      &.gallery-columns-4 .attachment-thumbnail {
+        max-width: 84%;
+        height: auto;
+      }
+      .gallery-caption {
+        color: #888;
+        font-size: 12px;
+        margin: 0 0 12px;
+      }
+      dl,
+      dt {
+        margin: 0;
+      }
+      br + br {
+        display: none;
+      }
+    }
+  }
 }
 </style>
