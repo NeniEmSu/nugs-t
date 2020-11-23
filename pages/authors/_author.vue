@@ -36,20 +36,18 @@ export default {
   async asyncData({ app, store, params }) {
     if (!store.state.featuredArticles.length) {
       const articles = await app.$axios.get(
-        `${process.env.WORDPRESS_API_URL}/wp/v2/posts?orderby=date&per_page=10&categories=${process.env.FEATURED_CATEGORY_ID}&_embed`
+        `/wp/v2/posts?orderby=date&per_page=10&categories=${process.env.FEATURED_CATEGORY_ID}&_embed`
       )
       store.commit('setFeaturedArticles', articles.data)
     }
     if (!store.state.authors) {
-      const authors = await app.$axios.get(
-        `${process.env.WORDPRESS_API_URL}/wp/v2/users?per_page=100`
-      )
+      const authors = await app.$axios.get(`/wp/v2/users?per_page=100`)
       store.commit('setAuthors', authors.data)
     }
     if (!find(store.state.authorArticles, { slug: params.author })) {
       const author = find(store.state.authors, { slug: params.author })
       const authorArticles = await app.$axios.get(
-        `${process.env.WORDPRESS_API_URL}/wp/v2/posts?orderby=date&per_page=10&author=${author.id}&_embed`
+        `/wp/v2/posts?orderby=date&per_page=10&author=${author.id}&_embed`
       )
       store.commit('setAuthorArticles', {
         slug: params.author,

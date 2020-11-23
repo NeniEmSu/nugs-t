@@ -30,9 +30,7 @@ export default {
     InfiniteLoading,
   },
   async asyncData({ app, store, params }) {
-    const { data } = await app.$axios.get(
-      `${process.env.WORDPRESS_API_URL}/wp/v2/posts?orderby=date&per_page=10&_embed`
-    )
+    const { data } = await app.$axios.get(`/wp/v2/posts?orderby=date&per_page=10&_embed`)
     return { articles: data }
   },
   data() {
@@ -56,7 +54,7 @@ export default {
   methods: {
     moreArticles($state) {
       this.$axios
-        .get(`${process.env.WORDPRESS_API_URL}/wp/v2/posts`, {
+        .get(`/wp/v2/posts`, {
           params: {
             orderby: 'date',
             per_page: 10,

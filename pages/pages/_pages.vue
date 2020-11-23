@@ -9,7 +9,7 @@ export default {
     Page,
   },
   async asyncData({ app, store, params }) {
-    const { data } = await app.$axios.get(`${process.env.WORDPRESS_API_URL}/wp/v2/pages`, {
+    const { data } = await app.$axios.get(`/wp/v2/pages`, {
       params: {
         slug: params.page,
         _embed: true,

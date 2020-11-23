@@ -15,9 +15,7 @@
 export default {
   async asyncData({ app, store, params }) {
     if (!store.state.authors) {
-      const authors = await app.$axios.get(
-        `${process.env.WORDPRESS_API_URL}/wp/v2/users?per_page=100`
-      )
+      const authors = await app.$axios.get(`/wp/v2/users?per_page=100`)
       store.commit('setAuthors', authors.data)
     }
   },

@@ -171,7 +171,7 @@ export default {
       this.spinnerVisible = true
       axios
         .get(
-          `${process.env.WORDPRESS_API_URL}/wp/v2/posts?search=${this.searchQuery}&_embed&per_page=8`
+          `/wp/v2/posts?search=${this.searchQuery}&_embed&per_page=8`
         )
         .then((response) => {
           this.apiResponse = true
