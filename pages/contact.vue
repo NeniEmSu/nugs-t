@@ -3,19 +3,19 @@
     <BaseHero />
     <div class="container">
       <div class="row">
-        <div class="offset-1"></div>
-        <b-card bg-variant="light" class="form-card col-6 p-1 p-sm-3 p-md-4">
+        <div class="offset-lg-1"></div>
+        <b-card bg-variant="light" class="form-card col-lg-6 col-md-7 p-1 p-sm-3 p-md-4">
           <busy-overlay />
           <AuthForm :sign-up-page="true" />
         </b-card>
-        <div class="offset-1"></div>
-        <div class="side-content col-3">
-          <p>
+        <div class="offset-md-1"></div>
+        <div class="side-content col-lg-3 col-md-4">
+          <p class="text-left text-center-md">
             Have questions or need help? Use the form to reach out and we will be in touch with you
             as quickly as possible.
           </p>
         </div>
-        <div class="offset-1"></div>
+        <div class="offset-lg-1"></div>
       </div>
 
       <div class="more row text-center">
@@ -68,7 +68,7 @@
   }
 
   .col-md-5 {
-    margin: 0 auto;
+    margin: 25px auto;
     border: 3px solid;
     border-color: rgb(77, 66, 255);
     border-radius: 10px;
