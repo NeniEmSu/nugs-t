@@ -117,12 +117,6 @@ header {
     @media (max-width: 700px) {
       margin-right: 16px;
     }
-    h1 {
-      color: #666;
-      cursor: pointer;
-      font-size: 1.1rem;
-      font-weight: 400;
-    }
   }
   .navbar-nav-scroll {
     @media (max-width: 991.98px) {

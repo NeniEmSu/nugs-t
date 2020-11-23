@@ -226,9 +226,6 @@ footer {
 
     P {
       margin: 0;
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
       font-size: 16px;
       line-height: 19px;
       align-items: center;

@@ -4,14 +4,7 @@
     <Benefits />
     <Extension />
     <div class="articles container">
-      <div class="heading col-md-4 ml-4">
-        <h2>News & Updates</h2>
-        <p>
-          The National union of Ghana students does it’s best to keep you updated, apprised and in
-          the know about all relevant information.
-        </p>
-        <hr />
-      </div>
+      <SubsectionHeading :title="title" :desc="desc" />
       <ArticleList :articles="[...articlesList]" />
     </div>
   </div>
@@ -21,6 +14,9 @@
 export default {
   data() {
     return {
+      title: 'News & Updates',
+      desc:
+        'The National union of Ghana students does it’s best to keep you updated, apprised and in the know about all relevant information.',
       articles: [],
     }
   },
@@ -62,34 +58,10 @@ export default {
     padding: 40px 0;
   }
   @media #{$tab_device} {
-    padding: 500px 0;
+    padding: 50px 0;
   }
   @media #{$medium_device} {
     padding: 80px 0;
-  }
-  .heading {
-    h2 {
-      font-family: Montserrat;
-      font-style: normal;
-      font-weight: bold;
-      font-size: 30px;
-      line-height: 37px;
-
-      color: #292739;
-    }
-    p {
-      font-family: Roboto;
-      font-style: normal;
-      font-weight: normal;
-      font-size: 18px;
-      line-height: 21px;
-
-      color: #69798e;
-    }
-    hr {
-      border: 5px solid #f1f5f9;
-      margin-bottom: 50px;
-    }
   }
 }
 </style>

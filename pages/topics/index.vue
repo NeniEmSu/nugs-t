@@ -62,11 +62,9 @@ export default {
       }
       h2 {
         display: inline-block;
-        font-family: 'Roboto', sans-serif;
         font-size: 1.3rem;
         margin-bottom: 4px;
         margin-top: 0;
-        font-weight: 400;
       }
       a {
         color: #111;

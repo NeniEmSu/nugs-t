@@ -1,7 +1,7 @@
 <template>
   <aside>
     <div class="inner-container">
-      <h1>Top Articles</h1>
+      <h2>Top Articles</h2>
       <article v-for="article in featuredArticles" :key="article.id">
         <nuxt-link
           v-if="getFeaturedImage(article, 'medium')"
@@ -40,7 +40,7 @@
             ></nuxt-link>
           </div>
           <nuxt-link :to="`/${article.slug}`" class="article">
-            <h2 v-html="article.title.rendered"></h2>
+            <h3 v-html="article.title.rendered"></h3>
             <div class="excerpt" v-html="article.excerpt.rendered"></div>
           </nuxt-link>
         </div>
@@ -92,7 +92,7 @@ aside {
   .inner-container {
     background-color: #fff;
     padding: 32px;
-    h1 {
+    h2 {
       margin-top: 0;
     }
     article {
@@ -155,7 +155,6 @@ aside {
         }
       }
       .meta {
-        font-family: 'Roboto', sans-serif;
         font-size: 0.75rem;
         font-weight: 400;
         margin-bottom: 12px;
@@ -175,7 +174,7 @@ aside {
           color: $accent;
         }
       }
-      h2 {
+      h3 {
         margin: 12px 0;
       }
     }

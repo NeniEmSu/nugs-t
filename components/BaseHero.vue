@@ -1,7 +1,7 @@
 <template>
   <section class="hero">
     <div class="inner-content container">
-      <h5>{{ supTitle }}</h5>
+      <h5 class="sup-title">{{ supTitle }}</h5>
       <h1>{{ heroTitle }}</h1>
       <p v-if="hasDesc">
         {{ desc }}
@@ -66,7 +66,6 @@ export default {
     h5 {
       font-size: 14px;
       text-transform: uppercase;
-      font-weight: 500;
       color: #cdb8e7;
       margin-bottom: 14px;
       @media #{$small_mobile} {
@@ -74,30 +73,23 @@ export default {
       }
     }
     h1 {
-      font-size: 55px;
-      text-transform: capitalize;
-      font-weight: 700;
       margin-top: 0;
       margin-bottom: 27px;
-      line-height: 1.18;
+
       color: #fefdfe;
       @media #{$small_mobile} {
-        font-size: 25px;
         margin-bottom: 15px;
         line-height: 1.3;
       }
       @media #{$large_mobile} {
-        font-size: 32px;
         margin-bottom: 15px;
         line-height: 1.3;
       }
       @media #{$tab_device} {
-        font-size: 40px;
         margin-bottom: 15px;
         line-height: 1.3;
       }
       @media #{$medium_device} {
-        font-size: 36px;
         margin-bottom: 15px;
         line-height: 1.4;
       }
@@ -107,7 +99,7 @@ export default {
     }
 
     p {
-      font-size: 15px;
+      font-size: 16px;
       line-height: 1.8;
       font-family: $font_stack_1;
       color: $font_7;

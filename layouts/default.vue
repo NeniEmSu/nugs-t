@@ -15,6 +15,7 @@ export default {}
 </script>
 
 <style lang="scss">
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Overpass&family=Roboto&display=swap');
 @import '~/assets/scss/variables.scss';
 @import '~/assets/scss/_extends.scss';
 html {
@@ -41,6 +42,9 @@ html {
 body {
   background-color: #f5f5f5;
   // background-color: #f6f9fc;
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
   font-size: 0.85rem;
   line-height: 1.765em;
 }
@@ -63,14 +67,71 @@ body {
   position: relative;
   transition-timing-function: cubic-bezier(0.11, 0.89, 0.31, 0.99);
 }
+
 h1,
 h2,
 h3,
 h4,
-h5 {
-  color: #333;
+h5,
+h6 {
+  font-family: 'Montserrat', sans-serif;
+  font-style: normal;
   font-weight: 500;
 }
+
+h1 {
+  font-size: 55px;
+  text-transform: capitalize;
+  font-weight: 700;
+  line-height: 1.18;
+  @media #{$small_mobile} {
+    font-size: 25px;
+    line-height: 1.3;
+  }
+  @media #{$large_mobile} {
+    font-size: 32px;
+    line-height: 1.3;
+  }
+  @media #{$tab_device} {
+    font-size: 40px;
+    line-height: 1.3;
+  }
+  @media #{$medium_device} {
+    font-size: 36px;
+    line-height: 1.4;
+  }
+}
+
+p {
+  font-family: 'Roboto', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 19px;
+  @media #{$small_mobile} {
+    font-size: 14px;
+    line-height: 16px;
+  }
+  @media #{$large_mobile} {
+    font-size: 16px;
+    line-height: 17px;
+  }
+  @media #{$tab_device} {
+    font-size: 16px;
+    line-height: 18px;
+  }
+  @media #{$medium_device} {
+    font-size: 16px;
+    line-height: 18px;
+  }
+}
+
+.sup-title {
+  font-family: 'Overpass', sans-serif;
+  font-style: normal;
+  font-weight: 400;
+}
+
 .card {
   background: #ffffff;
   box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.25);

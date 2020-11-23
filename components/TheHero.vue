@@ -6,7 +6,7 @@
           <div class="col-lg-6 col-xl-6">
             <div class="banner_text">
               <div class="banner_text_iner">
-                <h5>Aluta Continua , Victoria Ascerta.</h5>
+                <h5 class="sup-title">Aluta Continua , Victoria Ascerta.</h5>
                 <h1>National Union of Ghana Students Ternopol</h1>
                 <p>
                   We are a Democratic, Nonpartisan and Progressive mass movement comprising of
@@ -159,7 +159,6 @@ export default {
     p {
       font-size: 15px;
       line-height: 1.8;
-      font-family: $font_stack_1;
       color: $font_7;
     }
     .action_btn {
