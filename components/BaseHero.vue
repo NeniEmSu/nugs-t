@@ -1,12 +1,10 @@
 <template>
   <section class="hero">
     <div class="inner-content container">
-      <h5>Get in touch</h5>
-      <h1>Contact Us</h1>
+      <h5>{{ supTitle }}</h5>
+      <h1>{{ heroTitle }}</h1>
       <p v-if="hasDesc">
-        We are a Democratic, Nonpartisan and Progressive mass movement comprising of Ghanaian
-        students in Ternopol, Ukraine with the primary aim of protecting and safeguarding the rights
-        and interests of Ghanaian students in ternopol.
+        {{ desc }}
       </p>
       <div v-if="hasBtn" class="action_btn">
         <nuxt-link to="/practice" class="btn_white">Vote Now!</nuxt-link>
@@ -28,6 +26,19 @@ export default {
     hasBtn: {
       type: Boolean,
       default: false,
+    },
+    heroTitle: {
+      type: String,
+      default: 'National Union of Ghana Students Ternopol',
+    },
+    supTitle: {
+      type: String,
+      default: 'Nugs-T',
+    },
+    desc: {
+      type: String,
+      default:
+        'We are a Democratic, Nonpartisan and Progressive mass movement comprising of Ghanaian students in Ternopol, Ukraine with the primary aim of protecting and safeguarding the rights and interests of Ghanaian students in ternopol.',
     },
   },
 }
