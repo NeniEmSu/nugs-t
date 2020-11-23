@@ -179,9 +179,7 @@ export default {
     },
   },
 
-  axios: {
-    baseURL: process.env.WORDPRESS_API_URL,
-  },
+  axios: {},
 
   robots: () => {
     return {
