@@ -3,28 +3,28 @@
     <section class="container">
       <section class="top">
         <div class="row">
-          <div class="col-12 col-md-6 col-lg-3 text-center p-2">
+          <div class="col-6 col-lg-3">
             <h6>Navigation</h6>
             <nuxt-link to="/" exact>Home</nuxt-link>
             <nuxt-link to="/topics">Topics</nuxt-link>
             <nuxt-link to="/authors">Authors</nuxt-link>
             <nuxt-link to="/pages/sample-page">Sample Page</nuxt-link>
           </div>
-          <div class="col-12 col-md-6 col-lg-3 text-center p-2">
+          <div class="col-6 col-lg-3">
             <h6>Resources</h6>
             <nuxt-link to="/" exact>Home</nuxt-link>
             <nuxt-link to="/topics">Topics</nuxt-link>
             <nuxt-link to="/authors">Authors</nuxt-link>
             <nuxt-link to="/pages/sample-page">Sample Page</nuxt-link>
           </div>
-          <div class="col-12 col-md-6 col-lg-3 text-center p-2">
+          <div class="col-6 col-lg-3">
             <h6>Support</h6>
             <nuxt-link to="/" exact>Home</nuxt-link>
             <nuxt-link to="/topics">Topics</nuxt-link>
             <nuxt-link to="/authors">Authors</nuxt-link>
             <nuxt-link to="/pages/sample-page">Sample Page</nuxt-link>
           </div>
-          <div class="col-12 col-md-6 col-lg-3 text-center p-2">
+          <div class="col-6 col-lg-3">
             <h6>Legal</h6>
             <nuxt-link to="/" exact>Home</nuxt-link>
             <nuxt-link to="/topics">Topics</nuxt-link>
@@ -155,11 +155,20 @@ footer {
     @media #{$tab_device} {
       padding: 50px 0;
     }
-    .row .col-12.col-md-6.col-lg-3 {
+    .row .col-6.col-lg-3 {
+      margin: 16px auto;
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-
+      @media #{$small_mobile} {
+        text-align: center;
+      }
+      @media #{$large_mobile} {
+        text-align: center;
+      }
+      @media #{$tab_device} {
+        text-align: center;
+      }
       h6 {
         color: rgba(86, 84, 99, 1);
       }
