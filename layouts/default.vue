@@ -16,6 +16,7 @@ export default {}
 
 <style lang="scss">
 @import '~/assets/scss/variables.scss';
+@import '~/assets/scss/_extends.scss';
 html {
   background-color: #f5f5f5;
   // background-color: #f6f9fc;

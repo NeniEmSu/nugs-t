@@ -3,6 +3,7 @@
     "Parens",
     "Roboto",
     "alignnone",
+    "autofocus",
     "axios",
     "backface",
     "bezier",
@@ -29,6 +30,7 @@
     "rgba",
     "scrollto",
     "stylelint",
-    "successully"
+    "successully",
+    "vmin"
   ]
 }
