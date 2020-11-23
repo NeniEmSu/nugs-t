@@ -1,79 +1,77 @@
 <template>
-  <div>
-    <form>
-      <div v-if="signUpPage" class="form-group">
-        <input
-          id="username"
-          v-model="username"
-          type="username"
-          class="form-control"
-          email="username"
-          placeholder="john"
-        />
-        <label for="username" class="form-label">username*</label>
-      </div>
-      <div class="form-group">
-        <input
-          id="email"
-          v-model="email"
-          type="email"
-          class="form-control"
-          email="email"
-          placeholder="something@email.com"
-        />
-        <label for="email" class="form-label">Email*</label>
-      </div>
+  <form>
+    <div v-if="signUpPage" class="form-group">
+      <input
+        id="username"
+        v-model="username"
+        type="username"
+        class="form-control"
+        email="username"
+        placeholder="john"
+      />
+      <label for="username" class="form-label">username*</label>
+    </div>
+    <div class="form-group">
+      <input
+        id="email"
+        v-model="email"
+        type="email"
+        class="form-control"
+        email="email"
+        placeholder="something@email.com"
+      />
+      <label for="email" class="form-label">Email*</label>
+    </div>
 
-      <div class="form-group password-container">
-        <input
-          id="password"
-          v-model="password"
-          class="form-control"
-          :type="passwordType"
-          placeholder="password"
-          required
-          name="password"
-        />
-        <label for="password" class="form-label">Password*</label>
-        <span class="clickable">
-          <b-icon :icon="passwordIcon" font-scale="1.5" @click="hidePassword = !hidePassword">
-          </b-icon>
-        </span>
+    <div class="form-group password-container">
+      <input
+        id="password"
+        v-model="password"
+        class="form-control"
+        :type="passwordType"
+        placeholder="password"
+        required
+        name="password"
+      />
+      <label for="password" class="form-label">Password*</label>
+      <span class="clickable">
+        <b-icon :icon="passwordIcon" font-scale="1.5" @click="hidePassword = !hidePassword">
+        </b-icon>
+      </span>
+    </div>
+    <div v-if="signUpPage" class="form-group password-container">
+      <input
+        id="repeat_password"
+        v-model="repeat_password"
+        class="form-control"
+        :type="passwordType"
+        placeholder="repeat_password"
+        required
+        name="repeat_password"
+      />
+      <label for="repeat_password" class="form-label">Confirm password*</label>
+      <span class="clickable">
+        <b-icon :icon="passwordIcon" font-scale="1.5" @click="hidePassword = !hidePassword">
+        </b-icon>
+      </span>
+    </div>
+    <template v-if="signUpPage">
+      <div class="text-center">
+        <button class="btn_black" @click="signUp">Sign Up</button>
       </div>
-      <div v-if="signUpPage" class="form-group password-container">
-        <input
-          id="repeat_password"
-          v-model="repeat_password"
-          class="form-control"
-          :type="passwordType"
-          placeholder="repeat_password"
-          required
-          name="repeat_password"
-        />
-        <label for="repeat_password" class="form-label">Confirm password*</label>
-        <span class="clickable">
-          <b-icon :icon="passwordIcon" font-scale="1.5" @click="hidePassword = !hidePassword">
-          </b-icon>
-        </span>
+      <div class="text-center" style="margin-top: 20px">
+        Already got an account? <nuxt-link to="/sign-in">Sign In</nuxt-link>
       </div>
-      <template v-if="signUpPage">
-        <div class="text-center">
-          <button class="btn_black" @click="signUp">Sign Up</button>
-        </div>
-        <div class="text-center" style="margin-top: 20px">
-          Already got an account? <nuxt-link to="/sign-in">Sign In</nuxt-link>
-        </div>
-      </template>
-      <template v-else>
-        <div class="text-center">
-          <button class="btn_black" @click="signIn">Sign In</button>
-        </div>
-        <div class="text-center" style="margin-top: 20px">
-          Don't have an account yet? <nuxt-link to="/sign-up">Sign Up</nuxt-link>
-        </div>
-      </template>
-    </form>
-  </div>
+    </template>
+    <template v-else>
+      <div class="text-center">
+        <button class="btn_black" @click="signIn">Sign In</button>
+      </div>
+      <div class="text-center" style="margin-top: 20px">
+        Don't have an account yet? <nuxt-link to="/sign-up">Sign Up</nuxt-link>
+      </div>
+    </template>
+  </form>
 </template>
 
 <script>
