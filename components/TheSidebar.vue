@@ -90,7 +90,7 @@ aside {
     display: none;
   }
   .inner-container {
-    background-color: #fff;
+    background-color: var(--white);
     padding: 32px;
     h2 {
       margin-top: 0;
@@ -114,7 +114,7 @@ aside {
         .featured {
           overflow: hidden;
           &::before {
-            background-color: rgba(0, 0, 0, 0);
+            background-color: rgba(var(--black), 0);
             content: '';
             height: 100%;
             position: absolute;
@@ -130,7 +130,7 @@ aside {
         &:hover {
           .featured {
             &::before {
-              background-color: rgba(0, 0, 0, 0.25);
+              background-color: rgba(var(--black), 0.25);
             }
             img {
               transform: scale(1.0125);
@@ -149,7 +149,7 @@ aside {
           &:hover {
             transform: translateX(4px);
             .excerpt {
-              color: #000;
+              color: var(--black);
             }
           }
         }

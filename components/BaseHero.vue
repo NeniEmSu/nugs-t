@@ -49,7 +49,7 @@ export default {
 @import '~/assets/scss/_extends.scss';
 .hero {
   height: 60vh;
-  background: linear-gradient(90.17deg, #7625bc 2.56%, #e453df 98.31%);
+  background: var(--base-gradient);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -73,33 +73,37 @@ export default {
       }
     }
     h1 {
+      font-size: 55px;
+      text-transform: capitalize;
+      font-weight: 700;
       margin-top: 0;
       margin-bottom: 27px;
-
+      line-height: 1.18;
       color: #fefdfe;
       @media #{$small_mobile} {
+        font-size: 25px;
         margin-bottom: 15px;
         line-height: 1.3;
       }
       @media #{$large_mobile} {
+        font-size: 32px;
         margin-bottom: 15px;
         line-height: 1.3;
       }
       @media #{$tab_device} {
+        font-size: 40px;
         margin-bottom: 15px;
         line-height: 1.3;
       }
       @media #{$medium_device} {
+        font-size: 36px;
         margin-bottom: 15px;
         line-height: 1.4;
-      }
-      span {
-        color: $btn_bg;
       }
     }
 
     p {
-      font-size: 16px;
+      font-size: 15px;
       line-height: 1.8;
       font-family: $font_stack_1;
       color: $font_7;
@@ -117,6 +121,8 @@ export default {
       }
       .btn_white {
         @extend %custom_btn_outline_white;
+        color: #ffffff;
+        border-color: #ffffff;
 
         @media #{$small_mobile} {
           margin-top: 20px;

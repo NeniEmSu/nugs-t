@@ -127,13 +127,13 @@ export default {
 <style lang="scss" scoped>
 @import '~/assets/scss/variables.scss';
 article {
-  background-color: #efefef;
+  background-color: var(--bg);
   display: flex;
   flex-direction: column;
   position: relative;
   height: 100%;
   .narrow {
-    background-color: #efefef;
+    background-color: var(--bg-secondary);
     margin: 0 auto;
     max-width: 842px;
     min-height: calc(100vh - 80px - 96px - 200px);
@@ -142,6 +142,7 @@ article {
     transition: min-height 1s, transform 1s;
     transform: translateY(0);
     width: 100%;
+    box-shadow: 4px 8px 10px rgba($color: var(--black), $alpha: 0.25);
     &.expanded {
       min-height: 0;
     }
@@ -247,7 +248,7 @@ article {
 }
 .lg-outer .lg-thumb-item.active,
 .lg-outer .lg-thumb-item:hover {
-  border-color: #fff;
+  border-color: var(--white);
 }
 </style>
 
@@ -262,8 +263,14 @@ article {
       margin-top: 0;
     }
     p {
+      color: var(--color);
       margin-bottom: 32px;
       margin-top: 0;
+
+      > span,
+      strong {
+        color: var(--color) !important;
+      }
     }
     .wp-caption {
       p {
@@ -278,13 +285,13 @@ article {
       max-width: 100%;
     }
     a {
-      color: $accent;
+      color: var(--dark-accent);
       position: relative;
       &:hover {
-        color: $accent;
+        color: var(--dark-accent);
       }
       &::after {
-        background: rgba($accent, 0.5);
+        background: rgba($color: var(--dark-accent), $alpha: 0.5);
         content: '';
         height: 1px;
         left: 0;
@@ -307,7 +314,7 @@ article {
     .alignnone,
     .size-full,
     .wp-caption {
-      background-color: #fff;
+      background-color: var(--white);
       padding: 16px;
       display: block;
       margin-bottom: 32px;
@@ -351,10 +358,10 @@ article {
       }
 
       a {
-        color: $accent;
+        color: var(--dark-accent);
         position: relative;
         &:hover {
-          color: $accent;
+          color: var(--dark-accent);
         }
         &::after {
           background: none;
@@ -374,12 +381,12 @@ article {
 
       img {
         box-shadow: 0px 0px 4px #999;
-        border: 1px solid white;
+        border: 1px solid var(--white);
         padding: 8px;
-        background: #f2f2f2;
+        background: var(--bg);
       }
       img:hover {
-        background: white;
+        background: var(--white);
       }
       &.gallery-columns-2 .attachment-medium {
         max-width: 92%;
@@ -390,7 +397,7 @@ article {
         height: auto;
       }
       .gallery-caption {
-        color: #888;
+        color: var(--white);
         font-size: 12px;
         margin: 0 0 12px;
       }

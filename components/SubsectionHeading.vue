@@ -30,10 +30,12 @@ export default {
 .heading {
   margin-left: 50px;
   @media #{$small_mobile} {
+    text-align: center;
     margin-left: 0px;
   }
   @media #{$large_mobile} {
     margin-left: 0px;
+    text-align: center;
   }
   @media #{$tab_device} {
     margin-left: 25px;
@@ -46,16 +48,16 @@ export default {
     font-size: 30px;
     line-height: 37px;
 
-    color: #292739;
+    color: var(--black);
   }
   p {
     font-size: 18px;
     line-height: 21px;
 
-    color: #69798e;
+    color: var(--color);
   }
   hr {
-    border: 5px solid #f1f5f9;
+    border: 2px solid var(--border-color);
     margin-bottom: 50px;
     @media #{$small_mobile} {
       margin-bottom: 16px;

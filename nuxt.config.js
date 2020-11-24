@@ -124,7 +124,7 @@ export default {
     categories: ['productivity', 'education', 'portfolio'],
   },
 
-  css: ['normalize.css/normalize.css'],
+  css: ['normalize.css/normalize.css', '~/assets/css/main.css'],
 
   components: true,
 
@@ -137,7 +137,12 @@ export default {
     { src: '~/plugins/mixins' },
   ],
 
-  buildModules: ['@nuxtjs/eslint-module', '@nuxtjs/stylelint-module', '@nuxtjs/moment'],
+  buildModules: [
+    '@nuxtjs/eslint-module',
+    '@nuxtjs/stylelint-module',
+    '@nuxtjs/color-mode',
+    '@nuxtjs/moment',
+  ],
 
   modules: [
     'bootstrap-vue/nuxt',

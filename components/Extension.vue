@@ -15,7 +15,7 @@
           <nuxt-link to="" class="btn_white">Apply for extension</nuxt-link>
         </div>
         <div class="col-lg-5 col-md-6 img">
-          <img src="~/assets/svg/extension.svg" alt="" />
+          <img src="~/assets/svg/extension.svg" alt="Image describing fees extension process" />
         </div>
       </div>
     </div>
@@ -23,7 +23,11 @@
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {}
+  },
+}
 </script>
 
 <style lang="scss" scoped>
@@ -82,6 +86,8 @@ $min-width: 15rem;
   }
   .btn_white {
     @extend %custom_btn_outline_white;
+    color: #ffffff;
+    border-color: #ffffff;
   }
 
   .col-md-6 {

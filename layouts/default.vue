@@ -18,36 +18,12 @@ export default {}
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Overpass&family=Roboto&display=swap');
 @import '~/assets/scss/variables.scss';
 @import '~/assets/scss/_extends.scss';
-html {
-  background-color: #f5f5f5;
-  // background-color: #f6f9fc;
-  box-sizing: border-box;
-  color: $primary;
-  font-family: 'Roboto Slab', serif;
-  font-kerning: normal;
-  font-size: 19px;
-  font-weight: 400;
-  overflow-y: scroll;
-  transition: background-color 0.8s;
-  transition-timing-function: cubic-bezier(0.11, 0.89, 0.31, 0.99);
-  @media (max-width: 500px) {
-    font-size: 18px;
-  }
-}
 *,
 *::before,
 *::after {
   box-sizing: inherit;
 }
-body {
-  background-color: #f5f5f5;
-  // background-color: #f6f9fc;
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 0.85rem;
-  line-height: 1.765em;
-}
+
 #app {
   > .interface {
     display: flex;
@@ -76,7 +52,7 @@ h5,
 h6 {
   font-family: 'Montserrat', sans-serif;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 700;
 }
 
 h1 {
@@ -132,8 +108,8 @@ p {
   font-weight: 400;
 }
 
-.card {
-  background: #ffffff;
+.form-card {
+  background-color: var(--bg-secondary);
   box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
 }
@@ -199,7 +175,7 @@ html.wf-inactive #app {
   }
 }
 a {
-  color: $primary;
+  // color: $primary;
   font-weight: 400;
   position: relative;
   text-decoration: none;

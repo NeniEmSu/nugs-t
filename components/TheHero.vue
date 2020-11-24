@@ -41,7 +41,7 @@ export default {
 @import '~/assets/scss/_extends.scss';
 .hero {
   height: 650px;
-  background: linear-gradient(90.17deg, #7625bc 2.56%, #e453df 98.31%);
+  background: var(--base-gradient);
 
   @media #{$small_mobile} {
     height: 700px;
@@ -60,7 +60,6 @@ export default {
 .banner_part {
   height: 650px;
   position: relative;
-  // overflow: hidden;
 
   @media #{$small_mobile} {
     height: 700px;
@@ -151,9 +150,6 @@ export default {
         margin-bottom: 15px;
         line-height: 1.4;
       }
-      span {
-        color: $btn_bg;
-      }
     }
 
     p {
@@ -174,6 +170,8 @@ export default {
       }
       .btn_white {
         @extend %custom_btn_outline_white;
+        color: #ffffff;
+        border-color: #ffffff;
 
         @media #{$small_mobile} {
           margin-top: 20px;

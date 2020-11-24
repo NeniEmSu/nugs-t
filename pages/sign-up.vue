@@ -13,10 +13,10 @@
     </b-alert>
     <b-row align-h="center">
       <b-col lg="4" md="6">
-        <b-card bg-variant="light" class="p-1 p-sm-3 p-md-4">
+        <div class="form-card p-1 p-sm-3 p-md-4">
           <busy-overlay />
           <AuthForm :sign-up-page="true" />
-        </b-card>
+        </div>
       </b-col>
     </b-row>
   </div>

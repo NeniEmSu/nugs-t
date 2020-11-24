@@ -3,35 +3,31 @@
     <section class="container">
       <section class="top">
         <div class="row">
-          <div class="col-6 col-lg-3">
-            <h6>Navigation</h6>
-            <nuxt-link to="/" exact>Home</nuxt-link>
+          <div class="col-6 col-lg-3 discover">
+            <h6>Discover</h6>
+            <nuxt-link to="/dashboard">Dashboard</nuxt-link>
             <nuxt-link to="/topics">Topics</nuxt-link>
             <nuxt-link to="/authors">Authors</nuxt-link>
-            <nuxt-link to="/pages/sample-page">Sample Page</nuxt-link>
           </div>
-          <div class="col-6 col-lg-3">
+          <div class="col-6 col-lg-3 resources">
             <h6>Resources</h6>
-            <nuxt-link to="/" exact>Home</nuxt-link>
-            <nuxt-link to="/topics">Topics</nuxt-link>
-            <nuxt-link to="/authors">Authors</nuxt-link>
-            <nuxt-link to="/pages/sample-page">Sample Page</nuxt-link>
+            <nuxt-link to="/library">Online Library</nuxt-link>
+            <nuxt-link to="/new-blogs">News & Blogs</nuxt-link>
+            <nuxt-link to="/gallery">Gallery</nuxt-link>
           </div>
-          <div class="col-6 col-lg-3">
+          <div class="col-6 col-lg-3 support">
             <h6>Support</h6>
-            <nuxt-link to="/" exact>Home</nuxt-link>
-            <nuxt-link to="/topics">Topics</nuxt-link>
-            <nuxt-link to="/authors">Authors</nuxt-link>
-            <nuxt-link to="/pages/sample-page">Sample Page</nuxt-link>
+            <nuxt-link to="/"></nuxt-link>
+            <nuxt-link to="/contact">Contact</nuxt-link>
+            <nuxt-link to="/faqs">Faqs</nuxt-link>
           </div>
-          <div class="col-6 col-lg-3">
+          <div class="col-6 col-lg-3 legal">
             <h6>Legal</h6>
-            <nuxt-link to="/" exact>Home</nuxt-link>
-            <nuxt-link to="/topics">Topics</nuxt-link>
-            <nuxt-link to="/authors">Authors</nuxt-link>
-            <nuxt-link to="/pages/sample-page">Sample Page</nuxt-link>
+            <nuxt-link to="/privacy-policy">Privacy Policy</nuxt-link>
+            <nuxt-link to="/terms">Terms of Service</nuxt-link>
           </div>
         </div>
+        <ColorModePicker />
       </section>
       <hr />
       <section class="credits">
@@ -160,14 +156,60 @@ footer {
       display: flex;
       flex-direction: column;
       justify-content: flex-start;
-      @media #{$small_mobile} {
+
+      &.discover {
+        text-align: left;
+      }
+      &.resources {
         text-align: center;
+      }
+      &.support {
+        text-align: center;
+      }
+      &.legal {
+        text-align: right;
+      }
+      @media #{$small_mobile} {
+        &.discover {
+          text-align: left;
+        }
+        &.resources {
+          text-align: right;
+        }
+        &.support {
+          text-align: left;
+        }
+        &.legal {
+          text-align: right;
+        }
       }
       @media #{$large_mobile} {
-        text-align: center;
+        &.discover {
+          text-align: left;
+        }
+        &.resources {
+          text-align: right;
+        }
+        &.support {
+          text-align: left;
+        }
+        &.legal {
+          text-align: right;
+        }
       }
       @media #{$tab_device} {
-        text-align: center;
+        &.discover {
+          text-align: left;
+        }
+        &.resources {
+          text-align: right;
+        }
+        &.support {
+          text-align: left;
+        }
+        &.legal {
+          text-align: right;
+        }
       }
       h6 {
         color: rgba(86, 84, 99, 1);

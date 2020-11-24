@@ -103,22 +103,21 @@ export default {
       margin-right: 4px;
       &::after {
         content: ', ';
-        color: $primary;
+        color: var(--primary);
       }
     }
     a:hover {
-      color: $accent;
+      color: var(--accent);
     }
   }
   h2 {
-    color: #111;
+    color: rgba($color: var(--black), $alpha: 0.8);
     font-size: 1.2rem;
     margin-bottom: 8px;
     margin-top: -6px;
   }
   .excerpt {
     @media (max-width: 500px) {
-      // display: none;
     }
   }
   .lazy {
@@ -130,7 +129,7 @@ export default {
       display: none;
     }
     @media (max-width: 700px) {
-      margin: 0;
+      margin: 0px auto 20px auto;
       &.thumbnail {
         display: none;
       }
@@ -151,6 +150,7 @@ export default {
         height: 200px;
         object-fit: cover;
         width: 100%;
+        margin: 0 auto;
       }
     }
     .spinner {
@@ -160,11 +160,11 @@ export default {
     }
   }
   a {
-    color: $primary;
+    color: var(--primary);
     transition: 0.2s;
     text-decoration: none;
     &:hover {
-      color: #000;
+      color: var(--black);
       transform: translateX(4px);
     }
   }

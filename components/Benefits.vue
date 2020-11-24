@@ -54,7 +54,7 @@ export default {
       align-items: center;
 
       svg {
-        fill: #7625bc;
+        fill: var(--dark-accent);
         height: 40px;
         margin-right: 10px;
       }
@@ -66,13 +66,12 @@ export default {
         align-items: center;
         margin-bottom: 0;
 
-        color: #292739;
+        color: var(--black);
       }
     }
     P {
       font-size: 18px;
       line-height: 120%;
-      color: #69798e;
     }
   }
 }

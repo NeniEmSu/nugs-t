@@ -3,9 +3,11 @@
     <TheHero />
     <Benefits />
     <Extension />
-    <div class="articles container">
-      <SubsectionHeading :title="title" :desc="desc" />
-      <ArticleList :articles="[...articlesList]" />
+    <div class="container">
+      <div class="articles">
+        <SubsectionHeading :title="title" :desc="desc" />
+        <ArticleList :articles="[...articlesList]" />
+      </div>
     </div>
   </div>
 </template>

@@ -1,9 +1,7 @@
 <template>
-  <!-- /* eslint-disable vue/no-v-html */ -->
   <section id="search" ref="autoSuggest" role="search" :class="{ 'search-open': searchOpen }">
     <button class="toggle-search" title="Search" @click.prevent="toggleSearch">
       <svg
-        fill="#000000"
         height="24"
         viewBox="0 0 24 24"
         width="24"
@@ -38,13 +36,7 @@
             <Spinner2 v-if="spinnerVisible" class="spinner-2" />
           </transition>
           <button v-if="searchQuery" class="clear" @click.prevent="clearSearchQuery">
-            <svg
-              fill="#000000"
-              height="24"
-              viewBox="0 0 24 24"
-              width="24"
-              xmlns="http://www.w3.org/2000/svg"
-            >
+            <svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
               <path
                 d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"
               />
@@ -63,7 +55,7 @@
           >
             <nuxt-link
               :to="`/${article.slug}`"
-              class="row"
+              class="row p-0 m-0"
               :class="{ active: selectedResult(index) }"
               @mouseover.native="current = index"
             >
@@ -150,7 +142,6 @@ export default {
       this.resultsVisible = false
     },
   },
-
   methods: {
     debounceSearch: debounce(function (event) {
       if (event.keyCode !== 13 && event.keyCode !== 38 && event.keyCode !== 40) {
@@ -171,7 +162,7 @@ export default {
       this.spinnerVisible = true
       axios
         .get(
-          `/wp/v2/posts?search=${this.searchQuery}&_embed&per_page=8`
+          `${process.env.WORDPRESS_API_URL}/wp/v2/posts?search=${this.searchQuery}&_embed&per_page=8`
         )
         .then((response) => {
           this.apiResponse = true
@@ -218,7 +209,7 @@ section {
       z-index: -1;
     }
   }
-  @media (max-width: 700px) {
+  @media (max-width: 767px) {
     margin: 0;
     position: absolute;
     right: 0;
@@ -235,10 +226,6 @@ section {
     height: 100%;
     justify-content: center;
     position: absolute;
-    svg {
-      opacity: 0.5;
-      transition: 0.1s;
-    }
     &:hover {
       svg {
         opacity: 1;
@@ -257,12 +244,13 @@ section {
         top: 12px;
       }
       svg {
+        fill: var(--black);
         height: 24px;
         width: 24px;
       }
     }
     &.clear {
-      border-left: 1px solid lighten($primary, 30%);
+      border-left: 1px solid var(--border-color);
       padding: 0 12px;
       right: 0;
       top: 0;
@@ -273,6 +261,10 @@ section {
         height: 16px;
         width: 16px;
       }
+    }
+    svg {
+      opacity: 0.5;
+      transition: 0.1s;
     }
   }
 }
@@ -289,13 +281,19 @@ section {
     margin-left: auto;
     width: 100%;
   }
+  &.results-visible {
+    .input-container input {
+      border-bottom-left-radius: 0px;
+      border-bottom-right-radius: 0px;
+    }
+  }
   .input-container {
     overflow: hidden;
     transition: width 0.3s cubic-bezier(0.11, 0.89, 0.31, 0.99);
     width: 0;
     will-change: width;
     section.search-open & {
-      width: 350px;
+      width: 476px;
       @media (max-width: 700px) {
         width: 100%;
       }
@@ -318,43 +316,39 @@ section {
       }
     }
     input {
-      border: 1px solid lighten($primary, 30%);
-      border-radius: 5px;
+      border-radius: 10px;
       font-family: 'Roboto', sans-serif;
       font-weight: 400;
       outline: 0;
       padding: 8px 12px;
       transition: 0.1s;
       width: 100%;
+      background-color: var(--white);
+      color: var(--black);
+      border: 2px solid var(--border-color);
       @media (max-width: 700px) {
         border-left: 0;
-        border-radius: 0;
+        border-radius: 0px;
         border-right: 0;
         padding: 16px;
       }
       &::placeholder {
-        color: lighten($primary, 30%);
+        color: var(--primary);
       }
       &:focus {
-        border-color: lighten($primary, 15%);
+        border-color: var(--primary);
         & + .clear {
-          border-color: lighten($primary, 15%);
+          border-color: var(--border-color);
         }
         &::placeholder {
-          color: $primary;
+          color: var(--primary);
         }
       }
-    }
-  }
-  &.results-visible {
-    .input-container input {
-      border-bottom-left-radius: 0;
-      border-bottom-right-radius: 0;
     }
   }
   .results {
-    background-color: #fff;
-    border: 1px solid lighten($primary, 15%);
+    background-color: var(--white);
+    border: 1px solid var(--border-color);
     border-bottom-left-radius: 3px;
     border-bottom-right-radius: 3px;
     border-top: 0;
@@ -376,7 +370,7 @@ section {
     li {
       line-height: 1.2;
       & + li {
-        border-top: 1px dotted lighten($primary, 30%);
+        border-top: 1px dotted var(--border-color);
       }
       @media (min-width: 700px) {
         &:nth-child(8) {
@@ -407,7 +401,7 @@ section {
         -webkit-box-orient: vertical;
       }
       .title {
-        color: #000;
+        color: var(--black);
         line-height: 18px;
         max-height: 36px;
         -webkit-line-clamp: 2;
@@ -431,19 +425,19 @@ section {
         }
         .topic + .topic::before {
           content: ', ';
-          color: $primary;
+          color: var(--primary);
           left: -7px;
           position: absolute;
         }
       }
       a {
-        color: $primary;
+        color: var(--color);
         display: block;
         font-size: 80%;
         transition: 0.1s;
         &.active {
-          background-color: lighten($primary, 70%);
-          color: darken($primary, 30%);
+          background-color: var(--bg);
+          color: var(--primary);
         }
         .thumb {
           img,
@@ -458,8 +452,8 @@ section {
             }
           }
           svg {
-            background-color: #f1f1f1;
-            fill: #ccc;
+            background-color: var(--white);
+            fill: var(--white);
             padding: 32px;
             @media (max-width: 700px) {
               padding: 8px;
@@ -482,7 +476,7 @@ section {
   }
 }
 .shade {
-  background-color: rgba(#000, 0.5);
+  background-color: rgba($color: var(--black), $alpha: 0.5);
   content: '';
   height: 100%;
   left: 0;

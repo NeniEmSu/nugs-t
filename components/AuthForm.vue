@@ -165,7 +165,7 @@ export default {
 }
 
 a {
-  color: #7625bc;
+  color: var(--dark-accent);
 }
 
 .form-group {
@@ -173,7 +173,7 @@ a {
 
   > label {
     width: max-content;
-    background-color: #ffffff;
+    background-color: var(--white);
     padding: 0px 5px;
     border: none;
     border-radius: 5px;
@@ -194,9 +194,11 @@ a {
     font-weight: normal;
     font-size: 18px;
     line-height: 19px;
+    background-color: var(--white);
+    color: var(--black);
 
     padding: 8px 25px;
-    border: 2px solid #c4c4c4;
+    border: 2px solid var(--border-color);
     box-sizing: border-box;
     border-radius: 10px;
     box-shadow: none;

@@ -81,7 +81,7 @@ export default {
     margin: 0 -32px;
   }
   .articles {
-    background-color: #efefef;
+    background-color: var(--bg);
     padding: 0 32px;
     max-width: 900px;
     width: 100%;

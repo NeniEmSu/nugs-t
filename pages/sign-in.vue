@@ -5,10 +5,10 @@
       <div class="row">
         <div class="offset-lg-1"></div>
 
-        <b-card bg-variant="light" class="form-card col-lg-6 col-md-7 p-1 p-sm-3 p-md-4">
+        <div class="form-card col-lg-6 col-md-7 p-1 p-sm-3 p-md-4">
           <busy-overlay />
           <AuthForm :sign-up-page="false" />
-        </b-card>
+        </div>
 
         <div class="offset-md-1"></div>
         <div class="side-content col-lg-3 col-md-4">
@@ -24,7 +24,7 @@
             {{ randomQuote }}
           </q>
           <br />
-          <cite class="ml-auto">- {{ quoteAuthor }}</cite>
+          <cite class="ml-auto">— {{ quoteAuthor }}</cite>
         </div>
         <div class="offset-lg-1"></div>
       </div>
@@ -84,7 +84,7 @@ q:before {
   left: -10px;
   position: relative;
   top: 5px;
-  color: #000;
+  color: var(--black);
   font-size: 1.5em;
 }
 q:after {
@@ -95,7 +95,7 @@ q:after {
   left: 10px;
   position: relative;
   top: 5px;
-  color: #000;
+  color: var(--black);
   font-size: 1.5em;
 }
 </style>
