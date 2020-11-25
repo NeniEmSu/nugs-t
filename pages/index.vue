@@ -1,12 +1,15 @@
 <template>
   <div class="home">
-    <TheHero />
+    <TheHero :title="heading" :sup-title="supTitle" :sub-title="subTitle" />
     <Benefits />
     <Extension />
     <div class="container">
       <div class="articles">
-        <SubsectionHeading :title="title" :desc="desc" />
+        <SubsectionHeading :heading="heading" :desc="desc" />
         <ArticleList :articles="[...articlesList]" />
+        <div class="more-btn">
+          <nuxt-link class="btn_black" to="/news-blogs"> Read More </nuxt-link>
+        </div>
       </div>
     </div>
   </div>
@@ -16,6 +19,10 @@
 export default {
   data() {
     return {
+      heading: 'National Union Of Ghana Students Ternopol',
+      supTitle: 'ALUTA CONTINUA , VICTORIA ASCERTA.',
+      subTitle:
+        'We are a Democratic, nonpartisan and progressive mass movement comprising of ghanaian students in Ternopol, ukraine with the primary aim of protecting and safeguarding the rights and interests of ghanaian students in ternopol.',
       title: 'News & Updates',
       desc:
         'The National union of Ghana students does it’s best to keep you updated, apprised and in the know about all relevant information.',
@@ -64,6 +71,21 @@ export default {
   }
   @media #{$medium_device} {
     padding: 80px 0;
+  }
+}
+
+.more-btn {
+  text-align: center;
+  padding: 50px 0 0;
+  @media #{$small_mobile} {
+    padding: 25px 0 0;
+  }
+  @media #{$large_mobile} {
+    padding: 40px 0 0;
+  }
+  .btn_black {
+    @extend %custom_btn_outline_black;
+    margin: auto;
   }
 }
 </style>
