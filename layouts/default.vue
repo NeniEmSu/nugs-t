@@ -219,12 +219,12 @@ html.wf-inactive #app {
   }
 }
 a {
-  // color: $primary;
   font-weight: 400;
   position: relative;
-  text-decoration: none;
+  text-decoration: none !important;
   transition: 0.1s;
 }
+
 .fancy {
   cursor: pointer;
   &::after {
