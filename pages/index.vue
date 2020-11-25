@@ -40,7 +40,7 @@ export default {
   },
   methods: {
     async fetchArticles() {
-      const { data } = await this.$axios.get(`/wp/v2/posts?orderby=date&per_page=4&_embed`)
+      const { data } = await this.$axios.get(`/wp/v2/posts?orderby=date&per_page=3&_embed`)
       this.articles = data
     },
   },
