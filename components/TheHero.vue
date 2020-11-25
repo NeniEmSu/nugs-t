@@ -6,12 +6,10 @@
           <div class="col-lg-6 col-xl-6">
             <div class="banner_text">
               <div class="banner_text_iner">
-                <h5 class="sup-title">Aluta Continua , Victoria Ascerta.</h5>
-                <h1>National Union of Ghana Students Ternopol</h1>
+                <h5 class="sup-title">{{ supTitle }}</h5>
+                <h1>{{ heading }}</h1>
                 <p>
-                  We are a Democratic, Nonpartisan and Progressive mass movement comprising of
-                  Ghanaian students in Ternopol, Ukraine with the primary aim of protecting and
-                  safeguarding the rights and interests of Ghanaian students in ternopol.
+                  {{ subTitle }}
                 </p>
                 <div class="action_btn">
                   <nuxt-link to="/practice" class="btn_white">Vote Now!</nuxt-link>
@@ -31,6 +29,21 @@
 export default {
   mixins: {
     shortTimestamp: Function,
+  },
+  props: {
+    heading: {
+      type: String,
+      default: 'National Union Of Ghana Students Ternopol',
+    },
+    supTitle: {
+      type: String,
+      default: 'ALUTA CONTINUA , VICTORIA ASCERTA.',
+    },
+    subTitle: {
+      type: String,
+      default:
+        'We are a Democratic, nonpartisan and progressive mass movement comprising of ghanaian students in Ternopol, ukraine with the primary aim of protecting and safeguarding the rights and interests of ghanaian students in ternopol.',
+    },
   },
   computed: {},
 }
