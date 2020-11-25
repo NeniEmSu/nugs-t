@@ -1,21 +1,21 @@
 <template>
   <div class="colorPicker">
     <div class="icons">
-      <span
+      <button
         v-for="color of colors"
         :key="color.name"
         class="aroundIcon"
         @click="$colorMode.preference = color.name"
       >
         <b-icon :icon="`${color.icon}`" scale="1.5" :class="getClasses(color)"></b-icon>
-      </span>
+      </button>
     </div>
-    <div>
+    <p>
       Color mode: <b>{{ $colorMode.preference }}</b>
       <span v-if="$colorMode.preference === 'system'">
         (<i>{{ $colorMode.value }}</i> mode detected)
       </span>
-    </div>
+    </p>
   </div>
 </template>
 <script>
@@ -58,6 +58,8 @@ export default {
     padding: 10px;
     background-color: var(--bg-secondary);
     border: 2px solid var(--border-color);
+    color: var(--color);
+    outline: none;
     margin: 5px;
     border-radius: 5px;
     transition: all 350ms ease-in-out;
@@ -74,6 +76,7 @@ export default {
   }
 }
 p {
+  color: #ebf4f1;
   margin: 0;
   padding-top: 5px;
   padding-bottom: 20px;
