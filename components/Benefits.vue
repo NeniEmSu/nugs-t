@@ -48,10 +48,24 @@ export default {
   }
 
   .col-3-layout {
+    @media #{$small_mobile} {
+      text-align: center;
+    }
+    @media #{$large_mobile} {
+      text-align: center;
+    }
     &-heading {
       display: flex;
       justify-content: flex-start;
       align-items: center;
+      @media #{$small_mobile} {
+        text-align: center;
+        justify-content: center;
+      }
+      @media #{$large_mobile} {
+        text-align: center;
+        justify-content: center;
+      }
 
       svg {
         fill: var(--dark-accent);

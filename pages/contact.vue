@@ -86,7 +86,8 @@ export default {
     border: 3px solid;
     border-color: rgb(77, 66, 255);
     border-radius: 10px;
-    background: #f8f9fa;
+    background: var(--bg-secondary);
+    color: var(--color);
     padding: 30px 30px 30px 30px;
     border-width: 3px 3px 3px 3px;
 
