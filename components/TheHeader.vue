@@ -102,7 +102,7 @@ header {
     height: 80px;
     margin: 0 auto 0 0;
     padding: 0 32px;
-    transition: padding-top 0.5s, padding-bottom 0.5s;
+    transition: padding-top 350ms, padding-bottom 350ms;
     @media (max-width: 700px) {
       margin: 0 auto;
       height: 60px;
