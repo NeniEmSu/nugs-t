@@ -160,16 +160,12 @@ export default {
     },
     search() {
       this.spinnerVisible = true
-      axios
-        .get(
-          `${process.env.WORDPRESS_API_URL}/wp/v2/posts?search=${this.searchQuery}&_embed&per_page=8`
-        )
-        .then((response) => {
-          this.apiResponse = true
-          this.spinnerVisible = false
-          this.articles = response.data
-          this.resultsVisible = true
-        })
+      axios.get(`/wp/v2/posts?search=${this.searchQuery}&_embed&per_page=8`).then((response) => {
+        this.apiResponse = true
+        this.spinnerVisible = false
+        this.articles = response.data
+        this.resultsVisible = true
+      })
     },
     searchBlur() {
       if (!this.searchQuery) {
