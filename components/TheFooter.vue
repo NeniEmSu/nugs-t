@@ -126,15 +126,15 @@ export default {
 @import '~/assets/scss/variables.scss';
 footer {
   background-color: rgba(27, 25, 45, 1);
-  margin-top: 130px;
+  // margin-top: 130px;
   @media #{$small_mobile} {
-    margin-top: 25px;
+    // margin-top: 25px;
   }
   @media #{$large_mobile} {
-    margin-top: 40px;
+    // margin-top: 40px;
   }
   @media #{$tab_device} {
-    margin-top: 50px;
+    // margin-top: 50px;
   }
   .link {
     color: #757575;
@@ -212,11 +212,11 @@ footer {
         }
       }
       h6 {
-        color: rgba(86, 84, 99, 1);
+        color: rgba(255, 255, 255, 0.8);
       }
 
       a {
-        color: #ffffff;
+        color: rgba(255, 255, 255, 0.5);
         display: flex;
         flex-direction: column;
         justify-content: flex-start;
@@ -272,7 +272,7 @@ footer {
       line-height: 19px;
       align-items: center;
 
-      color: rgba(255, 255, 255, 1);
+      color: rgba(255, 255, 255, 0.5);
 
       @media #{$small_mobile} {
         margin-bottom: 16px;
