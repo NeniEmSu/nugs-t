@@ -44,35 +44,6 @@
   --light-border-color: #fff;
 }
 
-html {
-  font-family: 'Roboto Slab', serif;
-  box-sizing: border-box;
-  background-color: var(--bg);
-  color: var(--color);
-  font-kerning: normal;
-  font-size: 19px;
-  font-weight: 400;
-  overflow-y: scroll;
-  overflow-x: hidden;
-  transition: background-color 350ms, all 350ms ease-in-out;
-  transition-timing-function: cubic-bezier(0.11, 0.89, 0.31, 0.99);
-
-  @media (max-width: 500px) {
-    font-size: 18px;
-  }
-}
-
-body {
-  font-family: 'Roboto', sans-serif;
-  font-style: normal;
-  font-weight: 400;
-  font-size: 0.85rem;
-  line-height: 1.765em;
-  transition: background-color 350ms, all 350ms ease-in-out;
-  background-color: var(--bg);
-  color: var(--color);
-}
-
 a {
   color: var(--color-primary);
 }
