@@ -203,19 +203,6 @@ header {
   }
   .btn_black {
     @extend %custom_btn_outline_black;
-    padding: 8px 30px;
-    @media #{$small_mobile} {
-      padding: 10px 25px;
-    }
-    @media #{$large_mobile} {
-      padding: 10px 25px;
-    }
-    @media #{$tab_device} {
-      padding: 10px 25px;
-    }
-    @media #{$medium_device} {
-      padding: 10px 25px;
-    }
   }
 }
 </style>
