@@ -3,7 +3,7 @@
     <div class="error">
       <img src="~/assets/img/loading.gif" alt="404 image in a house" class="img-fluid" />
 
-      <h1 class="title">404 Not found</h1>
+      <h1 class="title">404 Page Not Found!</h1>
       <p class="description">I'm sorry but i couldn't quite find what you were looking for,</p>
       <nuxt-link to="/" class="error-link nuxt-link-active">Go to home page</nuxt-link>
     </div>
