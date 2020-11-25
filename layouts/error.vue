@@ -46,7 +46,6 @@ export default {
 @import '~/assets/scss/variables.scss';
 @import '~/assets/scss/_extends.scss';
 .__nuxt-error-page {
-  padding: 1rem;
   color: #47494e;
   text-align: center;
   display: flex;
@@ -58,6 +57,19 @@ export default {
   -ms-text-size-adjust: 100%;
   -webkit-text-size-adjust: 100%;
   -webkit-font-smoothing: antialiased;
+  padding: 130px 0;
+  @media #{$small_mobile} {
+    padding: 25px 0;
+  }
+  @media #{$large_mobile} {
+    padding: 40px 0;
+  }
+  @media #{$tab_device} {
+    padding: 50px 0;
+  }
+  @media #{$medium_device} {
+    padding: 80px 0;
+  }
 }
 .__nuxt-error-page .error {
   max-width: 450px;
