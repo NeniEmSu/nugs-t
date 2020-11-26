@@ -1,17 +1,30 @@
 <template>
   <form>
-    <div v-if="signUpPage" class="form-group">
+    <b-alert
+      v-if="error"
+      show
+      class="position-fixed fixed-top m-0 rounded-0"
+      style="z-index: 11"
+      dismissible
+      variant="danger"
+    >
+      <h6 class="alert-heading">Error!</h6>
+      <p v-text="error.response.data.message.replace('<strong>Error</strong>: ', '')"></p>
+    </b-alert>
+    <div class="form-group">
       <input
         id="username"
         v-model="username"
         type="username"
         class="form-control"
         email="username"
-        placeholder="john"
+        :placeholder="`${
+          signUpPage ? 'A username of your choosing' : 'Your username or email address'
+        } `"
       />
       <label for="username" class="form-label">username*</label>
     </div>
-    <div class="form-group">
+    <div v-if="signUpPage" class="form-group">
       <input
         id="email"
         v-model="email"
@@ -29,7 +42,7 @@
         v-model="password"
         class="form-control"
         :type="passwordType"
-        placeholder="password"
+        placeholder="Your password"
         required
         name="password"
       />
@@ -45,7 +58,7 @@
         v-model="repeat_password"
         class="form-control"
         :type="passwordType"
-        placeholder="repeat_password"
+        placeholder="Repeat the password"
         required
         name="repeat_password"
       />
@@ -57,7 +70,7 @@
     </div>
     <template v-if="signUpPage">
       <div class="text-center">
-        <button class="btn_black" @click="signUp">Sign Up</button>
+        <button class="btn_black" @click.prevent="signUp">Sign Up</button>
       </div>
       <div class="text-center" style="margin-top: 20px">
         Already got an account? <nuxt-link to="/sign-in">Sign In</nuxt-link>
@@ -65,7 +78,7 @@
     </template>
     <template v-else>
       <div class="text-center">
-        <button class="btn_black" @click="signIn">Sign In</button>
+        <button class="btn_black" @click.prevent="signIn">Sign In</button>
       </div>
       <div class="text-center" style="margin-top: 20px">
         Don't have an account yet? <nuxt-link to="/sign-up">Sign Up</nuxt-link>
@@ -107,19 +120,27 @@ export default {
       return this.$auth
         .loginWith('local', {
           data: {
-            email: this.email,
+            username: this.username,
             password: this.password,
           },
         })
-        .then((response, append = false) => {
+        .then((response) => {
           this.$store.dispatch('toast/setToast', {
-            title: response.data.message,
-            variant: response.data.type,
-            text: `You have successfully signed in, ${this.$auth.user.username}`,
+            title: 'Authenticated',
+            variant: 'success',
+            append: true,
+            text: `Welcome back, ${this.$auth.user.name}`,
             delay: 5000,
           })
         })
         .catch((error) => {
+          this.$store.dispatch('toast/setToast', {
+            title: 'Error',
+            variant: 'danger',
+            append: true,
+            text: error.response.data.message.replace('<strong>Error</strong>: ', ''),
+            delay: 5000,
+          })
           this.error = error
         })
     },
@@ -132,9 +153,10 @@ export default {
             password: this.password,
             repeat_password: this.repeat_password,
           })
-          .then((response, append = false) => {
+          .then((response) => {
             this.$store.dispatch('toast/setToast', {
               title: 'Success',
+              append: true,
               variant: response.data.type,
               text: response.data.message,
               delay: 5000,
@@ -212,6 +234,9 @@ a {
       box-shadow: none;
       outline: none;
       border-color: #506076;
+      &::placeholder {
+        color: var(--color);
+      }
     }
 
     &:focus + .form-label,
