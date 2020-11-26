@@ -102,7 +102,14 @@ export default {
 
   loading: {
     color: '#7625BC',
+    height: '3px',
   },
+
+  // loadingIndicator: {
+  //   name: 'circle',
+  //   color: '#7625BC',
+  //   background: '#fff',
+  // },
 
   manifest: {
     name: siteTitle,
@@ -158,6 +165,7 @@ export default {
 
   auth: {
     redirect: {
+      callback: '/dashboard',
       login: '/sign-in',
       logout: '/',
     },
@@ -165,19 +173,19 @@ export default {
       local: {
         endpoints: {
           login: {
-            url: '/wp/v2/users/me',
+            url: '/jwt-auth/v1/token',
             method: 'post',
             propertyName: 'token',
           },
-          logout: { url: '/user/logout', method: 'post' },
+          logout: { url: '', method: 'post' },
           user: {
             url: '/wp/v2/users/me',
             method: 'get',
-            propertyName: 'user',
+            propertyName: '',
           },
         },
         tokenRequired: true,
-        tokenType: 'bearer',
+        tokenType: 'Bearer',
         globalToken: true,
         autoFetchUser: true,
       },
