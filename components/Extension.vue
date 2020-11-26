@@ -15,7 +15,7 @@
           <nuxt-link to="" class="btn_white">Apply for extension</nuxt-link>
         </div>
         <div class="col-lg-5 col-md-6 img">
-          <img src="~/assets/svg/extension.svg" alt="Image describing fees extension process" />
+          <img src="~/assets/img/hand.jpg" alt="Image describing fees extension process" />
         </div>
       </div>
     </div>
@@ -102,20 +102,27 @@ $min-width: 15rem;
     }
     &.img {
       align-items: center;
+
       img {
-        height: 350px;
-        width: auto;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        // height: 350px;
+        // width: auto;
         @media #{$small_mobile} {
-          height: 200px;
-          width: auto;
+          margin-top: 20px;
+          // height: 200px;
+          // width: auto;
         }
         @media #{$large_mobile} {
-          height: 250px;
-          width: auto;
+          margin-top: 25px;
+          // height: 250px;
+          // width: auto;
         }
         @media #{$tab_device} {
-          height: 300px;
-          width: auto;
+          margin-top: 50px;
+          // height: 300px;
+          // width: auto;
         }
       }
     }
