@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="sign-in">
     <BaseHero :hero-title="title" :sup-title="supTitle" :has-btn="false" :has-desc="false" />
     <div class="container">
       <div class="row">
@@ -12,12 +12,15 @@
 
         <div class="offset-md-1"></div>
         <div class="side-content col-lg-3 col-md-4">
-          <b-alert v-if="error" show variant="danger">
-            <h4 class="alert-heading">Error!</h4>
-            {{ error.response.data.message || error.response.data.error.message }}
-          </b-alert>
-          <b-alert v-if="$auth.$state.redirect" show dismissible>
-            You have to sign in before accessing to
+          <b-alert
+            v-if="$auth.$state.redirect"
+            show
+            class="position-fixed fixed-top m-0 rounded-0"
+            style="z-index: 11"
+            variant="info"
+            dismissible
+          >
+            You have to be login before accessing to
             <strong>{{ $auth.$state.redirect }}</strong>
           </b-alert>
           <q>
@@ -61,6 +64,21 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import '~/assets/scss/variables.scss';
+@import '~/assets/scss/_extends.scss';
+.sign-in {
+  padding: 0 0 130px 0;
+  @media #{$small_mobile} {
+    padding: 0 0 25px 0;
+  }
+  @media #{$large_mobile} {
+    padding: 0 0 40px 0;
+  }
+  @media #{$tab_device} {
+    padding: 0 0 50px 0;
+  }
+}
+
 .form-card {
   margin-top: -100px;
 }
