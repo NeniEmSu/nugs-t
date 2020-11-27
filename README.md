@@ -1,5 +1,11 @@
 # nugs-t
 
+Relevant Links
+
+- <https://medium.com/google-developer-experts/workbox-4-implementing-refresh-to-update-version-flow-using-the-workbox-window-module-41284967e79c>
+- <https://github.com/novis-opscale/nuxt-pwa-test/blob/master/layouts/default.vue>
+- <https://github.com/nuxt-community/pwa-module/issues/401>
+
 ## Build Setup
 
 ```bash
