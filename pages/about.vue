@@ -10,8 +10,8 @@ export default {
   data() {
     return {
       heading: 'About Us',
-      supTitle: 'Executives 2020-2021',
-      subTitle:
+      supHeading: 'Executives 2020-2021',
+      subHeading:
         'We are a Democratic, nonpartisan and progressive mass movement comprising of ghanaian students in Ternopol, ukraine with the primary aim of protecting and safeguarding the rights and interests of ghanaian students in ternopol.',
     }
   },

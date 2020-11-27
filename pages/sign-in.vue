@@ -1,6 +1,6 @@
 <template>
   <div class="sign-in">
-    <BaseHero :hero-title="title" :sup-title="supTitle" :has-btn="false" :has-desc="false" />
+    <BaseHero :heading="heading" :sup-heading="supHeading" :has-btn="false" :has-desc="false" />
     <div class="container">
       <div class="row">
         <div class="offset-lg-1"></div>
@@ -43,8 +43,9 @@ export default {
   middleware: ['auth'],
   data() {
     return {
-      title: 'Sign In',
-      supTitle: 'Welcome Back!',
+      heading: 'Sign In',
+      supHeading: 'Welcome Back!',
+      desc: '',
       randomQuote:
         'The Pessimist Sees Difficulty In Every Opportunity. The Optimist Sees Opportunity In Every Difficulty.',
       quoteAuthor: 'Winston Churchill',
