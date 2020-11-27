@@ -93,9 +93,13 @@ export default {
     link: [
       { rel: 'icon', type: 'image/png', href: '/icon.png' },
       {
-        rel: 'stylesheet',
+        rel: 'preconnect',
+        href: 'https://fonts.gstatic.com',
+      },
+      {
         href:
-          'https://fonts.googleapis.com/css?family=Montserrat:400,500,600,700&display=swap&subset=cyrillic',
+          'https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&family=Overpass&family=Roboto&display=swap',
+        rel: 'stylesheet',
       },
     ],
   },
