@@ -3,6 +3,7 @@
     <b-navbar-brand
       aria-label="Nugs-T"
       target="_self"
+      tabindex="0"
       class="mr-0 mr-md-2 site-logo"
       to="/"
       @click.prevent="homeScrollTop"
@@ -37,6 +38,9 @@
         <li class="nav-item">
           <nuxt-link to="/library" exact class="nav-link">Library</nuxt-link>
         </li>
+        <li v-if="$auth.$state.loggedIn" class="nav-item">
+          <nuxt-link to="/reports" exact class="nav-link">Reports</nuxt-link>
+        </li>
         <li class="nav-item">
           <nuxt-link to="/contact" exact class="nav-link">Contact</nuxt-link>
         </li>
@@ -63,18 +67,17 @@
     <ul class="navbar-nav flex-row d-none d-lg-flex">
       <li class="nav-item d-flex">
         <template v-if="$auth.$state.loggedIn">
-          <b-nav-item-dropdown :text="$auth.user.name" right>
+          <b-nav-item-dropdown class="text-capitalize text-black" :text="$auth.user.name" right>
             <b-dropdown-item to="/dashboard"> Dashboard </b-dropdown-item>
             <b-dropdown-item @click="$auth.logout()"> Logout </b-dropdown-item>
           </b-nav-item-dropdown>
           <b-avatar
             to="/dashboard"
-            :src="$auth.user.avatar_urls['24']"
+            :src="$auth.user.simple_local_avatar['96'] || $auth.user.avatar_urls['24']"
             class="mt-1"
             rounded="circle"
             :size="30"
           ></b-avatar>
-          <!-- src="https://placekitten.com/300/300" -->
         </template>
         <template v-else>
           <nuxt-link class="btn_black" to="/sign-in">Sign In</nuxt-link>

@@ -1,7 +1,7 @@
 <template>
   <section class="benefits">
     <div class="container">
-      <SubsectionHeading :title="title" :desc="desc" />
+      <SubsectionHeading :title="title" :sub-title="subTitle" />
       <div class="col-3-layout row">
         <div v-for="(item, index) in 4" :key="index" class="col-12 col-md-6 col-lg-4">
           <div class="col-3-layout-heading">
@@ -25,7 +25,7 @@ export default {
   data() {
     return {
       title: 'Nugs-T Benefits',
-      desc:
+      subTitle:
         'Every once in a while we all need a helping hand to dig through the hard parts and fish us out, enter Nugs Ternopol.',
     }
   },

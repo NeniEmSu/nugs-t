@@ -2,7 +2,7 @@
   <div class="heading col-12 col-md-6 col-lg-4 p-0">
     <h2>{{ title }}</h2>
     <p>
-      {{ desc }}
+      {{ subTitle }}
     </p>
     <hr />
   </div>
@@ -15,7 +15,7 @@ export default {
       type: String,
       default: 'National Union of Ghana Students Ternopol',
     },
-    desc: {
+    subTitle: {
       type: String,
       default:
         'We are a Democratic, Nonpartisan and Progressive mass movement comprising of Ghanaian students in Ternopol, Ukraine with the primary aim of protecting and safeguarding the rights and interests of Ghanaian students in ternopol.',

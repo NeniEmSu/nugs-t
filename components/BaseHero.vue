@@ -1,8 +1,8 @@
 <template>
   <section class="hero">
     <div class="inner-content container">
-      <h5 class="sup-title">{{ supTitle }}</h5>
-      <h1>{{ heroTitle }}</h1>
+      <h5 class="sup-title">{{ supHeading }}</h5>
+      <h1>{{ heading }}</h1>
       <p v-if="hasDesc">
         {{ desc }}
       </p>
@@ -27,11 +27,11 @@ export default {
       type: Boolean,
       default: false,
     },
-    heroTitle: {
+    heading: {
       type: String,
       default: 'National Union of Ghana Students Ternopol',
     },
-    supTitle: {
+    supHeading: {
       type: String,
       default: 'Nugs-T',
     },

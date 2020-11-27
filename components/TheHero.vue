@@ -6,10 +6,10 @@
           <div class="col-lg-6 col-xl-6">
             <div class="banner_text">
               <div class="banner_text_iner">
-                <h5 class="sup-title">{{ supTitle }}</h5>
+                <h5 class="sup-title">{{ supHeading }}</h5>
                 <h1>{{ heading }}</h1>
                 <p>
-                  {{ subTitle }}
+                  {{ subHeading }}
                 </p>
                 <div class="action_btn">
                   <nuxt-link to="/contact" class="btn_white">Contact Us!</nuxt-link>
@@ -35,11 +35,11 @@ export default {
       type: String,
       default: 'National Union Of Ghana Students Ternopol',
     },
-    supTitle: {
+    supHeading: {
       type: String,
       default: 'ALUTA CONTINUA , VICTORIA ASCERTA.',
     },
-    subTitle: {
+    subHeading: {
       type: String,
       default:
         'We are a Democratic, nonpartisan and progressive mass movement comprising of ghanaian students in Ternopol, ukraine with the primary aim of protecting and safeguarding the rights and interests of ghanaian students in ternopol.',
