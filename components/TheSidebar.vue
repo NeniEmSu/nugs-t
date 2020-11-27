@@ -1,11 +1,13 @@
 <template>
   <aside>
     <div class="inner-container">
-      <h2>Top Articles</h2>
+      <h4>Top Articles From NUGS Ukraine</h4>
       <article v-for="article in featuredArticles" :key="article.id">
-        <nuxt-link
+        <a
           v-if="getFeaturedImage(article, 'medium')"
-          :to="`/${article.slug}`"
+          :href="`${nugsUkraineLink}/${article.slug}`"
+          target="blank"
+          rel=""
           class="image"
         >
           <span class="hidden" v-html="article.title.rendered"></span>
@@ -26,23 +28,12 @@
             />
             <Spinner1 />
           </div>
-        </nuxt-link>
+        </a>
         <div class="content">
-          <div class="meta">
-            <span v-html="shortTimestamp(article.date)"></span>&nbsp;–&nbsp;
-            <nuxt-link
-              v-for="topic in article._embedded['wp:term'][0]"
-              v-if="notFeatured(topic.id)"
-              :key="topic.id"
-              class="topic fancy"
-              :to="`/topics/${topic.slug}`"
-              v-html="topic.name"
-            ></nuxt-link>
-          </div>
-          <nuxt-link :to="`/${article.slug}`" class="article">
-            <h3 v-html="article.title.rendered"></h3>
+          <a :href="`${nugsUkraineLink}/${article.slug}`" class="article">
+            <h6 v-html="article.title.rendered"></h6>
             <div class="excerpt" v-html="article.excerpt.rendered"></div>
-          </nuxt-link>
+          </a>
         </div>
       </article>
     </div>
@@ -61,14 +52,16 @@ export default {
   },
   data() {
     return {
+      nugsUkraineLink: 'https://nugsukraine.com',
       featuredArticles: [],
     }
   },
   mounted() {
     const fetchFeaturedArticles = async () => {
-      const { data } = await this.$axios.get(
-        `/wp/v2/posts?orderby=date&per_page=10&categories=194&_embed`
-      )
+      const { data } = await this.$axios({
+        url: `/wp-json/wp/v2/posts?orderby=date&per_page=10&_embed`,
+        baseURL: `${this.nugsUkraineLink}`,
+      })
       this.featuredArticles = data
     }
     fetchFeaturedArticles()
@@ -92,7 +85,7 @@ aside {
   .inner-container {
     background-color: var(--white);
     padding: 32px;
-    h2 {
+    h4 {
       margin-top: 0;
     }
     article {
@@ -148,6 +141,9 @@ aside {
           transition: 0.2s;
           &:hover {
             transform: translateX(4px);
+            h6 {
+              color: var(--black);
+            }
             .excerpt {
               color: var(--black);
             }
@@ -171,10 +167,10 @@ aside {
           }
         }
         a:hover {
-          color: $accent;
+          color: var(--black);
         }
       }
-      h3 {
+      h5 {
         margin: 12px 0;
       }
     }

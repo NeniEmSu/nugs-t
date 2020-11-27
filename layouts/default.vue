@@ -335,7 +335,10 @@ a {
   font-weight: 400;
   position: relative;
   text-decoration: none !important;
-  transition: 0.1s;
+
+  :hover {
+    color: var(--color);
+  }
 }
 
 .fancy {
