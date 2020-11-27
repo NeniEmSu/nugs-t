@@ -15,9 +15,10 @@
       <input
         id="username"
         v-model="username"
-        type="username"
+        type="text"
         class="form-control"
-        email="username"
+        required
+        name="username"
         :placeholder="`${
           signUpPage ? 'A username of your choosing' : 'Your username or email address'
         } `"
@@ -30,7 +31,8 @@
         v-model="email"
         type="email"
         class="form-control"
-        email="email"
+        required
+        name="email"
         placeholder="something@email.com"
       />
       <label for="email" class="form-label">Email*</label>
@@ -68,19 +70,30 @@
         </b-icon>
       </span>
     </div>
+    <div class="form-group p-0">
+      <b-form-checkbox
+        id="status"
+        v-model="status"
+        name="status"
+        value="accepted"
+        unchecked-value="not_accepted"
+      >
+        I agree to the <nuxt-link to="/terms">terms and conditions</nuxt-link> of use.
+      </b-form-checkbox>
+    </div>
     <template v-if="signUpPage">
-      <div class="text-center">
-        <button class="btn_black" @click.prevent="signUp">Sign Up</button>
+      <div>
+        <button class="btn_black" type="submit" @click.prevent="signUp">Sign Up</button>
       </div>
-      <div class="text-center" style="margin-top: 20px">
+      <div style="margin-top: 20px">
         Already got an account? <nuxt-link to="/sign-in">Sign In</nuxt-link>
       </div>
     </template>
     <template v-else>
-      <div class="text-center">
-        <button class="btn_black" @click.prevent="signIn">Sign In</button>
+      <div>
+        <button class="btn_black" type="submit" @click.prevent="signIn">Sign In</button>
       </div>
-      <div class="text-center" style="margin-top: 20px">
+      <div style="margin-top: 20px">
         Don't have an account yet? <nuxt-link to="/sign-up">Sign Up</nuxt-link>
       </div>
     </template>
@@ -100,6 +113,7 @@ export default {
     return {
       username: '',
       email: '',
+      status: '',
       password: '',
       repeat_password: '',
       error: null,
@@ -145,6 +159,7 @@ export default {
         })
     },
     async signUp() {
+      this.error = null
       try {
         await this.$axios
           .post('/api/auth/signup', {
@@ -164,7 +179,7 @@ export default {
           })
         await this.signIn()
       } catch (error) {
-        this.error = error.response.data.error
+        this.error = error
       }
     },
   },
@@ -190,64 +205,7 @@ a {
   color: var(--dark-accent);
 }
 
-.form-group {
-  transition: ease-in-out all 300ms;
-
-  > label {
-    width: max-content;
-    background-color: var(--white);
-    padding: 0px 5px;
-    border: none;
-    border-radius: 5px;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 19px;
-    pointer-events: none;
-    display: block;
-    opacity: 1;
-    transform: translate(1em, -1.8em);
-    transform-origin: 0 0;
-    transition: all 300ms ease-in-out;
-  }
-
-  > input {
-    font-style: normal;
-    font-weight: normal;
-    font-size: 18px;
-    line-height: 19px;
-    background-color: var(--white);
-    color: var(--black);
-
-    padding: 8px 25px;
-    border: 2px solid var(--border-color);
-    box-sizing: border-box;
-    border-radius: 10px;
-    box-shadow: none;
-  }
-
-  .form-control {
-    &::placeholder {
-      color: transparent;
-    }
-    &:focus {
-      box-shadow: none;
-      outline: none;
-      border-color: #506076;
-      &::placeholder {
-        color: var(--color);
-      }
-    }
-
-    &:focus + .form-label,
-    &:not(:placeholder-shown) + .form-label {
-      transform: translate(1em, -2.8em) scale(0.8);
-    }
-  }
-}
-
 .btn_black {
   @extend %custom_btn_outline_black;
-  margin: 0 auto;
 }
 </style>
