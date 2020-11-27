@@ -5,7 +5,10 @@
       <article v-for="article in featuredArticles" :key="article.id">
         <a
           v-if="getFeaturedImage(article, 'medium')"
-          :href="`${nugsUkraineLink}/${article.slug}`"
+          :href="`${nugsUkraineLink}/index.php/${article.date.substring(
+            0,
+            4
+          )}/${article.date.substring(5, 7)}/${article.date.substring(8, 10)}/${article.slug}`"
           target="blank"
           rel=""
           class="image"
@@ -30,7 +33,16 @@
           </div>
         </a>
         <div class="content">
-          <a :href="`${nugsUkraineLink}/${article.slug}`" class="article">
+          <div class="meta">
+            <span v-html="shortTimestamp(article.date)"></span>
+          </div>
+          <a
+            :href="`${nugsUkraineLink}/index.php/${article.date.substring(
+              0,
+              4
+            )}/${article.date.substring(5, 7)}/${article.date.substring(8, 10)}/${article.slug}`"
+            class="article"
+          >
             <h6 v-html="article.title.rendered"></h6>
             <div class="excerpt" v-html="article.excerpt.rendered"></div>
           </a>
