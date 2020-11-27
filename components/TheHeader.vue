@@ -1,8 +1,5 @@
 <template>
-  <header
-    role="navigation"
-    class="navbar bd-navbar flex-column flex-md-row navbar-light navbar-expand"
-  >
+  <header role="navigation" class="navbar bd-navbar flex-column flex-md-row navbar-expand">
     <b-navbar-brand
       aria-label="Nugs-T"
       target="_self"
@@ -44,11 +41,18 @@
           <nuxt-link to="/contact" exact class="nav-link">Contact</nuxt-link>
         </li>
         <li class="nav-item d-block d-lg-none">
-          <nuxt-link class="nav-link" aria-label="Sign in" to="/sign-in">
-            <b-icon icon="person-circle"> </b-icon>
-          </nuxt-link>
+          <template v-if="$auth.$state.loggedIn">
+            <b-nav-item role="button" class="nav-link" aria-label="Logout" @click="$auth.logout()">
+              <b-icon icon="box-arrow-left" variant="danger"> </b-icon>
+            </b-nav-item>
+          </template>
+          <template v-else>
+            <nuxt-link title="Sign in" class="nav-link" aria-label="Sign in" to="/sign-in">
+              <b-icon icon="box-arrow-in-right"> </b-icon>
+            </nuxt-link>
+          </template>
         </li>
-        <li class="nav-item d-block d-md-none">
+        <li v-if="!$auth.$state.loggedIn" title="Sign up" class="nav-item d-block d-md-none">
           <nuxt-link class="nav-link" aria-label="Sign up" to="/sign-up">
             <b-icon icon="person-plus"> </b-icon>
           </nuxt-link>
@@ -57,8 +61,24 @@
     </div>
     <TheHeaderSearch class="mr-2" />
     <ul class="navbar-nav flex-row d-none d-lg-flex">
-      <li class="nav-item">
-        <nuxt-link class="btn_black" to="/sign-in">Sign In</nuxt-link>
+      <li class="nav-item d-flex">
+        <template v-if="$auth.$state.loggedIn">
+          <b-nav-item-dropdown :text="$auth.user.name" right>
+            <b-dropdown-item to="/dashboard"> Dashboard </b-dropdown-item>
+            <b-dropdown-item @click="$auth.logout()"> Logout </b-dropdown-item>
+          </b-nav-item-dropdown>
+          <b-avatar
+            to="/dashboard"
+            :src="$auth.user.avatar_urls['24']"
+            class="mt-1"
+            rounded="circle"
+            :size="30"
+          ></b-avatar>
+          <!-- src="https://placekitten.com/300/300" -->
+        </template>
+        <template v-else>
+          <nuxt-link class="btn_black" to="/sign-in">Sign In</nuxt-link>
+        </template>
       </li>
     </ul>
   </header>
