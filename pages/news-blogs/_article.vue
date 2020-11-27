@@ -9,7 +9,7 @@ export default {
     Article,
   },
   async asyncData({ app, store, params }) {
-    const { data } = await app.$axios.get(`/wp/v2/posts`, {
+    const { data } = await app.$axios.get(`/wp/v2/posts?status=private,publish`, {
       params: {
         slug: params.article,
         _embed: true,
