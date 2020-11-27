@@ -1,6 +1,6 @@
 <template>
   <div class="contact-page">
-    <BaseHero :hero-title="title" :sup-title="supTitle" :has-btn="false" :has-desc="false" />
+    <BaseHero :heading="heading" :sup-heading="supHeading" :has-btn="false" :has-desc="false" />
     <div class="container">
       <div class="row">
         <div class="offset-lg-1"></div>
@@ -21,7 +21,7 @@
             <div class="form-group">
               <input
                 id="name"
-                v-model="username"
+                v-model="name"
                 type="name"
                 class="form-control"
                 name="name"
@@ -72,10 +72,10 @@
                 v-model="message"
                 name="message"
                 class="form-control"
-                cols="30"
-                rows="10"
+                rows="5"
+                placeholder="Your message here..."
               ></textarea>
-              <label for="message" class="form-label">Message</label>
+              <label for="message" class="textarea-label">Message</label>
             </div>
 
             <div class="form-group p-0">
@@ -132,8 +132,10 @@ export default {
   name: 'SignIn',
   data() {
     return {
-      title: 'Contact Us',
-      supTitle: 'Get In Touch!',
+      heading: 'Contact Us',
+      supHeading: 'Get In Touch!',
+      desc: '',
+      error: null,
       name: '',
       phone: '',
       status: '',
