@@ -2,7 +2,7 @@
   <section class="extension">
     <div class="container">
       <div class="row">
-        <div class="col-lg-7 col-md-6">
+        <div class="detail col-lg-6 col-md-7">
           <h2>Application and follow up on school fee extension process.</h2>
           <p>
             Given the financial situation of the world we live in today and the situation of thing
@@ -14,7 +14,7 @@
           </p>
           <nuxt-link to="" class="btn_white">Apply for extension</nuxt-link>
         </div>
-        <div class="col-lg-5 col-md-6 img">
+        <div class="detail col-lg-6 col-md-5 img d-none d-md-block">
           <img src="~/assets/img/hand.jpg" alt="Image describing fees extension process" />
         </div>
       </div>
@@ -90,7 +90,7 @@ $min-width: 15rem;
     border-color: #ffffff;
   }
 
-  .col-md-6 {
+  .detail {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -120,7 +120,7 @@ $min-width: 15rem;
           // width: auto;
         }
         @media #{$tab_device} {
-          margin-top: 50px;
+          // margin-top: 50px;
           // height: 300px;
           // width: auto;
         }
