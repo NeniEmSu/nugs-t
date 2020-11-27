@@ -12,25 +12,27 @@
 
 <script>
 export default {
-  async mounted() {
-    const workbox = await window.$workbox
-    if (workbox) {
-      workbox.addEventListener('installed', (event) => {
-        // If we don't do this we'll be displaying the notification after the initial installation, which isn't perferred.
-        if (event.isUpdate) {
-          // whatever logic you want to use to notify the user that they need to refresh the page.
-          if (confirm(`New content is available!. Click OK to refresh`)) {
-            window.location.reload()
+  mounted() {
+    this.serviceWorker()
+  },
+  methods: {
+    serviceWorker: async function () {
+      const workbox = await window.$workbox
+      if (workbox) {
+        workbox.addEventListener('installed', (event) => {
+          if (event.isUpdate) {
+            if (confirm(`New content is available!. Click OK to refresh`)) {
+              window.location.reload()
+            }
           }
-        }
-      })
-    }
+        })
+      }
+    },
   },
 }
 </script>
 
 <style lang="scss">
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&family=Overpass&family=Roboto&display=swap');
 @import '~/assets/scss/variables.scss';
 @import '~/assets/scss/_extends.scss';
 *,
@@ -161,7 +163,7 @@ p {
 .form-group {
   transition: ease-in-out all 300ms;
 
-  > label {
+  > .form-label {
     width: max-content;
     background-color: var(--white);
     padding: 0px 5px;
@@ -192,9 +194,7 @@ p {
     box-sizing: border-box;
     border-radius: 10px;
     box-shadow: none;
-  }
 
-  .form-control {
     &::placeholder {
       color: transparent;
     }
@@ -214,6 +214,56 @@ p {
       transform: translate(1em, -2.8em) scale(0.8);
     }
   }
+
+  > .textarea-label {
+    width: max-content;
+    background-color: var(--white);
+    padding: 0px 5px;
+    border: none;
+    border-radius: 5px;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 19px;
+    pointer-events: none;
+    display: block;
+    opacity: 1;
+    transform: translate(1em, -6.8em) scale(0.8);
+    transform-origin: 0 0;
+    transition: all 300ms ease-in-out;
+  }
+
+  > textarea {
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 19px;
+    background-color: var(--white);
+    color: var(--black);
+    resize: none;
+
+    padding: 8px 25px;
+    border: 2px solid var(--border-color);
+    box-sizing: border-box;
+    border-radius: 10px;
+    box-shadow: none;
+
+    &::placeholder {
+      color: transparent;
+    }
+    &:focus {
+      background-color: var(--white);
+
+      box-shadow: none;
+      outline: none;
+      color: var(--color);
+      border-color: #506076;
+    }
+  }
+}
+
+textarea > label {
+  transform: translate(1em, -10.7em);
 }
 
 pre {
