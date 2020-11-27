@@ -12,9 +12,9 @@
                   {{ subTitle }}
                 </p>
                 <div class="action_btn">
-                  <nuxt-link to="/practice" class="btn_white">Vote Now!</nuxt-link>
+                  <nuxt-link to="/contact" class="btn_white">Contact Us!</nuxt-link>
 
-                  <nuxt-link to="/login" class="btn_white">Get Started </nuxt-link>
+                  <nuxt-link to="/sign-in" class="btn_white">Get Started </nuxt-link>
                 </div>
               </div>
             </div>
