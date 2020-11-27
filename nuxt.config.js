@@ -131,7 +131,7 @@ export default {
     categories: ['productivity', 'education', 'portfolio'],
   },
 
-  css: ['normalize.css/normalize.css', '~/assets/css/main.css'],
+  css: ['normalize.css/normalize.css', '~/assets/css/main.css', '~/assets/scss/variables.scss'],
 
   components: true,
 
@@ -165,9 +165,10 @@ export default {
 
   auth: {
     redirect: {
-      callback: '/dashboard',
+      home: '/',
       login: '/sign-in',
-      logout: '/',
+      callback: '/callback',
+      logout: '/signed-out',
     },
     strategies: {
       local: {
@@ -177,9 +178,9 @@ export default {
             method: 'post',
             propertyName: 'token',
           },
-          logout: { url: '', method: 'post' },
+          logout: { url: false, method: 'post' },
           user: {
-            url: '/wp/v2/users/me',
+            url: '/wp/v2/users/me?context=edit',
             method: 'get',
             propertyName: '',
           },
@@ -188,6 +189,18 @@ export default {
         tokenType: 'Bearer',
         globalToken: true,
         autoFetchUser: true,
+      },
+      localRefresh: {
+        scheme: 'refresh',
+        token: {
+          property: 'token.accessToken',
+          maxAge: 15,
+        },
+        refreshToken: {
+          property: 'token.refreshToken',
+          data: 'refreshToken',
+          maxAge: false,
+        },
       },
     },
   },
