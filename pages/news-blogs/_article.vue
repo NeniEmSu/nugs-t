@@ -9,12 +9,19 @@ export default {
     Article,
   },
   async asyncData({ app, store, params }) {
-    const { data } = await app.$axios.get(`/wp/v2/posts?status=private,publish`, {
-      params: {
-        slug: params.article,
-        _embed: true,
-      },
-    })
+    const { data } = await app.$axios.get(
+      `/wp/v2/posts?${
+        app.$auth.$state.loggedIn && app.$auth.user.roles.includes('member')
+          ? 'status=publish,private'
+          : ''
+      }`,
+      {
+        params: {
+          slug: params.article,
+          _embed: true,
+        },
+      }
+    )
     return { article: data[0] }
   },
 }

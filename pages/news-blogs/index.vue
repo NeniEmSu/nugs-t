@@ -31,7 +31,11 @@ export default {
   },
   async asyncData({ app, store, params }) {
     const { data } = await app.$axios.get(
-      `/wp/v2/posts?status=private,publish&orderby=date&per_page=10&_embed`
+      `/wp/v2/posts?${
+        app.$auth.$state.loggedIn && app.$auth.user.roles.includes('member')
+          ? 'status=publish,private'
+          : ''
+      }&orderby=date&per_page=10&_embed`
     )
     return { articles: data }
   },
