@@ -109,12 +109,6 @@ export default {
     height: '3px',
   },
 
-  // loadingIndicator: {
-  //   name: 'circle',
-  //   color: '#7625BC',
-  //   background: '#fff',
-  // },
-
   manifest: {
     name: siteTitle,
     short_name: siteTitle,
