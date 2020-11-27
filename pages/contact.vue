@@ -1,12 +1,99 @@
 <template>
-  <div>
+  <div class="contact-page">
     <BaseHero :hero-title="title" :sup-title="supTitle" :has-btn="false" :has-desc="false" />
     <div class="container">
       <div class="row">
         <div class="offset-lg-1"></div>
         <div class="form-card col-lg-6 col-md-7 p-1 p-sm-3 p-md-4">
           <busy-overlay />
-          <AuthForm :sign-up-page="true" />
+          <form>
+            <b-alert
+              v-if="error"
+              show
+              class="position-fixed fixed-top m-0 rounded-0"
+              style="z-index: 11"
+              dismissible
+              variant="danger"
+            >
+              <h6 class="alert-heading">Error!</h6>
+              <p v-text="error.response.data.message.replace('<strong>Error</strong>: ', '')"></p>
+            </b-alert>
+            <div class="form-group">
+              <input
+                id="name"
+                v-model="username"
+                type="name"
+                class="form-control"
+                name="name"
+                required
+                placeholder="Your full name"
+              />
+              <label for="name" class="form-label">Name*</label>
+            </div>
+            <div class="form-group">
+              <input
+                id="email"
+                v-model="email"
+                type="email"
+                class="form-control"
+                name="email"
+                required
+                placeholder="something@email.com"
+              />
+              <label for="email" class="form-label">Email*</label>
+            </div>
+            <div class="form-group">
+              <input
+                id="phone"
+                v-model="phone"
+                type="tel"
+                class="form-control"
+                name="phone"
+                required
+                placeholder="+000 00 000 0000"
+              />
+              <label for="phone" class="form-label">Phone*</label>
+            </div>
+            <div class="form-group">
+              <input
+                id="subject"
+                v-model="subject"
+                type="text"
+                class="form-control"
+                name="subject"
+                placeholder="something short"
+              />
+              <label for="subject" class="form-label">Subject</label>
+            </div>
+
+            <div class="form-group">
+              <textarea
+                id="message"
+                v-model="message"
+                name="message"
+                class="form-control"
+                cols="30"
+                rows="10"
+              ></textarea>
+              <label for="message" class="form-label">Message</label>
+            </div>
+
+            <div class="form-group p-0">
+              <b-form-checkbox
+                id="status"
+                v-model="status"
+                name="status"
+                value="accepted"
+                unchecked-value="not_accepted"
+              >
+                I agree to the <nuxt-link to="/terms">terms and conditions</nuxt-link> of use.
+              </b-form-checkbox>
+            </div>
+
+            <div class="text-center">
+              <button class="btn_black" @click.prevent="sendMessage">Send</button>
+            </div>
+          </form>
         </div>
         <div class="offset-md-1"></div>
         <div class="side-content col-lg-3 col-md-4">
@@ -19,20 +106,20 @@
       </div>
 
       <div class="more row text-center">
-        <div class="col-md-5">
+        <div class="col-md-5 more-card">
           <div class="text-content">
             <h2>Technical Support</h2>
             <p>Need Help? Our community is here to support you!</p>
-            <nuxt-link class="btn_black" to="#">Join Today!</nuxt-link>
+            <nuxt-link class="btn_black" to="/sign-up">Join Today!</nuxt-link>
           </div>
         </div>
 
-        <div class="col-md-5">
+        <div class="col-md-5 more-card">
           <div class="text-content">
             <h2>FAQs</h2>
             <p>Get help with the most common questions.</p>
 
-            <nuxt-link class="btn_black" to="#">Checkout FAQs</nuxt-link>
+            <nuxt-link class="btn_black" to="/faqs">Checkout FAQs</nuxt-link>
           </div>
         </div>
       </div>
@@ -47,18 +134,45 @@ export default {
     return {
       title: 'Contact Us',
       supTitle: 'Get In Touch!',
+      name: '',
+      phone: '',
+      status: '',
+      email: '',
+      subject: '',
+      message: '',
     }
   },
   computed: {},
-  methods: {},
+  methods: {
+    sendMessage() {
+      alert('sent')
+    },
+  },
 }
 </script>
 
 <style lang="scss" scoped>
 @import '~/assets/scss/variables.scss';
 @import '~/assets/scss/_extends.scss';
+.contact-page {
+  padding: 0 0 130px 0;
+  @media #{$small_mobile} {
+    padding: 0 0 25px 0;
+  }
+  @media #{$large_mobile} {
+    padding: 0 0 40px 0;
+  }
+  @media #{$tab_device} {
+    padding: 0 0 50px 0;
+  }
+}
+
 .form-card {
   margin-top: -100px;
+}
+
+.btn_black {
+  @extend %custom_btn_outline_black;
 }
 
 .side-content {
@@ -76,12 +190,8 @@ export default {
   @media #{$tab_device} {
     margin-top: 50px;
   }
-  .link {
-    color: #757575;
-    font-weight: 400;
-  }
 
-  .col-md-5 {
+  .more-card {
     margin: 25px auto;
     border: 3px solid;
     border-color: rgb(77, 66, 255);
@@ -95,11 +205,10 @@ export default {
       border: 3px solid;
       border-color: #e21e51;
     }
-  }
 
-  .btn_black {
-    @extend %custom_btn_outline_black;
-    margin: auto;
+    .btn_black {
+      margin: 0 auto;
+    }
   }
 }
 </style>
