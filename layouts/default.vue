@@ -60,6 +60,7 @@ html {
 }
 
 body {
+  display: block;
   font-family: 'Roboto', sans-serif;
   font-style: normal;
   font-weight: 400;

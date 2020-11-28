@@ -116,6 +116,9 @@ header {
   width: 100%;
   height: 80px;
   z-index: 10;
+  @media (min-width: 1300px) {
+    padding: 0.5rem calc((100vw - 1300px) / 2);
+  }
   @media (max-width: 991.98px) {
     height: 100px;
   }

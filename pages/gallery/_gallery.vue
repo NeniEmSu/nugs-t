@@ -18,7 +18,7 @@ export default {
       }`,
       {
         params: {
-          slug: params.article,
+          slug: params.gallery,
           _embed: true,
         },
       }

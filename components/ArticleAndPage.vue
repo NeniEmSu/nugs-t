@@ -341,74 +341,138 @@ article {
         width: initial;
       }
     }
+
     .gallery {
-      margin: 0 auto 18px;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(20%, 1fr));
+      grid-column-gap: 8px;
+      grid-row-gap: 8px;
+      grid-auto-rows: max-content;
+      grid-auto-flow: dense;
+    }
 
-      .gallery-item {
-        float: left;
-        margin-top: 0;
-        text-align: center;
-        width: 33%;
-      }
-      &.gallery-columns-2 .gallery-item {
-        width: 50%;
-      }
-      &.gallery-columns-4 .gallery-item {
-        width: 25%;
-      }
+    .gallery img {
+      padding: 0;
+      margin: 0;
+      max-width: 100%;
+      border-radius: 8px;
+      box-shadow: 0 0 16px #333;
+      transition: all 1.5s ease;
+    }
+    .gallery img:hover {
+      box-shadow: 0 0 32px #333;
+    }
 
-      a {
-        color: var(--dark-accent);
-        position: relative;
-        &:hover {
-          color: var(--dark-accent);
-        }
-        &::after {
-          background: none;
-          content: '';
-          height: 0px;
-          left: 0;
-          opacity: 0;
-          position: absolute;
-          top: 100%;
-        }
-        &:hover,
-        &:focus {
-          &::after {
-          }
-        }
-      }
+    .gallery .gallery-icon {
+      padding: 4px;
+    }
+    .gallery .gallery-item {
+      position: relative;
+      height: max-content;
+      transition: grid-row-start 300ms linear;
+      transition: transform 300ms ease;
+      transition: all 0.5s ease;
+      cursor: pointer;
+    }
 
-      img {
-        box-shadow: 0px 0px 4px #999;
-        border: 1px solid var(--white);
-        padding: 8px;
-        background: var(--bg);
-      }
-      img:hover {
-        background: var(--white);
-      }
-      &.gallery-columns-2 .attachment-medium {
-        max-width: 92%;
-        height: auto;
-      }
-      &.gallery-columns-4 .attachment-thumbnail {
-        max-width: 84%;
-        height: auto;
-      }
-      .gallery-caption {
-        color: var(--white);
-        font-size: 12px;
-        margin: 0 0 12px;
-      }
-      dl,
-      dt {
-        margin: 0;
-      }
-      br + br {
-        display: none;
+    .gallery .gallery-item:hover {
+      transform: scale(1.025);
+    }
+    @media (max-width: 900px) {
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(45%, 1fr));
       }
     }
+    @media (max-width: 600px) {
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+      }
+    }
+    @media (max-width: 400px) {
+      .gallery {
+        grid-template-columns: repeat(auto-fill, minmax(50%, 1fr));
+      }
+    }
+
+    .gallery-caption {
+      color: #eee;
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%);
+    }
+
+    // .gallery {
+    //   margin: 0 auto 18px;
+
+    //   .gallery-item {
+    //     float: left;
+    //     margin-top: 0;
+    //     text-align: center;
+    //     width: 33%;
+    //   }
+    //   &.gallery-columns-2 .gallery-item {
+    //     width: 50%;
+    //   }
+    //   &.gallery-columns-4 .gallery-item {
+    //     width: 25%;
+    //   }
+
+    //   a {
+    //     color: var(--dark-accent);
+    //     position: relative;
+    //     &:hover {
+    //       color: var(--dark-accent);
+    //     }
+    //     &::after {
+    //       background: none;
+    //       content: '';
+    //       height: 0px;
+    //       left: 0;
+    //       opacity: 0;
+    //       position: absolute;
+    //       top: 100%;
+    //     }
+    //     &:hover,
+    //     &:focus {
+    //       &::after {
+    //       }
+    //     }
+    //   }
+
+    //   img {
+    //     box-shadow: 0px 0px 4px #999;
+    //     border: 1px solid var(--white);
+    //     padding: 8px;
+    //     background: var(--bg);
+    //   }
+    //   img:hover {
+    //     background: var(--white);
+    //   }
+    //   &.gallery-columns-2 .attachment-medium {
+    //     max-width: 92%;
+    //     height: auto;
+    //   }
+    //   &.gallery-columns-4 .attachment-thumbnail {
+    //     max-width: 84%;
+    //     height: auto;
+    //   }
+    //   .gallery-caption {
+    //     color: var(--white);
+    //     font-size: 12px;
+    //     margin: 0 0 12px;
+    //   }
+    //   dl,
+    //   dt {
+    //     margin: 0;
+    //   }
+    //   br + br {
+    //     display: none;
+    //   }
+    // }
   }
 }
 </style>

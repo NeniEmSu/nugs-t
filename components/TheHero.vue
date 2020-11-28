@@ -94,6 +94,17 @@ export default {
   @media #{$medium_device} {
     height: 650px;
   }
+  @media (min-width: 1400px) {
+    background: linear-gradient(
+        90.17deg,
+        rgba(27, 10, 43, 0.5) 2.56%,
+        rgba(228, 83, 223, 0.1) 98.31%
+      ),
+      url(~assets/img/banner_bg.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
 }
 
 .banner_part {
@@ -116,7 +127,7 @@ export default {
   .banner_text {
     display: table;
     width: 100%;
-    height: 100vmin;
+    height: 650px;
     .banner_text_iner {
       display: table-cell;
       vertical-align: middle;
@@ -151,11 +162,12 @@ export default {
     @media #{$medium_device} {
       height: 650px;
     }
+
     h5 {
       font-size: 14px;
       text-transform: uppercase;
       font-weight: 500;
-      color: #cdb8e7;
+      color: #e1d3f0;
       margin-bottom: 14px;
       @media #{$small_mobile} {
         margin-bottom: 12px;
@@ -194,7 +206,7 @@ export default {
     p {
       font-size: 15px;
       line-height: 1.8;
-      color: $font_7;
+      color: #e1d3f0;
     }
     .action_btn {
       display: flex;
@@ -292,7 +304,7 @@ export default {
     }
     @media #{$medium_device} {
       position: absolute;
-      max-width: 102%;
+      max-width: 50%;
       max-height: 100%;
       content: '';
       background-image: url(~assets/img/banner_bg.jpg);
@@ -301,6 +313,9 @@ export default {
       bottom: 0;
       top: 0;
       background-repeat: no-repeat;
+    }
+    @media (min-width: 1400px) {
+      display: none;
     }
   }
 }
