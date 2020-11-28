@@ -173,6 +173,10 @@ export default {
   margin-top: -100px;
 }
 
+a {
+  color: var(--dark-accent);
+}
+
 .btn_black {
   @extend %custom_btn_outline_black;
 }
@@ -194,6 +198,10 @@ export default {
   }
 
   .more-card {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
     margin: 25px auto;
     border: 3px solid;
     border-color: rgb(77, 66, 255);
@@ -206,6 +214,13 @@ export default {
     &:first-of-type {
       border: 3px solid;
       border-color: #e21e51;
+    }
+
+    .text-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+      align-items: center;
     }
 
     .btn_black {

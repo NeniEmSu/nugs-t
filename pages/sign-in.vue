@@ -5,7 +5,7 @@
       <div class="row">
         <div class="offset-lg-1"></div>
 
-        <div class="form-card col-lg-6 col-md-7 p-1 p-sm-3 p-md-4">
+        <div class="form-card col-lg-6 col-md-7">
           <busy-overlay />
           <AuthForm :sign-up-page="false" />
         </div>

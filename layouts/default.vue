@@ -158,6 +158,19 @@ p {
   background-color: var(--bg-secondary);
   box-shadow: 4px 8px 10px rgba(0, 0, 0, 0.25);
   border-radius: 15px;
+  padding: 2rem;
+  @media #{$small_mobile} {
+    padding: 1rem;
+  }
+  @media #{$large_mobile} {
+    padding: 1.25rem;
+  }
+  @media #{$tab_device} {
+    padding: 1.5rem;
+  }
+  @media #{$medium_device} {
+    padding: 1.75rem;
+  }
 }
 
 .form-group {

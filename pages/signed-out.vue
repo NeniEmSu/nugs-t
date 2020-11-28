@@ -1,10 +1,12 @@
 <template>
-  <div class="sign-out container">
-    <b-alert show variant="info">You have been signed out!</b-alert>
-    <div class="action_btn">
-      <nuxt-link to="/sign-in" class="btn_black">Sign Back In</nuxt-link>
+  <div class="container">
+    <div class="sign-out">
+      <b-alert show variant="info">You have been signed out!</b-alert>
+      <div class="action_btn">
+        <nuxt-link to="/sign-in" class="btn_black">Sign Back In</nuxt-link>
 
-      <nuxt-link to="/" class="btn_black">Go to home page</nuxt-link>
+        <nuxt-link to="/" class="btn_black">Go to home page</nuxt-link>
+      </div>
     </div>
   </div>
 </template>
