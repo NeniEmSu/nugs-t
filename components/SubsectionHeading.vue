@@ -10,6 +10,7 @@
 
 <script>
 export default {
+  name: 'SubsectionHeading',
   props: {
     title: {
       type: String,
