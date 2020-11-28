@@ -12,9 +12,23 @@
                   {{ subHeading }}
                 </p>
                 <div class="action_btn">
-                  <nuxt-link to="/contact" class="btn_white">Contact Us!</nuxt-link>
+                  <div v-if="firstLink.display" class="first-btn">
+                    <a v-if="firstLink.blank === true" :href="firstLink.link" class="btn_white">
+                      {{ firstLink.name }}
+                    </a>
+                    <nuxt-link v-else :to="firstLink.link" class="btn_white">
+                      {{ firstLink.name }}
+                    </nuxt-link>
+                  </div>
 
-                  <nuxt-link to="/sign-in" class="btn_white">Get Started </nuxt-link>
+                  <div v-if="secondLink.display" class="second-btn">
+                    <a v-if="secondLink.blank === true" :href="secondLink.link" class="btn_white">
+                      {{ secondLink.name }}
+                    </a>
+                    <nuxt-link v-else :to="secondLink.link" class="btn_white">
+                      {{ secondLink.name }}
+                    </nuxt-link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -43,6 +57,18 @@ export default {
       type: String,
       default:
         'We are a Democratic, nonpartisan and progressive mass movement comprising of ghanaian students in Ternopol, ukraine with the primary aim of protecting and safeguarding the rights and interests of ghanaian students in ternopol.',
+    },
+    firstLink: {
+      type: Object,
+      default: () => {
+        return { name: 'Get Started!', link: '/sign-up', blank: false, display: true }
+      },
+    },
+    secondLink: {
+      type: Object,
+      default: () => {
+        return { name: 'Contact Us', link: '/contact', blank: false, display: true }
+      },
     },
   },
   computed: {},
@@ -172,6 +198,7 @@ export default {
     }
     .action_btn {
       display: flex;
+      gap: 25px;
       @media #{$small_mobile} {
         justify-content: center;
       }
@@ -201,9 +228,6 @@ export default {
         @media #{$medium_device} {
           margin-top: 25px;
           margin-bottom: 70px;
-        }
-        & + a {
-          margin-left: 25px;
         }
       }
     }
