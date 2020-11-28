@@ -1,45 +1,69 @@
 <template>
   <div class="gallery-page">
     <BaseHero :heading="heading" :sup-heading="supHeading" :desc="desc" />
-    <div class="content container">
-      <div class="galleries row">
-        <nuxt-link
-          v-for="gallery in galleries"
-          :key="gallery.id"
-          :to="`/gallery/${gallery.slug}`"
-          class="col-sm-6 col-lg-4 col-xl-3 p-0 gallery"
-        >
-          <div v-if="gallery._embedded['wp:featuredmedia']" class="lazy thumbnail">
-            <img
-              v-lazy="gallery._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url"
-              :alt="gallery._embedded['wp:featuredmedia'][0].alt_text"
-            />
-            <Spinner1 class="spinner" />
+    <div class="container">
+      <div class="content">
+        <SubsectionHeading :title="title" :sub-title="subTitle" />
+        <div v-if="loading" class="collection">
+          <div>
+            <b-skeleton-img animation="throb" class="m-auto"></b-skeleton-img>
           </div>
-          <div v-if="gallery._embedded['wp:featuredmedia']" class="lazy medium">
-            <img
-              v-lazy="
-                gallery._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url
-              "
-              :alt="gallery._embedded['wp:featuredmedia'][0].alt_text"
-            />
-            <Spinner1 class="spinner" />
+          <div>
+            <b-skeleton-img animation="throb" class="m-auto"></b-skeleton-img>
           </div>
-
-          <div class="gallery-info">
-            <div class="date">
-              <span>{{ shortTimestamp(gallery.date) }}</span>
+          <div>
+            <b-skeleton-img animation="throb" class="m-auto"></b-skeleton-img>
+          </div>
+          <div>
+            <b-skeleton-img animation="throb" class="m-auto"></b-skeleton-img>
+          </div>
+        </div>
+        <div v-else class="collection">
+          <nuxt-link
+            v-for="gallery in galleries"
+            :key="gallery.id"
+            :to="`/gallery/${gallery.slug}`"
+            class="gallery"
+          >
+            <div v-if="gallery._embedded['wp:featuredmedia']" class="lazy thumbnail">
+              <img
+                v-lazy="
+                  gallery._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url
+                "
+                :alt="gallery._embedded['wp:featuredmedia'][0].alt_text"
+              />
+              <Spinner1 class="spinner" />
             </div>
-            <h6 v-html="gallery.title.rendered"></h6>
-          </div>
-        </nuxt-link>
+            <div v-if="gallery._embedded['wp:featuredmedia']" class="lazy medium">
+              <img
+                v-lazy="
+                  gallery._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url
+                "
+                :alt="gallery._embedded['wp:featuredmedia'][0].alt_text"
+              />
+              <Spinner1 class="spinner" />
+            </div>
+
+            <div class="gallery-info">
+              <div class="date">
+                <span>{{ shortTimestamp(gallery.date) }}</span>
+              </div>
+              <h6 v-html="gallery.title.rendered"></h6>
+            </div>
+          </nuxt-link>
+        </div>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import SubsectionHeading from '~/components/SubsectionHeading'
 export default {
+  name: 'Galleries',
+  components: {
+    SubsectionHeading,
+  },
   mixins: {
     shortTimestamp: Function,
   },
@@ -49,7 +73,11 @@ export default {
       supHeading: 'Memories captured in time.',
       desc:
         'We are a Democratic, nonpartisan and progressive mass movement comprising of ghanaian students in Ternopol, ukraine with the primary aim of protecting and safeguarding the rights and interests of ghanaian students in ternopol.',
+      title: 'Images from our top events',
+      subTitle:
+        'The National union of Ghana students attends regular events and acquires multiple images while doing that and would love you to see them.',
       galleries: [],
+      loading: false,
     }
   },
   head() {
@@ -70,6 +98,7 @@ export default {
   },
   methods: {
     async fetchGalleries() {
+      this.loading = true
       const { data } = await this.$axios.get(
         `/wp/v2/gallery?${
           this.$auth.$state.loggedIn && this.$auth.user.roles.includes('member')
@@ -78,6 +107,7 @@ export default {
         }&orderby=date&_embed`
       )
       this.galleries = data
+      this.loading = false
     },
   },
 }
@@ -98,17 +128,29 @@ export default {
     padding: 50px 0;
   }
 }
+.collection {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(250px, 1fr));
+  grid-gap: 1rem;
+  @media #{$small_mobile} {
+    grid-template-columns: 1fr;
+  }
+  @media #{$large_mobile} {
+    grid-template-columns: 1fr;
+  }
+  @media #{$tab_device} {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @media #{$medium_device} {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
 .gallery {
+  border-radius: 15px;
   overflow: hidden;
   position: relative;
-  &:hover {
-    &::before {
-      background-color: rgba(0, 0, 0, 0.25);
-    }
-    .meta {
-      transform: translateX(4px);
-    }
-  }
+  transition: 500ms ease-in-out all;
+
   &:before {
     content: '';
     display: block;
@@ -122,13 +164,15 @@ export default {
     transition: 0.4s;
     z-index: 2;
   }
-  a {
-    align-items: flex-end;
-    display: flex;
-    &:hover {
-      .image {
-        transform: scale(1.0125);
-      }
+  &:hover {
+    &::before {
+      background-color: rgba(0, 0, 0, 0.25);
+    }
+    .gallery-info {
+      transform: translateX(4px);
+    }
+    img {
+      transform: scale(1.0125);
     }
   }
   .date {
@@ -141,25 +185,6 @@ export default {
     text-transform: uppercase;
     top: 0;
     z-index: 2;
-    a:hover {
-      color: $accent;
-    }
-  }
-  .featured-image {
-    height: 100%;
-    width: 100%;
-    img {
-      background-position: center;
-      background-repeat: no-repeat;
-      background-size: cover;
-      display: block;
-      height: 100%;
-      max-width: 100%;
-      position: absolute;
-      top: 0;
-      transition: transform 0.4s, opacity 0.5s;
-      width: 100%;
-    }
   }
   .gallery-info {
     bottom: 0;
@@ -182,6 +207,12 @@ export default {
 
 .lazy {
   margin: 0;
+  height: 100%;
+  width: 100%;
+  img {
+    object-fit: cover;
+    transition: transform 0.4s, opacity 0.5s;
+  }
   &.thumbnail {
     display: block;
   }

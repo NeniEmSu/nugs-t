@@ -5,6 +5,7 @@
 <script>
 import Article from '~/components/ArticleAndPage.vue'
 export default {
+  name: 'SingleGallery',
   components: {
     Article,
   },
