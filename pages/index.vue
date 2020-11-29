@@ -23,6 +23,16 @@
 
 <script>
 export default {
+  async asyncData({ app, store, params }) {
+    const { data } = await app.$axios.get(
+      `/wp/v2/posts?${
+        app.$auth.$state.loggedIn && app.$auth.user.roles.includes('member')
+          ? 'status=publish,private'
+          : ''
+      }&orderby=date&per_page=3&_embed`
+    )
+    return { articles: data }
+  },
   data() {
     return {
       heading: 'National Union Of Ghana Students Ternopol',
@@ -44,7 +54,6 @@ export default {
         blank: false,
         display: true,
       },
-      articles: [],
     }
   },
   head() {
@@ -60,21 +69,8 @@ export default {
       )
     },
   },
-  created() {
-    this.fetchArticles()
-  },
-  methods: {
-    async fetchArticles() {
-      const { data } = await this.$axios.get(
-        `/wp/v2/posts?${
-          this.$auth.$state.loggedIn && this.$auth.user.roles.includes('member')
-            ? 'status=publish,private'
-            : ''
-        }&orderby=date&per_page=3&_embed`
-      )
-      this.articles = data
-    },
-  },
+  created() {},
+  methods: {},
 }
 </script>
 
