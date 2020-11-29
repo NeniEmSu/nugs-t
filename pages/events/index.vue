@@ -22,7 +22,7 @@
           <nuxt-link
             v-for="event in events"
             :key="event.id"
-            :to="`/event/${event.slug}`"
+            :to="`/events/${event.slug}`"
             class="event"
           >
             <div v-if="event._embedded['wp:featuredmedia']" class="lazy thumbnail">
@@ -98,7 +98,7 @@ export default {
     async fetchGalleries() {
       this.loading = true
       const { data } = await this.$axios.get(
-        `/wp/v2/event?${
+        `/wp/v2/events?${
           this.$auth.$state.loggedIn && this.$auth.user.roles.includes('member')
             ? 'status=publish,private'
             : ''
