@@ -50,8 +50,9 @@
 
 <script>
 import * as Vibrant from 'node-vibrant'
+import Comments from '~/components/Comments'
 export default {
-  components: {},
+  components: { Comments },
   mixins: {
     getFeaturedImage: Function,
     longTimestamp: Function,
@@ -80,11 +81,13 @@ export default {
           require('lightgallery.js')
           require('lg-zoom.js')
           require('lg-thumbnail.js')
+          require('lg-share.js')
+          require('lg-autoplay.js')
         }
         for (let i = 0; i < galleries.length; i++) {
           // eslint-disable-next-line no-undef
           lightGallery(galleries[i], {
-            download: false,
+            download: true,
             selector: 'a',
           })
         }
@@ -249,6 +252,11 @@ article {
 .lg-outer .lg-thumb-item.active,
 .lg-outer .lg-thumb-item:hover {
   border-color: var(--white);
+}
+
+.pdf-viewer .lg-object {
+  // Height of the toolbar
+  padding-top: 47px;
 }
 </style>
 
