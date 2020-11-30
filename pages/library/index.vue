@@ -27,11 +27,18 @@
             class="library"
             title="Read in new tab"
           >
-            <div v-if="book._embedded['wp:featuredmedia']" class="lazy thumbnail">
+            <div
+              v-if="book._embedded['wp:featuredmedia'][0].code !== 'rest_forbidden'"
+              class="lazy thumbnail"
+            >
               <img
                 v-lazy="book._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url"
                 :alt="book._embedded['wp:featuredmedia'][0].alt_text"
               />
+              <Spinner1 class="spinner" />
+            </div>
+            <div v-else class="lazy thumbnail">
+              <img v-lazy="placeHolder" :alt="book._embedded['wp:featuredmedia'][0].alt_text" />
               <Spinner1 class="spinner" />
             </div>
             <div class="library-info">
@@ -75,6 +82,7 @@ export default {
         'The National union of Ghana students attends regular events and acquires multiple images while doing that and would love you to see them.',
       books: [],
       loading: false,
+      placeHolder: require('../../assets/img/random2.jpg'),
     }
   },
   head() {
@@ -101,7 +109,7 @@ export default {
           this.$auth.$state.loggedIn && this.$auth.user.roles.includes('member')
             ? 'status=publish,private'
             : ''
-        }&orderby=date&per_page=20&_embed`
+        }&per_page=20&_embed`
       )
       this.books = data
       this.loading = false
