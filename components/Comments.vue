@@ -3,7 +3,7 @@
     <div class="disqus" :class="{ ready: disqusReady }">
       <client-only>
         <lazy-component @show="disqusReady = true">
-          <vue-disqus shortname="nugs-t" :identifier="article.slug" />
+          <vue-disqus shortname="nugs-ternopil" :identifier="article.slug" />
         </lazy-component>
       </client-only>
     </div>
@@ -12,6 +12,7 @@
 
 <script>
 export default {
+  name: 'Comments',
   props: {
     article: Object,
   },
