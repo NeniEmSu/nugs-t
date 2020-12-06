@@ -82,7 +82,7 @@ export default {
         'The National union of Ghana students attends regular events and acquires multiple images while doing that and would love you to see them.',
       books: [],
       loading: false,
-      placeHolder: require('../../assets/img/random2.jpg'),
+      placeHolder: require('../../assets/img/placeHolderImg.jpg'),
     }
   },
   head() {
