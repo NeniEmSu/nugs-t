@@ -274,6 +274,17 @@ p {
       border-color: #506076;
     }
   }
+
+  .custom-control {
+    min-height: 1.5rem;
+    padding-left: 0.5rem;
+  }
+
+  .custom-control-input:checked ~ .custom-control-label::before {
+    color: var(--color);
+    border-color: var(--border-color);
+    background-color: var(--dark-accent);
+  }
 }
 
 textarea > label {
