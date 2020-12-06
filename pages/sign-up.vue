@@ -24,7 +24,6 @@
       <b-row align-h="center">
         <b-col lg="6" md="8" sm="9">
           <div class="form-card">
-            <busy-overlay />
             <AuthForm :sign-up-page="true" />
           </div>
         </b-col>
