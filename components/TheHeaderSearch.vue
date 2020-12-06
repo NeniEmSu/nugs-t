@@ -54,7 +54,7 @@
             :key="article.id"
           >
             <nuxt-link
-              :to="`/${article.slug}`"
+              :to="`/news-blogs/${article.slug}`"
               class="row p-0 m-0"
               :class="{ active: selectedResult(index) }"
               @mouseover.native="current = index"
