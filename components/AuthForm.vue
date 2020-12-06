@@ -1,5 +1,6 @@
 <template>
   <form>
+    <busy-overlay :loading="loading" />
     <b-alert
       v-if="error"
       show
@@ -76,6 +77,7 @@
         v-model="status"
         name="status"
         value="accepted"
+        required
         unchecked-value="not_accepted"
       >
         I agree to the <nuxt-link to="/terms">terms and conditions</nuxt-link> of use.
@@ -101,8 +103,10 @@
 </template>
 
 <script>
+import busyOverlay from '~/components/busy-overlay'
 export default {
   name: 'AuthForm',
+  components: { busyOverlay },
   props: {
     signUpPage: {
       type: Boolean,
@@ -118,6 +122,7 @@ export default {
       repeat_password: '',
       error: null,
       hidePassword: true,
+      loading: false,
     }
   },
   computed: {
@@ -131,6 +136,7 @@ export default {
   methods: {
     signIn() {
       this.error = null
+      this.loading = true
       return this.$auth
         .loginWith('local', {
           data: {
@@ -146,6 +152,7 @@ export default {
             text: `Welcome back, ${this.$auth.user.name}`,
             delay: 5000,
           })
+          this.loading = false
         })
         .catch((error) => {
           this.$store.dispatch('toast/setToast', {
@@ -156,10 +163,12 @@ export default {
             delay: 5000,
           })
           this.error = error
+          this.loading = false
         })
     },
     async signUp() {
       this.error = null
+      this.loading = true
       try {
         await this.$axios
           .post('/api/auth/signup', {
@@ -176,10 +185,12 @@ export default {
               text: response.data.message,
               delay: 5000,
             })
+            this.loading = false
           })
         await this.signIn()
       } catch (error) {
         this.error = error
+        this.loading = false
       }
     },
   },
