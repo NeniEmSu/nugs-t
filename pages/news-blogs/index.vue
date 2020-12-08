@@ -46,7 +46,7 @@ export default {
   },
   head() {
     return {
-      title: `Home | ${this.$store.state.meta.name}`,
+      title: `News & Blogs | ${this.$store.state.meta.name}`,
       meta: [{ description: this.$store.state.meta.description }],
     }
   },
