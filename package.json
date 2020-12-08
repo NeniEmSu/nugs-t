@@ -38,7 +38,7 @@
     "lightgallery.js": "^1.4.0",
     "node-vibrant": "^3.1.6",
     "normalize.css": "^8.0.1",
-    "nuxt": "^2.14.7",
+    "nuxt": "^2.14.10",
     "nuxt-rfg-icon": "^0.6.4",
     "vue": "^2.6.12",
     "vue-disqus": "^4.0.1",
