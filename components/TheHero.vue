@@ -47,7 +47,7 @@ export default {
   props: {
     heading: {
       type: String,
-      default: 'National Union Of Ghana Students Ternopol',
+      default: 'National Union Of Ghanaian Students Ternopol',
     },
     supHeading: {
       type: String,

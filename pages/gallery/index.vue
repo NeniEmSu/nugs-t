@@ -75,7 +75,7 @@ export default {
         'We are a Democratic, nonpartisan and progressive mass movement comprising of ghanaian students in Ternopol, ukraine with the primary aim of protecting and safeguarding the rights and interests of ghanaian students in ternopol.',
       title: 'Images from our top events',
       subTitle:
-        'The National union of Ghana students attends regular events and acquires multiple images while doing that and would love you to see them.',
+        'The National union of Ghanaian students attends regular events and acquires multiple images while doing that and would love you to see them.',
       galleries: [],
       loading: false,
     }

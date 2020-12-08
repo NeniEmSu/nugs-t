@@ -14,7 +14,7 @@ export default {
   props: {
     title: {
       type: String,
-      default: 'National Union of Ghana Students Ternopol',
+      default: 'National Union of Ghanaian Students Ternopol',
     },
     subTitle: {
       type: String,

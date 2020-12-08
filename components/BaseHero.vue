@@ -29,7 +29,7 @@ export default {
     },
     heading: {
       type: String,
-      default: 'National Union of Ghana Students Ternopol',
+      default: 'National Union of Ghanaian Students Ternopol',
     },
     supHeading: {
       type: String,

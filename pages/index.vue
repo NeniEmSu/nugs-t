@@ -35,13 +35,13 @@ export default {
   },
   data() {
     return {
-      heading: 'National Union Of Ghana Students Ternopol',
+      heading: 'National Union Of Ghanaian Students Ternopol',
       supHeading: 'ALUTA CONTINUA , VICTORIA ASCERTA.',
       desc:
         'We are a Democratic, nonpartisan and progressive mass movement comprising of ghanaian students in Ternopol, ukraine with the primary aim of protecting and safeguarding the rights and interests of ghanaian students in ternopol.',
       title: 'News & Updates',
       subTitle:
-        'The National union of Ghana students does it’s best to keep you updated, apprised and in the know about all relevant information.',
+        'The National union of Ghanaian students does it’s best to keep you updated, apprised and in the know about all relevant information.',
       firstLink: {
         name: 'Get Started!',
         link: '/sign-up',
@@ -58,8 +58,14 @@ export default {
   },
   head() {
     return {
-      title: `Home | ${this.$store.state.meta.name}`,
-      meta: [{ description: this.$store.state.meta.description }],
+      title: `${this.heading}`.slice(0, 60),
+      meta: [
+        {
+          hid: 'description',
+          name: 'description',
+          content: this.desc.slice(0, 320),
+        },
+      ],
     }
   },
   computed: {
