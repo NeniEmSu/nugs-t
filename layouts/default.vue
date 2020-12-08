@@ -276,8 +276,13 @@ p {
   }
 
   .custom-control {
-    min-height: 1.5rem;
-    padding-left: 0.5rem;
+    padding-left: 1.5rem;
+    @media #{$small_mobile} {
+      padding: 0.5rem;
+    }
+    @media #{$large_mobile} {
+      padding: 1rem;
+    }
   }
 
   .custom-control-input:checked ~ .custom-control-label::before {
