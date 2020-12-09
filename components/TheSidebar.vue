@@ -2,7 +2,19 @@
   <aside>
     <div class="inner-container">
       <h4>Top Articles From NUGS Ukraine</h4>
-      <article v-for="article in featuredArticles" :key="article.id">
+      <div v-if="loading">
+        <b-card no-body img-top>
+          <b-skeleton-img card-img="top" animation="throb" aspect="3:2"></b-skeleton-img>
+          <b-card-body>
+            <b-skeleton width="15%"></b-skeleton>
+            <b-skeleton width="95%"></b-skeleton>
+            <b-skeleton width="55%"></b-skeleton>
+            <b-skeleton width="80%"></b-skeleton>
+            <b-skeleton width="35%"></b-skeleton>
+          </b-card-body>
+        </b-card>
+      </div>
+      <article v-for="article in featuredArticles" v-else :key="article.id">
         <a
           v-if="getFeaturedImage(article, 'medium')"
           :href="`${nugsUkraineLink}/index.php/${article.date.substring(
@@ -66,15 +78,18 @@ export default {
     return {
       nugsUkraineLink: 'https://nugsukraine.com',
       featuredArticles: [],
+      loading: false,
     }
   },
   mounted() {
     const fetchFeaturedArticles = async () => {
+      this.loading = true
       const { data } = await this.$axios({
         url: `/wp-json/wp/v2/posts?orderby=date&per_page=10&_embed`,
         baseURL: `${this.nugsUkraineLink}`,
       })
       this.featuredArticles = data
+      this.loading = false
     }
     fetchFeaturedArticles()
   },
