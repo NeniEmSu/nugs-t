@@ -10,6 +10,7 @@
     "axios",
     "backface",
     "bezier",
+    "bouncedelay",
     "commitlint",
     "corejs",
     "cylon",
@@ -19,6 +20,7 @@
     "grayscale",
     "gsap",
     "keydown",
+    "keyframes",
     "lastmod",
     "lazyload",
     "lightgallery",
@@ -37,6 +39,7 @@
     "stylelint",
     "successully",
     "tabindex",
+    "ternopil",
     "vmin"
   ]
 }
