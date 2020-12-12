@@ -2,6 +2,8 @@
 
 Relevant Links
 
+- Design - <https://www.figma.com/file/vg5WSv75CD3uTMqqzV9nBE/Nugs-Ternopil-Redisign?node-id=77%3A11>
+  
 - <https://medium.com/google-developer-experts/workbox-4-implementing-refresh-to-update-version-flow-using-the-workbox-window-module-41284967e79c>
 - <https://github.com/novis-opscale/nuxt-pwa-test/blob/master/layouts/default.vue>
 - <https://github.com/nuxt-community/pwa-module/issues/401>
