@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="news-blogs">
     <div class="articles">
       <TheBlogHero :hero-article="articlesList[0]" />
       <ArticleList :articles="[...articlesList].slice(1)" />
@@ -81,8 +81,24 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.home {
+@import '~/assets/scss/variables.scss';
+@import '~/assets/scss/_extends.scss';
+.news-blogs {
   display: flex;
+  padding: 0 calc((100vw - 1200px) / 2);
+  padding-bottom: 130px;
+  @media #{$small_mobile} {
+    padding-bottom: 25px;
+  }
+  @media #{$large_mobile} {
+    padding-bottom: 40px;
+  }
+  @media #{$tab_device} {
+    padding-bottom: 50px;
+  }
+  @media (max-width: 1000px) {
+    flex-direction: column;
+  }
   .hero {
     margin: 0 -32px;
   }

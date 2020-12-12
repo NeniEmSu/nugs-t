@@ -106,12 +106,18 @@ export default {
 aside {
   min-width: 360px;
   flex: 1;
+  @media #{$small_mobile} {
+    min-width: 300px;
+  }
   @media (max-width: 1000px) {
-    display: none;
+    flex: 1;
   }
   .inner-container {
     background-color: var(--white);
     padding: 32px;
+    @media #{$small_mobile} {
+      padding: 16px;
+    }
     h4 {
       margin-top: 0;
     }
