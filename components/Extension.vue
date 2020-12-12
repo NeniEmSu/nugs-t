@@ -15,10 +15,13 @@
           <nuxt-link to="" class="btn_white">Apply for extension</nuxt-link>
         </div>
         <div class="detail col-lg-6 col-md-5 img d-none d-md-block">
-          <img
-            v-lazy="require('~/assets/img/hand.jpg')"
-            alt="Image describing fees extension process"
-          />
+          <div class="lazy">
+            <img
+              v-lazy="require('~/assets/img/hand.jpg')"
+              alt="Image describing fees extension process"
+            />
+            <Spinner1 class="spinner" />
+          </div>
         </div>
       </div>
     </div>
