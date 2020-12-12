@@ -46,7 +46,7 @@
         </li>
         <li class="nav-item d-block d-lg-none">
           <template v-if="$auth.$state.loggedIn">
-            <b-nav-item role="button" class="nav-link" aria-label="Logout" @click="$auth.logout()">
+            <b-nav-item role="button" aria-label="Logout" @click="$auth.logout()">
               <b-icon icon="box-arrow-left" variant="danger"> </b-icon>
             </b-nav-item>
           </template>
@@ -73,7 +73,11 @@
           </b-nav-item-dropdown>
           <b-avatar
             to="/dashboard"
-            :src="$auth.user.simple_local_avatar['96'] || $auth.user.avatar_urls['24']"
+            :src="
+              $auth.user.simple_local_avatar
+                ? $auth.user.simple_local_avatar['96']
+                : $auth.user.avatar_urls['48']
+            "
             class="mt-1"
             rounded="circle"
             :size="30"
