@@ -4,6 +4,7 @@
       :heading="heading"
       :sup-heading="supHeading"
       :desc="desc"
+      :hero-img="heroImg"
       :first-link="firstLink"
       :second-link="secondLink"
     />
@@ -78,6 +79,7 @@ export default {
       supHeading: 'Executives 2020-2021',
       desc:
         'We are a Democratic, nonpartisan and progressive mass movement comprising of ghanaian students in Ternopol, ukraine with the primary aim of protecting and safeguarding the rights and interests of ghanaian students in ternopol.',
+      heroImg: require('~/assets/img/zackFull.jpg'),
       firstLink: {
         name: 'The by Law',
         link: 'https://drive.google.com/file/d/1imfhGJD3cHBugYFhyP7DSoEVli_SYd0b/view',

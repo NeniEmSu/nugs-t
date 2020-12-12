@@ -4,6 +4,7 @@
       :heading="heading"
       :sup-heading="supHeading"
       :desc="desc"
+      :hero-img="heroImg"
       :first-link="firstLink"
       :second-link="secondLink"
     />
@@ -42,6 +43,7 @@ export default {
       title: 'News & Updates',
       subTitle:
         'The National union of Ghanaian students does it’s best to keep you updated, apprised and in the know about all relevant information.',
+      heroImg: require('~/assets/img/hero_img.jpg'),
       firstLink: {
         name: 'Get Started!',
         link: '/sign-up',
