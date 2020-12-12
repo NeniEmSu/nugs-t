@@ -35,10 +35,7 @@
           </div>
           <div class="col-lg-6 col-xl-6 hero-image">
             <div class="lazy-hero">
-              <img
-                v-lazy="require('~/assets/img/hero_img.jpg')"
-                alt="Image describing fees extension process"
-              />
+              <img v-lazy="heroImg" :alt="`Image for ${heading}`" />
               <Spinner1 class="spinner" />
             </div>
           </div>
@@ -70,6 +67,10 @@ export default {
       type: String,
       default:
         'We are a Democratic, nonpartisan and progressive mass movement comprising of ghanaian students in Ternopol, ukraine with the primary aim of protecting and safeguarding the rights and interests of ghanaian students in ternopol.',
+    },
+    heroImg: {
+      type: String,
+      default: require('~/assets/img/hero_img.jpg'),
     },
     firstLink: {
       type: Object,
@@ -139,9 +140,6 @@ export default {
         vertical-align: bottom;
       }
       @media #{$tab_device} {
-        vertical-align: bottom;
-      }
-      @media #{$medium_device} {
         vertical-align: bottom;
       }
     }
@@ -248,6 +246,7 @@ export default {
 }
 
 .hero-image {
+  height: 650px;
   @media #{$small_mobile} {
     position: absolute;
     top: 48px;
@@ -275,15 +274,18 @@ export default {
 
   .lazy-hero {
     position: relative;
-    border-top-left-radius: 50%;
-    border-bottom-left-radius: 50%;
+    height: 100%;
     img {
       border-top-left-radius: 50%;
       border-bottom-left-radius: 50%;
       backface-visibility: hidden;
       opacity: 0;
       transition: opacity 1s;
-      height: 104%;
+      // min-width: max-content;
+      // max-width: 100%;
+      height: 106%;
+      object-fit: cover;
+      object-position: center;
       @media #{$small_mobile} {
         border-radius: 50%;
         width: 200px;
@@ -300,7 +302,7 @@ export default {
         border-radius: 50%;
       }
       @media #{$medium_device} {
-        height: 100%;
+        height: 104%;
       }
       @media (min-width: 1390px) {
         border-radius: 50%;
