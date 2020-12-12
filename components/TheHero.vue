@@ -1,11 +1,11 @@
 <template>
   <section class="hero">
-    <div class="banner_part">
+    <div class="hero-parts">
       <div class="coverer container">
         <div class="row align-items-center">
           <div class="col-lg-6 col-xl-6">
-            <div class="banner_text">
-              <div class="banner_text_iner">
+            <div class="hero-text">
+              <div class="hero-text-inner">
                 <h5 class="sup-title">{{ supHeading }}</h5>
                 <h1>{{ heading }}</h1>
                 <p>
@@ -33,6 +33,15 @@
               </div>
             </div>
           </div>
+          <div class="col-lg-6 col-xl-6 hero-image">
+            <div class="lazy-hero">
+              <img
+                v-lazy="require('~/assets/img/hero_img.jpg')"
+                alt="Image describing fees extension process"
+              />
+              <Spinner1 class="spinner" />
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -40,7 +49,11 @@
 </template>
 
 <script>
+import Spinner1 from '~/components/Spinner1'
 export default {
+  components: {
+    Spinner1,
+  },
   mixins: {
     shortTimestamp: Function,
   },
@@ -94,20 +107,9 @@ export default {
   @media #{$medium_device} {
     height: 650px;
   }
-  @media (min-width: 1400px) {
-    background: linear-gradient(
-        90.17deg,
-        rgba(27, 10, 43, 0.5) 2.56%,
-        rgba(228, 83, 223, 0.1) 98.31%
-      ),
-      url(~assets/img/banner_bg.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
-    background-position: center;
-  }
 }
 
-.banner_part {
+.hero-parts {
   height: 650px;
   position: relative;
 
@@ -123,12 +125,11 @@ export default {
   @media #{$medium_device} {
     height: 650px;
   }
-
-  .banner_text {
+  .hero-text {
     display: table;
     width: 100%;
     height: 650px;
-    .banner_text_iner {
+    .hero-text-inner {
       display: table-cell;
       vertical-align: middle;
       @media #{$small_mobile} {
@@ -244,78 +245,82 @@ export default {
       }
     }
   }
+}
 
-  &:after {
+.hero-image {
+  @media #{$small_mobile} {
     position: absolute;
-    top: 0px;
-    width: 50%;
-    height: 104%;
-    content: '';
-    background-image: url(~assets/img/banner_bg.jpg);
-    background-size: cover;
-    right: 0%;
+    top: 48px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    text-align: center;
+  }
+  @media #{$large_mobile} {
+    position: absolute;
+    top: 80px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    text-align: center;
+  }
+  @media #{$tab_device} {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    left: 0;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .lazy-hero {
+    position: relative;
     border-top-left-radius: 50%;
     border-bottom-left-radius: 50%;
-    z-index: 5;
-    @media #{$small_mobile} {
-      position: absolute;
-      top: 48px;
-      width: 200px;
-      height: 200px;
-      content: '';
-      background-image: url(~assets/img/banner_bg.jpg);
-      background-size: cover;
-      right: 0;
-      left: 0;
-      text-align: center;
-      margin: 0 auto;
-      background-repeat: no-repeat;
-      border-radius: 50%;
+    img {
+      border-top-left-radius: 50%;
+      border-bottom-left-radius: 50%;
+      backface-visibility: hidden;
+      opacity: 0;
+      transition: opacity 1s;
+      height: 104%;
+      @media #{$small_mobile} {
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+      }
+      @media #{$large_mobile} {
+        width: 250px;
+        height: 250px;
+        border-radius: 50%;
+      }
+      @media #{$tab_device} {
+        width: 300px;
+        height: 300px;
+        border-radius: 50%;
+      }
+      @media #{$medium_device} {
+        height: 100%;
+      }
+      @media (min-width: 1390px) {
+        border-radius: 50%;
+      }
     }
-    @media #{$large_mobile} {
+    .spinner {
+      left: 50%;
+      opacity: 0;
       position: absolute;
-      top: 80px;
-      width: 250px;
-      height: 250px;
-      content: '';
-      background-image: url(~assets/img/banner_bg.jpg);
-      background-size: cover;
-      right: 0;
-      left: 0;
-      text-align: center;
-      margin: 0 auto;
-      background-repeat: no-repeat;
-      border-radius: 50%;
+      top: 50%;
+      transform: translateY(-50%);
     }
-    @media #{$tab_device} {
-      position: absolute;
-      top: 50px;
-      width: 300px;
-      height: 300px;
-      content: '';
-      background-image: url(~assets/img/banner_bg.jpg);
-      background-size: cover;
-      right: 0;
-      left: 0;
-      text-align: center;
-      margin: 0 auto;
-      background-repeat: no-repeat;
-      border-radius: 50%;
+    [lazy='loading'] {
+      opacity: 0;
     }
-    @media #{$medium_device} {
-      position: absolute;
-      max-width: 50%;
-      max-height: 100%;
-      content: '';
-      background-image: url(~assets/img/banner_bg.jpg);
-      background-size: cover;
-      right: 0;
-      bottom: 0;
-      top: 0;
-      background-repeat: no-repeat;
+    [lazy='loaded'] {
+      opacity: 1;
     }
-    @media (min-width: 1400px) {
-      display: none;
+    [lazy='loading'] + .spinner {
+      opacity: 1;
     }
   }
 }
