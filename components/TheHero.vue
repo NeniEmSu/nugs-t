@@ -11,9 +11,15 @@
                 <p>
                   {{ subHeading }}
                 </p>
+                <cite v-if="president.display">- {{ president.cite }}</cite>
                 <div class="action_btn">
                   <div v-if="firstLink.display" class="first-btn">
-                    <a v-if="firstLink.blank === true" :href="firstLink.link" class="btn_white">
+                    <a
+                      v-if="firstLink.blank === true"
+                      :href="firstLink.link"
+                      :target="firstLink.newTab === true ? _blank : ''"
+                      class="btn_white"
+                    >
                       {{ firstLink.name }}
                     </a>
                     <nuxt-link v-else :to="firstLink.link" class="btn_white">
@@ -22,7 +28,12 @@
                   </div>
 
                   <div v-if="secondLink.display" class="second-btn">
-                    <a v-if="secondLink.blank === true" :href="secondLink.link" class="btn_white">
+                    <a
+                      v-if="secondLink.blank === true"
+                      :href="secondLink.link"
+                      :target="secondLink.newTab === true ? _blank : ''"
+                      class="btn_white"
+                    >
                       {{ secondLink.name }}
                     </a>
                     <nuxt-link v-else :to="secondLink.link" class="btn_white">
@@ -68,6 +79,15 @@ export default {
       default:
         'We are a Democratic, nonpartisan and progressive mass movement comprising of ghanaian students in Ternopol, ukraine with the primary aim of protecting and safeguarding the rights and interests of ghanaian students in ternopol.',
     },
+    president: {
+      type: Object,
+      default: () => {
+        return {
+          cite: 'Mr president',
+          display: false,
+        }
+      },
+    },
     heroImg: {
       type: String,
       default: require('~/assets/img/hero_img.jpg'),
@@ -75,13 +95,19 @@ export default {
     firstLink: {
       type: Object,
       default: () => {
-        return { name: 'Get Started!', link: '/sign-up', blank: false, display: true }
+        return {
+          name: 'Get Started!',
+          link: '/sign-up',
+          blank: false,
+          newTab: false,
+          display: true,
+        }
       },
     },
     secondLink: {
       type: Object,
       default: () => {
-        return { name: 'Contact Us', link: '/contact', blank: false, display: true }
+        return { name: 'Contact Us', link: '/contact', blank: false, newTab: false, display: true }
       },
     },
   },
@@ -206,6 +232,11 @@ export default {
       font-size: 15px;
       line-height: 1.8;
       color: #e1d3f0;
+    }
+
+    cite {
+      display: flex;
+      justify-content: flex-end;
     }
     .action_btn {
       display: flex;
