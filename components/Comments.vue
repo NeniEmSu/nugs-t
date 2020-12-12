@@ -4,7 +4,6 @@
       <client-only>
         <lazy-component @show="disqusReady = true">
           <Disqus :identifier="article.slug" />
-          <!-- <vue-disqus shortname="nugs-ternopil" :identifier="article.slug" /> -->
         </lazy-component>
       </client-only>
     </div>
