@@ -1,20 +1,69 @@
 <template>
   <div class="dashboard-page">
     <div class="container">
-      <b-alert show variant="secondary" dismissible> This is a secure page! </b-alert>
       <h1>Dashboard</h1>
 
       <div class="row">
         <div class="col-md-8 form-card">
-          <h2>State</h2>
-          <pre>{{ state }}</pre>
+          <h2 class="my-4">Account Info</h2>
+          <p>
+            Name:
+            <span class="text-capitalize">{{ state.user.name }}</span>
+          </p>
+          <p>
+            Email:
+            <span>{{ state.user.email }}</span>
+          </p>
+          <p>
+            First Name:
+            <span class="text-capitalize">{{
+              state.user.first_name ? state.user.first_name : '-'
+            }}</span>
+          </p>
+          <p>
+            Last Name:
+            <span class="text-capitalize">{{
+              state.user.last_name ? state.user.last_name : '-'
+            }}</span>
+          </p>
+          <p>Current access Roles:</p>
+          <ul v-for="(role, index) in state.user.roles" :key="index" horizontal="md">
+            <li class="text-capitalize">{{ role }}</li>
+          </ul>
+          <p>Description:</p>
+          <p>{{ state.user.description ? state.user.description : '-' }}</p>
+        </div>
+        <div class="col-md-4 text-center mt-3">
+          <h3>Settings</h3>
+          <b-avatar
+            :to="`/authors/${state.user.slug}`"
+            :src="
+              $auth.user.simple_local_avatar
+                ? $auth.user.simple_local_avatar['192']
+                : $auth.user.avatar_urls['96']
+            "
+            class="my-2"
+            :size="180"
+          ></b-avatar>
+          <p>
+            <nuxt-link :to="`/authors/${state.user.slug}`">@{{ state.user.username }}</nuxt-link>
+          </p>
+          <p>
+            Role:
+            <span>{{ state.user.roles[0] }}</span>
+          </p>
+          <div class="text-center w-75 mx-auto">
+            <ColorModePicker />
+          </div>
+          <div class="text-center mx-auto">
+            <button class="btn_black" @click="$auth.fetchUser()">Refetch Info</button>
+            <a class="btn_black" href="https://api-nugs-t.neniemsu.xyz/wp-login.php" target="_blank"
+              >Update Info</a
+            >
+            <button class="btn_black" @click="$auth.logout()">Logout</button>
+          </div>
         </div>
       </div>
-      <hr />
-      <b-btn-group>
-        <b-button @click="$auth.fetchUser()"> Fetch User </b-button>
-        <b-button @click="$auth.logout()"> Logout </b-button>
-      </b-btn-group>
     </div>
   </div>
 </template>
@@ -25,7 +74,7 @@ export default {
   middleware: ['auth'],
   computed: {
     state() {
-      return JSON.stringify(this.$auth.$state, undefined, 2)
+      return this.$auth.$state
     },
   },
   methods: {
@@ -52,5 +101,10 @@ export default {
   @media #{$tab_device} {
     padding: 0 0 50px 0;
   }
+}
+
+.btn_black {
+  @extend %custom_btn_outline_black;
+  margin: 10px auto;
 }
 </style>
