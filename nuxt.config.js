@@ -188,18 +188,6 @@ export default {
         globalToken: true,
         autoFetchUser: true,
       },
-      localRefresh: {
-        scheme: 'refresh',
-        token: {
-          property: 'token.accessToken',
-          maxAge: 15,
-        },
-        refreshToken: {
-          property: 'token.refreshToken',
-          data: 'refreshToken',
-          maxAge: false,
-        },
-      },
     },
   },
 
