@@ -9,7 +9,7 @@
                 <h5 class="sup-title">{{ supHeading }}</h5>
                 <h1>{{ heading }}</h1>
                 <p>
-                  {{ subHeading }}
+                  {{ desc }}
                 </p>
                 <cite v-if="president.display">- {{ president.cite }}</cite>
                 <div class="action_btn">
@@ -74,7 +74,7 @@ export default {
       type: String,
       default: 'ALUTA CONTINUA , VICTORIA ASCERTA.',
     },
-    subHeading: {
+    desc: {
       type: String,
       default:
         'We are a Democratic, nonpartisan and progressive mass movement comprising of ghanaian students in Ternopol, ukraine with the primary aim of protecting and safeguarding the rights and interests of ghanaian students in ternopol.',
@@ -235,6 +235,7 @@ export default {
     }
 
     cite {
+      color: #e1d3f0;
       display: flex;
       justify-content: flex-end;
     }

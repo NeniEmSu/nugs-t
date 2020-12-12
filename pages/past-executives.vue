@@ -21,21 +21,22 @@
         </div>
 
         <div class="exec-info">
-          <div class="col-md-8">
-            <h4 class="mb-3">
-              The great men and women who took the mantle of leadership for the year 2018 - 2019
-            </h4>
-            <p>
-              The union would like to say a big thank you for the time and energy spent to make it
-              what it is today.
-            </p>
-            <div class="lazy">
-              <img v-lazy="require('~/assets/img/execs.jpg')" alt="image of all past execs" />
-              <Spinner1 class="spinner" />
+          <div class="row p-0">
+            <div class="col-md-8">
+              <h3 class="mb-3">
+                The great men and women who took the mantle of leadership for the year 2018 - 2019
+              </h3>
+              <p>
+                The union would like to say a big thank you for the time and energy spent to make it
+                what it is today.
+              </p>
+              <div class="lazy">
+                <img v-lazy="require('~/assets/img/execs.jpg')" alt="image of all past execs" />
+                <Spinner1 class="spinner" />
+              </div>
             </div>
           </div>
         </div>
-
         <div id="achievements" class="achievements text-center">
           <h3>Our Top Achievements</h3>
         </div>
@@ -46,9 +47,17 @@
 
 <script>
 export default {
-  name: 'About',
+  name: 'PastExecutivesSinglePage',
   data() {
     return {
+      settings: {
+        dots: false,
+        infinite: true,
+        slidesToShow: 3,
+        slidesToScroll: 1,
+        vertical: true,
+        verticalSwiping: true,
+      },
       executives: [],
       loading: false,
       heading: 'Executives for the Year 2018 - 2019',
@@ -136,15 +145,74 @@ export default {
 
 .exec-info {
   width: 100%;
-  height: 620px;
+  min-height: 620px;
   background: #7625bc;
   border-radius: 15px;
   padding: 50px;
 
+  @media #{$small_mobile} {
+    padding: 20px;
+  }
+  @media #{$large_mobile} {
+    padding: 30px;
+  }
+  @media #{$tab_device} {
+    padding: 40px;
+  }
+
+  .lazy {
+    border-radius: 15px;
+  }
+
+  h3 {
+    font-size: 36px;
+    line-height: 40px;
+
+    color: #fefdfe;
+    @media #{$small_mobile} {
+      text-align: center;
+      font-size: 22px;
+      line-height: 24px;
+    }
+    @media #{$large_mobile} {
+      text-align: center;
+      font-size: 24px;
+      line-height: 22px;
+    }
+    @media #{$tab_device} {
+      font-size: 30px;
+      line-height: 32px;
+    }
+  }
+  p {
+    font-size: 18px;
+    line-height: 150.7%;
+
+    color: #faf6fc;
+    @media #{$small_mobile} {
+      text-align: center;
+      font-size: 16px;
+    }
+    @media #{$large_mobile} {
+      text-align: center;
+      font-size: 16px;
+    }
+    @media #{$tab_device} {
+      font-size: 18px;
+    }
+  }
+  .btn_white {
+    @extend %custom_btn_outline_white;
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+
   img {
-    height: 350px;
+    height: 100%;
+    max-height: 330px;
     object-fit: cover;
     object-position: center;
+    border-radius: 15px;
   }
 }
 
@@ -159,5 +227,15 @@ export default {
   @media #{$tab_device} {
     padding: 50px 0 0;
   }
+}
+
+.carousel-wrapper {
+  padding: 40px;
+}
+.img-wrapper img {
+  margin: auto;
+  width: 200px;
+  height: 100px;
+  background-image: linear-gradient(gray 100%, transparent 0);
 }
 </style>

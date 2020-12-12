@@ -136,6 +136,7 @@ export default {
   plugins: [
     '~/plugins/bootstrap-vue-icon',
     '~/plugins/gsap',
+    { src: './plugins/vue-slick-carousel.js' },
     { src: '~/plugins/vue-lazyload', ssr: false },
     { src: '~/plugins/vue-scrollto', ssr: false },
     { src: '~/plugins/disqus' },
