@@ -76,7 +76,7 @@ export default {
   }
 }
 p {
-  color: #ebf4f1;
+  color: var(--color-primary);
   margin: 0;
   padding-top: 5px;
   padding-bottom: 20px;
