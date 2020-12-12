@@ -176,7 +176,7 @@ export default {
             method: 'post',
             propertyName: 'token',
           },
-          logout: { url: false, method: 'post' },
+          logout: false,
           user: {
             url: '/wp/v2/users/me?context=edit',
             method: 'get',
