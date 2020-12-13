@@ -156,6 +156,7 @@ export default {
     display: table;
     width: 100%;
     height: 650px;
+    z-index: 1;
     .hero-text-inner {
       display: table-cell;
       vertical-align: middle;
@@ -279,6 +280,7 @@ export default {
 
 .hero-image {
   height: 650px;
+  z-index: 0;
   @media #{$small_mobile} {
     position: absolute;
     top: 48px;
