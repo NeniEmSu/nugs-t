@@ -2,20 +2,21 @@
 <template>
   <article class="single">
     <FeaturedImage
-      v-if="getFeaturedImage(data, 'large')"
+      v-if="getFeaturedImage(data, 'full')"
       :expanded="expanded"
       :article="data"
-      :featured-image="getFeaturedImage(data, 'large')"
+      :featured-image="getFeaturedImage(data, 'full')"
     />
     <transition name="slide-fade">
       <div
         class="narrow"
-        :class="{ expanded: expanded, 'no-featured-image': !getFeaturedImage(data, 'large') }"
+        :class="{ expanded: expanded, 'no-featured-image': !getFeaturedImage(data, 'full') }"
       >
         <button
-          v-if="getFeaturedImage(data, 'large')"
+          v-if="getFeaturedImage(data, 'full')"
+          v-b-tooltip.hover
           class="expand-featured-image"
-          title="Show full image"
+          :title="expanded ? 'Collapse image' : 'Show full image'"
           :class="{ expanded: expanded }"
           @click.prevent="expanded = !expanded"
         >
@@ -69,9 +70,9 @@ export default {
   },
   mounted() {
     this.initGallery()
-    if (this.getFeaturedImage(this.data, 'thumbnail')) {
-      this.getColorAccentStyles(this.data).then((styles) => (this.colorAccentStyles = styles))
-    }
+    // if (this.getFeaturedImage(this.data, 'thumbnail')) {
+    //   this.getColorAccentStyles(this.data).then((styles) => (this.colorAccentStyles = styles))
+    // }
   },
   methods: {
     initGallery() {
@@ -95,8 +96,7 @@ export default {
     },
     getColorAccentStyles(article) {
       return new Promise(function (resolve, reject) {
-        const image =
-          article._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url
+        const image = article._embedded['wp:featuredmedia'][0].media_details.sizes.full.source_url
         Vibrant.from(image).getPalette((err, palette) => {
           if (!err && palette.DarkMuted) {
             const { r, g, b } = palette.DarkMuted
@@ -172,7 +172,7 @@ article {
         display: none;
       }
       svg {
-        fill: $primary;
+        fill: var(--color);
         height: 24px;
         opacity: 0.7;
         transition: 0.1s;
@@ -412,75 +412,6 @@ article {
       left: 50%;
       transform: translate(-50%);
     }
-
-    // .gallery {
-    //   margin: 0 auto 18px;
-
-    //   .gallery-item {
-    //     float: left;
-    //     margin-top: 0;
-    //     text-align: center;
-    //     width: 33%;
-    //   }
-    //   &.gallery-columns-2 .gallery-item {
-    //     width: 50%;
-    //   }
-    //   &.gallery-columns-4 .gallery-item {
-    //     width: 25%;
-    //   }
-
-    //   a {
-    //     color: var(--dark-accent);
-    //     position: relative;
-    //     &:hover {
-    //       color: var(--dark-accent);
-    //     }
-    //     &::after {
-    //       background: none;
-    //       content: '';
-    //       height: 0px;
-    //       left: 0;
-    //       opacity: 0;
-    //       position: absolute;
-    //       top: 100%;
-    //     }
-    //     &:hover,
-    //     &:focus {
-    //       &::after {
-    //       }
-    //     }
-    //   }
-
-    //   img {
-    //     box-shadow: 0px 0px 4px #999;
-    //     border: 1px solid var(--white);
-    //     padding: 8px;
-    //     background: var(--bg);
-    //   }
-    //   img:hover {
-    //     background: var(--white);
-    //   }
-    //   &.gallery-columns-2 .attachment-medium {
-    //     max-width: 92%;
-    //     height: auto;
-    //   }
-    //   &.gallery-columns-4 .attachment-thumbnail {
-    //     max-width: 84%;
-    //     height: auto;
-    //   }
-    //   .gallery-caption {
-    //     color: var(--white);
-    //     font-size: 12px;
-    //     margin: 0 0 12px;
-    //   }
-    //   dl,
-    //   dt {
-    //     margin: 0;
-    //   }
-    //   br + br {
-    //     display: none;
-    //   }
-    // }
   }
 }
 </style>
