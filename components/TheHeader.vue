@@ -44,17 +44,19 @@
         <li class="nav-item">
           <nuxt-link to="/contact" exact class="nav-link">Contact</nuxt-link>
         </li>
-        <li class="nav-item d-block d-lg-none">
-          <template v-if="$auth.$state.loggedIn">
-            <b-nav-item role="button" aria-label="Logout" @click="$auth.logout()">
-              <b-icon icon="box-arrow-left" variant="danger"> </b-icon>
-            </b-nav-item>
-          </template>
-          <template v-else>
-            <nuxt-link title="Sign in" class="nav-link" aria-label="Sign in" to="/sign-in">
-              <b-icon icon="box-arrow-in-right"> </b-icon>
-            </nuxt-link>
-          </template>
+        <b-nav-item
+          v-if="$auth.$state.loggedIn"
+          class="nav-item d-block d-lg-none"
+          role="button"
+          aria-label="Logout"
+          @click="$auth.logout()"
+        >
+          <b-icon icon="box-arrow-left" variant="danger"> </b-icon>
+        </b-nav-item>
+        <li v-else class="nav-item d-block d-lg-none">
+          <nuxt-link title="Sign in" class="nav-link" aria-label="Sign in" to="/sign-in">
+            <b-icon icon="box-arrow-in-right"> </b-icon>
+          </nuxt-link>
         </li>
         <li v-if="!$auth.$state.loggedIn" title="Sign up" class="nav-item d-block d-md-none">
           <nuxt-link class="nav-link" aria-label="Sign up" to="/sign-up">
@@ -65,28 +67,28 @@
     </div>
     <TheHeaderSearch class="mr-2" />
     <ul class="navbar-nav flex-row d-none d-lg-flex">
-      <li class="nav-item d-flex">
-        <template v-if="$auth.$state.loggedIn">
-          <b-nav-item-dropdown class="text-capitalize text-black" :text="$auth.user.name" right>
-            <b-dropdown-item to="/dashboard"> Dashboard </b-dropdown-item>
-            <b-dropdown-item @click="$auth.logout()"> Logout </b-dropdown-item>
-          </b-nav-item-dropdown>
-          <b-avatar
-            to="/dashboard"
-            :src="
-              $auth.user.simple_local_avatar
-                ? $auth.user.simple_local_avatar['96']
-                : $auth.user.avatar_urls['48']
-            "
-            class="mt-1"
-            rounded="circle"
-            :size="30"
-          ></b-avatar>
-        </template>
-        <template v-else>
-          <nuxt-link class="btn_black" to="/sign-in">Sign In</nuxt-link>
-        </template>
-      </li>
+      <!-- <li class="nav-item d-flex"> -->
+      <template v-if="$auth.$state.loggedIn">
+        <b-nav-item-dropdown class="text-capitalize text-black" :text="$auth.user.name" right>
+          <b-dropdown-item to="/dashboard"> Dashboard </b-dropdown-item>
+          <b-dropdown-item @click="$auth.logout()"> Logout </b-dropdown-item>
+        </b-nav-item-dropdown>
+        <b-avatar
+          to="/dashboard"
+          :src="
+            $auth.user.simple_local_avatar
+              ? $auth.user.simple_local_avatar['96']
+              : $auth.user.avatar_urls['48']
+          "
+          class="mt-1"
+          rounded="circle"
+          :size="30"
+        ></b-avatar>
+      </template>
+      <template v-else>
+        <nuxt-link class="btn_black" to="/sign-in">Sign In</nuxt-link>
+      </template>
+      <!-- </li> -->
     </ul>
   </header>
 </template>
