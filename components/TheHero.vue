@@ -17,7 +17,7 @@
                     <a
                       v-if="firstLink.blank === true"
                       :href="firstLink.link"
-                      :target="firstLink.newTab === true ? _blank : ''"
+                      :target="firstLink.newTab === true ? '_blank' : ''"
                       class="btn_white"
                     >
                       {{ firstLink.name }}
@@ -31,7 +31,7 @@
                     <a
                       v-if="secondLink.blank === true"
                       :href="secondLink.link"
-                      :target="secondLink.newTab === true ? _blank : ''"
+                      :target="secondLink.newTab === true ? '_blank' : ''"
                       class="btn_white"
                     >
                       {{ secondLink.name }}
@@ -282,6 +282,7 @@ export default {
   height: 650px;
   z-index: 0;
   @media #{$small_mobile} {
+    height: 250px;
     position: absolute;
     top: 48px;
     right: 0;
@@ -290,6 +291,7 @@ export default {
     text-align: center;
   }
   @media #{$large_mobile} {
+    height: 300px;
     position: absolute;
     top: 80px;
     right: 0;
@@ -298,6 +300,7 @@ export default {
     text-align: center;
   }
   @media #{$tab_device} {
+    height: 350px;
     position: absolute;
     top: 50px;
     right: 0;
@@ -315,8 +318,6 @@ export default {
       backface-visibility: hidden;
       opacity: 0;
       transition: opacity 1s;
-      // min-width: max-content;
-      // max-width: 100%;
       height: 106%;
       object-fit: cover;
       object-position: center;
