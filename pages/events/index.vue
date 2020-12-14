@@ -80,7 +80,7 @@ export default {
   },
   head() {
     return {
-      title: `&{this.heading} | ${this.$store.state.meta.name}`,
+      title: `${this.heading} | ${this.$store.state.meta.name}`,
       meta: [{ description: this.desc }],
     }
   },

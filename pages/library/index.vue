@@ -87,8 +87,8 @@ export default {
   },
   head() {
     return {
-      title: `Gallery | ${this.$store.state.meta.name}`,
-      meta: [{ description: this.$store.state.meta.description }],
+      title: `${this.heading} | ${this.$store.state.meta.name}`,
+      meta: [{ description: this.desc }],
     }
   },
   computed: {

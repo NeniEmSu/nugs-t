@@ -108,8 +108,7 @@
           <div class="offset-md-1"></div>
           <div class="side-content col-lg-3 col-md-4">
             <p class="text-left text-center-md">
-              Have questions or need help? Use the form to reach out and we will be in touch with
-              you as quickly as possible.
+              {{ desc }}
             </p>
           </div>
           <div class="offset-lg-1"></div>
@@ -145,7 +144,8 @@ export default {
     return {
       heading: 'Contact Us',
       supHeading: 'Get In Touch!',
-      desc: '',
+      desc:
+        'Have questions or need help? Use the form to reach out and we will be in touch with you as quickly as possible.',
       error: null,
       loading: false,
       name: '',
@@ -154,6 +154,12 @@ export default {
       email: '',
       subject: '',
       message: '',
+    }
+  },
+  head() {
+    return {
+      title: `${this.heading} | ${this.$store.state.meta.name}`,
+      meta: [{ description: this.desc }],
     }
   },
   computed: {},

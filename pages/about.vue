@@ -98,8 +98,8 @@ export default {
   },
   head() {
     return {
-      title: `About Us | ${this.$store.state.meta.name}`,
-      meta: [{ description: this.$store.state.meta.description }],
+      title: `${this.heading} | ${this.$store.state.meta.name}`,
+      meta: [{ description: this.desc }],
     }
   },
   created() {
