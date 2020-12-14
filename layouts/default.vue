@@ -12,6 +12,11 @@
 
 <script>
 export default {
+  data() {
+    return {
+      count: 0,
+    }
+  },
   mounted() {
     this.serviceWorker()
   },
@@ -21,12 +26,52 @@ export default {
       if (workbox) {
         workbox.addEventListener('installed', (event) => {
           if (event.isUpdate) {
-            if (confirm(`New content is available!. Click OK to refresh`)) {
-              window.location.reload()
-            }
+            this.showUpdateNotification()
           }
         })
       }
+    },
+    showUpdateNotification() {
+      // Use a shorter name for `this.$createElement`
+      const h = this.$createElement
+      const id = `notification`
+
+      const vNodesTitle = h('p', { class: ['text-center', 'mb-0'] }, [
+        // h('b-spinner', { props: { type: 'grow', small: true } }),
+        h('strong', ` Update! `),
+        h('b-spinner', { props: { type: 'grow', small: true } }),
+      ])
+
+      const vNodesMsg = h(
+        'div',
+        { class: ['d-flex', 'flex-grow-1', 'align-items-baseline', 'mr-2'] },
+        [
+          h('strong', ` New content is available! `),
+          h(
+            'b-button',
+            {
+              class: ['btn-default btn-sm ml-auto'],
+              on: {
+                click: () => {
+                  window.location.reload()
+                  this.$bvToast.hide(id)
+                },
+              },
+            },
+            'Reload'
+          ),
+        ]
+      )
+
+      this.$bvToast.toast([vNodesMsg], {
+        id: id,
+        title: [vNodesTitle],
+        toaster: 'b-toaster-bottom-center',
+        variant: 'info',
+        noCloseButton: true,
+        noAutoHide: true,
+        solid: true,
+      })
     },
   },
 }
