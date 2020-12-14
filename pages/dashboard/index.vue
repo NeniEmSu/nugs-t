@@ -36,7 +36,6 @@
         <div class="col-md-4 text-center mt-3">
           <h3>Settings</h3>
           <b-avatar
-            :to="`/authors/${state.user.slug}`"
             :src="
               $auth.user.simple_local_avatar
                 ? $auth.user.simple_local_avatar['192']
@@ -46,7 +45,7 @@
             :size="180"
           ></b-avatar>
           <p>
-            <nuxt-link :to="`/authors/${state.user.slug}`">@{{ state.user.username }}</nuxt-link>
+            <span>@{{ state.user.username }}</span>
           </p>
           <p>
             Role:
