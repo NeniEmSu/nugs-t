@@ -1,7 +1,7 @@
 <template>
   <div class="article-list">
     <article v-for="article in articles" :key="article.id">
-      <div class="date">
+      <span class="date">
         <span v-html="shortTimestamp(article.date)"></span>
         &nbsp;–&nbsp;
         <span class="topics">
@@ -10,18 +10,15 @@
             :key="index"
             class="topic"
           >
-            <nuxt-link
-              :key="topic.id"
-              class="fancy"
-              :to="`/topics/${topic.slug}`"
-              v-html="topic.name"
+            <nuxt-link :key="topic.id" class="fancy" :to="`/topics/${topic.slug}`">
+              <span v-html="topic.name"></span
             ></nuxt-link>
           </span>
         </span>
-      </div>
+      </span>
       <nuxt-link :to="`/news-blogs/${article.slug}`" class="row">
-        <div class="">
-          <div v-if="article._embedded['wp:featuredmedia']" class="lazy thumbnail">
+        <span class="img-block">
+          <span v-if="article._embedded['wp:featuredmedia']" class="lazy thumbnail">
             <img
               v-lazy="
                 article._embedded['wp:featuredmedia'][0].media_details.sizes.thumbnail.source_url
@@ -29,8 +26,8 @@
               :alt="article._embedded['wp:featuredmedia'][0].alt_text"
             />
             <Spinner1 class="spinner" />
-          </div>
-          <div v-if="article._embedded['wp:featuredmedia']" class="lazy medium">
+          </span>
+          <span v-if="article._embedded['wp:featuredmedia']" class="lazy medium">
             <img
               v-lazy="
                 article._embedded['wp:featuredmedia'][0].media_details.sizes.medium.source_url
@@ -38,12 +35,14 @@
               :alt="article._embedded['wp:featuredmedia'][0].alt_text"
             />
             <Spinner1 class="spinner" />
-          </div>
-        </div>
-        <div class="col">
-          <h2 v-html="article.title.rendered"></h2>
-          <div class="excerpt" v-html="article.excerpt.rendered"></div>
-        </div>
+          </span>
+        </span>
+        <span class="col">
+          <h2>
+            {{ article.title.rendered }}
+          </h2>
+          <span class="excerpt" v-html="article.excerpt.rendered"></span>
+        </span>
       </nuxt-link>
     </article>
   </div>
