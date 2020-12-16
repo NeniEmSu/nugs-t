@@ -12,7 +12,7 @@
             The process of registering, submitting requests and getting added to the list of fee
             extenders is easy and requires a few simple steps.
           </p>
-          <nuxt-link to="" class="btn_white">Apply for extension</nuxt-link>
+          <button v-b-modal.modal-1 class="btn_white">Apply for extension</button>
         </div>
         <div class="detail col-lg-6 col-md-5 img d-none d-md-block">
           <div class="lazy">
@@ -25,13 +25,180 @@
         </div>
       </div>
     </div>
+
+    <b-modal
+      id="modal-1"
+      title="Apply for Extension"
+      hide-footer
+      @show="resetModal"
+      @hidden="resetModal"
+      @ok="handleOk"
+    >
+      <b-form ref="form" @submit="handleOk" @reset="resetModal">
+        <b-form-group
+          label="Name"
+          label-for="name-input"
+          invalid-feedback="Name is required"
+          :state="nameState"
+        >
+          <b-form-input
+            id="name-input"
+            v-model="name"
+            :state="nameState"
+            placeholder="Your full name"
+            required
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group
+          label="Email"
+          label-for="email-input"
+          invalid-feedback="Email is required"
+          :state="emailState"
+        >
+          <b-form-input
+            id="email-input"
+            v-model="email"
+            :state="emailState"
+            placeholder="your_name@email.com"
+            required
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group
+          label="Phone Number"
+          label-for="phone-input"
+          invalid-feedback="Phone Number is required"
+          :state="phoneState"
+        >
+          <b-form-input
+            id="phone-input"
+            v-model="phone"
+            placeholder="+380 00 000 0000"
+            :state="phoneState"
+            required
+          ></b-form-input>
+        </b-form-group>
+        <b-form-group
+          label="Faculty"
+          label-for="faculty-input"
+          invalid-feedback="Faculty is required"
+          :state="facultyState"
+        >
+          <b-form-select
+            id="faculty-input"
+            v-model="faculty"
+            :options="facultyOptions"
+            :state="facultyState"
+            required
+          ></b-form-select>
+        </b-form-group>
+        <b-form-group
+          label="Course"
+          label-for="course-input"
+          invalid-feedback="Course is required"
+          :state="courseState"
+        >
+          <b-form-select
+            id="course-input"
+            v-model="course"
+            :options="courseOptions"
+            :state="courseState"
+            required
+          ></b-form-select>
+        </b-form-group>
+
+        <div class="form-group py-0">
+          <b-form-checkbox
+            id="status"
+            v-model="status"
+            name="status"
+            value="accepted"
+            required
+            unchecked-value="not_accepted"
+          >
+            I agree to the <nuxt-link to="/terms">terms and conditions</nuxt-link> of use.
+          </b-form-checkbox>
+        </div>
+
+        <button type="submit" class="btn_black">Submit</button>
+      </b-form>
+    </b-modal>
   </section>
 </template>
 
 <script>
 export default {
   data() {
-    return {}
+    return {
+      name: '',
+      nameState: null,
+      email: '',
+      emailState: null,
+      phone: '',
+      phoneState: null,
+      status: '',
+      submittedNames: [],
+      faculty: null,
+      facultyState: null,
+      facultyOptions: [
+        { value: null, text: 'Please select your faculty' },
+        { value: 'medical', text: 'Medical Faculty' },
+        { value: 'Nursing', text: 'Nursing Faculty' },
+        { value: 'Pharmacy', text: 'Pharmacy Faculty' },
+        { value: 'Dentistry', text: 'Dentistry Faculty' },
+      ],
+      course: null,
+      courseState: null,
+      courseOptions: [
+        { value: null, text: 'Please select course' },
+        { value: '1st', text: 'First course' },
+        { value: '2nd', text: 'Second course' },
+        { value: '3rd', text: 'Third course' },
+        { value: '4th', text: 'Fourth course' },
+        { value: '5th', text: 'Fifth course' },
+        { value: '6th', text: 'Sixth course' },
+      ],
+    }
+  },
+  methods: {
+    checkFormValidity() {
+      const valid = this.$refs.form.checkValidity()
+      this.nameState = valid
+      this.emailState = valid
+      this.phoneState = valid
+      this.facultyState = valid
+      this.courseState = valid
+      return valid
+    },
+    resetModal() {
+      this.name = ''
+      this.nameState = null
+      this.email = ''
+      this.emailState = null
+      this.phone = ''
+      this.phoneState = null
+      this.faculty = null
+      this.facultyState = null
+      this.course = null
+      this.courseState = null
+    },
+    handleOk(bvModalEvt) {
+      // Prevent modal from closing
+      bvModalEvt.preventDefault()
+      // Trigger submit handler
+      this.handleSubmit()
+    },
+    handleSubmit() {
+      // Exit when the form isn't valid
+      if (!this.checkFormValidity()) {
+        return
+      }
+      // Push the name to submitted names
+      this.submittedNames.push(this.name)
+      // Hide the modal manually
+      this.$nextTick(() => {
+        this.$bvModal.hide('modal')
+      })
+    },
   },
 }
 </script>
@@ -133,5 +300,13 @@ $min-width: 15rem;
       }
     }
   }
+}
+
+.btn_black {
+  @extend %custom_btn_outline_black;
+}
+
+a {
+  color: var(--dark-accent);
 }
 </style>
