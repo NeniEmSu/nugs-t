@@ -1,5 +1,5 @@
 <template>
-  <form>
+  <form @submit.prevent="submitForm">
     <busy-overlay :loading="loading" />
     <b-alert
       v-if="error"
@@ -85,7 +85,7 @@
     </div>
     <template v-if="signUpPage">
       <div>
-        <button class="btn_black" type="submit" @click.prevent="signUp">Sign Up</button>
+        <button class="btn_black" type="submit">Sign Up</button>
       </div>
       <div style="margin-top: 20px">
         Already got an account? <nuxt-link to="/sign-in">Sign In</nuxt-link>
@@ -93,7 +93,7 @@
     </template>
     <template v-else>
       <div>
-        <button class="btn_black" type="submit" @click.prevent="signIn">Sign In</button>
+        <button class="btn_black" type="submit">Sign In</button>
       </div>
       <div style="margin-top: 20px">
         Don't have an account yet? <nuxt-link to="/sign-up">Sign Up</nuxt-link>
@@ -134,6 +134,10 @@ export default {
     },
   },
   methods: {
+    submitForm() {
+      if (this.signUpPage) this.signUp()
+      else this.signIn()
+    },
     signIn() {
       this.error = null
       this.loading = true
