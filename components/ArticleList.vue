@@ -41,7 +41,7 @@
           <h2>
             {{ article.title.rendered }}
           </h2>
-          <span class="excerpt" v-html="article.excerpt.rendered"></span>
+          <p class="excerpt">{{ article.excerpt.rendered.substring(3, 200) }}...</p>
         </span>
       </nuxt-link>
     </article>
