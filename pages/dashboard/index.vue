@@ -63,6 +63,13 @@
           </div>
         </div>
       </div>
+
+      <div class="extenders mt-4">
+        <h3>List of students info for extension:</h3>
+        <ul v-for="extender in extenders" :key="extender.id.$t">
+          <li class="text-capitalize">{{ extender.content.$t }}</li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -71,16 +78,31 @@
 export default {
   name: 'Dashboard',
   middleware: ['auth'],
+  data() {
+    return {
+      extenders: [],
+    }
+  },
   computed: {
     state() {
       return this.$auth.$state
     },
+  },
+  created() {
+    this.getExtRequests()
   },
   methods: {
     refreshTokens() {
       this.$auth.refreshTokens().catch((e) => {
         this.error = e + ''
       })
+    },
+    async getExtRequests() {
+      const res = await this.$axios.get(
+        'https://spreadsheets.google.com/feeds/list/1sUdqc7xITgLPAIfOz75FkPjfXSSf_rI8kOv9nBYMnNo/1/public/values?alt=json'
+      )
+      this.extenders = res.data.feed.entry
+      console.log(res)
     },
   },
 }

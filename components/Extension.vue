@@ -58,6 +58,7 @@
           <b-form-input
             id="email-input"
             v-model="email"
+            type="email"
             :state="emailState"
             placeholder="your_name@email.com"
             required
@@ -72,6 +73,7 @@
           <b-form-input
             id="phone-input"
             v-model="phone"
+            type="tel"
             placeholder="+380 00 000 0000"
             :state="phoneState"
             required
@@ -141,7 +143,7 @@ export default {
       facultyState: null,
       facultyOptions: [
         { value: null, text: 'Please select your faculty' },
-        { value: 'medical', text: 'Medical Faculty' },
+        { value: 'Medicine', text: 'Medical Faculty' },
         { value: 'Nursing', text: 'Nursing Faculty' },
         { value: 'Pharmacy', text: 'Pharmacy Faculty' },
         { value: 'Dentistry', text: 'Dentistry Faculty' },
@@ -192,12 +194,41 @@ export default {
       if (!this.checkFormValidity()) {
         return
       }
-      // Push the name to submitted names
-      this.submittedNames.push(this.name)
-      // Hide the modal manually
-      this.$nextTick(() => {
-        this.$bvModal.hide('modal')
-      })
+      const formData = new FormData()
+      formData.set('name', this.name)
+      formData.set('email', this.email)
+      formData.set('phone', this.phone)
+      formData.set('faculty', this.faculty)
+      formData.set('course', this.course)
+      let url =
+        'https://docs.google.com/forms/u/0/d/e/1FAIpQLSfnZ1OhgP6PwCk8UkXzDCN0YZ8z0eeEmpOeYZ4AFGV7BdM-ig/formResponse?entry.1019439693=course&entry.1045781291=email&entry.1065046570=faculty&entry.1166974658=phone&entry.2005620554=name&submit=SUBMIT'
+      for (const [key, value] of formData) {
+        url = url.replace(key, value)
+      }
+      console.log(url)
+      const opts = {
+        method: 'POST',
+        mode: 'no-cors', // apparently Google will only submit a form if "mode" is "no-cors"
+        redirect: 'follow',
+        referrer: 'no-referrer',
+      }
+      return fetch(url, opts)
+        .then((result) => {
+          console.log(result)
+          this.$store.dispatch('toast/setToast', {
+            title: 'Sent',
+            append: true,
+            variant: 'success',
+            text: 'Thank you for adding your info an executive will contact you if necessary.',
+            delay: 5000,
+          })
+          this.$nextTick(() => {
+            this.$bvModal.hide('modal-1')
+          })
+        })
+        .catch((err) => {
+          console.log(err)
+        })
     },
   },
 }
