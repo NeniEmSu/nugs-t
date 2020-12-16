@@ -341,6 +341,11 @@ textarea > label {
   transform: translate(1em, -10.7em);
 }
 
+.modal-content {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+}
+
 pre {
   color: var(--color);
 }
